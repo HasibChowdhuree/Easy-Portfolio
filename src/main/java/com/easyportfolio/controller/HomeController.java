@@ -25,5 +25,10 @@ public class HomeController {
         return "signin";
     }
     
+    @RequestMapping("/createcv")
+    public String CreateCV(Model model){
+        model.addAttribute("title", "Create CV - Easy Portfolio");
+        return "createcv";
+    }
     
 }
