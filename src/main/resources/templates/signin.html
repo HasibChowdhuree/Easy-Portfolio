@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+    <head>
+        <title>Login</title>
+    </head>
+    <body>
+        <section class="register-login-banner d-flex justify-content-center align-items-center">
+            <div class="col-md-4">
+                <form class="signupform rounded"><br>
+                    <h3 style="color: white; text-align: center;">Sign in to your account!</h3><br><br>
+                    <div class="mb-3">
+                        <input type="email" class="form-control" id="" placeholder="Email / Username" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" placeholder="Password" class="form-control" id="">
+                    </div>
+                    <br>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-light">Sign in</button>
+                        <br><br>
+                        <p>Don't have an account yet? Click here to <a th:href="@{/signup}" style="color: white;">Sign up!</a></p>
+                    </div>
+                </form>
+            </div>
+        </section>
+        
+    </body>
+</html>

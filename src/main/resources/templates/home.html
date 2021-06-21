@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+    <head>
+        <title>Home</title>
+    </head>
+    <body>
+        <section class="black-background">
+            <div class="banner d-flex justify-content-center align-items-center">
+                <p class="banner-text">
+                    Create your CV and Portfolio Website in the blink of an eye!</p>
+            </div>
+
+            <div class="container mycontainer">
+                <div class="row myrow">
+                    <div class="col-md-5">
+                        
+                        <div class="box rounded">
+                            <br>
+                            <div class="container text-center">
+                                <img th:src="@{/img/cv-icon.png}">
+                            </div>
+                            <br>
+                            <br>
+                            <h3 style="color: white; text-align: center;">Create your CV without any hastle. You don't even need any account for using this feature!</h3><br><br>
+                            
+                            <br>
+                            <div class="container text-center">
+                                <a th:href="@{/createcv}"><button type="button" class="btn btn-outline-light">Create CV</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                        <div class="box rounded"><br>
+                            <div class="container text-center">
+                                <img th:src="@{/img/web-icon.png}">
+                            </div>
+                            <br>
+                            <br>
+                            <h3 style="color: white; text-align: center;">Create your Portfolio Website without any coding. This feature requires having an account!</h3><br><br>
+                            
+                            
+                            <div class="container text-center">
+                                <a th:href="@{/signup}"><button type="button" class="btn btn-outline-light" style="margin: 10px;">Sign up</button></a>
+                                <a th:href="@{/signin}"><button type="button" class="btn btn-outline-light" style="margin: 10px;">Sign in</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

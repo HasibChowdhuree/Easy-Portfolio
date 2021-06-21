@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+
+
+    <head>
+        <!-- Meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+
+        <title th:text="${title}"></title>
+
+
+        <!-- Navbar -->
+        <nav id="navbar_top" class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <img th:src="@{/img/nav-logo.png}" style="margin-right: 15px;" alt="" width="60" height="35" class="d-inline-block align-middle mr-2">
+                <a class="navbar-brand" th:href="@{/}"><h1> Easy Portfolio</h1></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="main_nav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#"> About </a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/signup}"> Sign up </a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/signin}"> Sign in </a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- End of Navbar-->
+
+
+    </head>
+
+
+    <body>
+
+        <!-- Content from other pages -->
+        <div th:replace="${content}"></div>
+        <!-- End of content from other pages -->
+
+
+
+        <div class="footer bg-dark justify-content-center align-items-center">
+            <br><div>&copy; Easy Portfolio</div>
+            <div> Created with &#10084 by <a style="color: rgb(241,103,101);" href="https://www.HasibChowdhuree.website" target="_blank">&nbsp; Hasib Chowdhuree &nbsp;</a> and <a href="https://rafsan-portfolio.herokuapp.com/" target="_blank" style="color: rgb(241,103,101);">&nbsp; Nayeem Rafsan</a></div>
+        </div>
+
+
+        <!-- Bootstrap JS Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        <script th:src="@{/js/script.js}"></script>
+
+    </body>
+
+
+</html>
