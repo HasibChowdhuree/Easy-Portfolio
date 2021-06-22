@@ -1,43 +1,25 @@
 	function addProfile(){
 		
 				var select = document.createElement("select");
-				var option1 = document.createElement("option");
-				var option2 = document.createElement("option");
-				var option3 = document.createElement("option");
-				var option4 = document.createElement("option");
-				var option5 = document.createElement("option");
-				var option6 = document.createElement("option");
-				
+				select.setAttribute("class","form-select");
+				select.setAttribute("id","inputGroupSelect02");
+				let options = [], optionnames = ["Select Profile","LinkedIn","Github","Facebook","Twitter","Youtube"];
+				for(let i=0;i<6;i++){
+					options[i] = document.createElement("option");
+					options[i].setAttribute("value", i);
+					options[i].appendChild(document.createTextNode(optionnames[i]));
+					select.appendChild(options[i]);
+				}
 				var input = document.createElement("input");
 				var doc = document.getElementById("profilelinks");
-				
 				var di = document.createElement("div");
-				select.setAttribute("class","form-select");
-				
-				select.setAttribute("id","inputGroupSelect02");
-				
-				option1.setAttribute("value","1");
-				option1.appendChild(document.createTextNode("Select Profile"));
-				option2.setAttribute("value","2");
-				option2.appendChild(document.createTextNode("LinkedIn"));
-				option4.setAttribute("value","3");
-				option3.appendChild(document.createTextNode("Github"));
-				option4.setAttribute("value","4");
-				option4.appendChild(document.createTextNode("Facebook"));
-				option5.setAttribute("value","5");
-				option5.appendChild(document.createTextNode("Twitter"));
-				option6.setAttribute("value","6");
-				option6.appendChild(document.createTextNode("Youtube"));
 				
 				di.setAttribute("class","input-group mb-3");
-				
-				select.appendChild(option1); select.appendChild(option2); select.appendChild(option3); select.appendChild(option4);
-				select.appendChild(option5); select.appendChild(option6);
+
 				input.setAttribute("type","text");
 				input.setAttribute("class","form-control");
 				input.setAttribute("placeholder","Profile URL");
 
-	
 				di.appendChild(select);
 				di.appendChild(input);
 				
@@ -98,4 +80,7 @@
 		doc.appendChild(document.createElement("br"));
 		//doc.appendChild(di);
 		//doc.appendChild(di2);
+	}
+	function addSkills(){
+		
 	}
