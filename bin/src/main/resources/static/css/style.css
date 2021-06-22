@@ -1,0 +1,105 @@
+body{
+    background: linear-gradient(rgba(241, 103, 101, 0.8), rgba(0, 0, 0, 0.8));
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.white-text{
+    color: rgb(255, 255, 255) !important;
+}
+
+.primary-background{
+    background-color: rgb(241,103,101) !important;
+}
+
+.black-background{
+    background-color: black !important;
+}
+
+a{
+    text-decoration: none;
+}
+
+.signupform{
+    background-color: rgb(241,103,101);
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.register-login-banner{
+    background: linear-gradient(rgba(241, 103, 101, 0.8), rgba(0, 0, 0, 0.8)), url(../img/banner.jpg);
+    height: 100vh;
+}
+
+.createcv-banner{
+    background: linear-gradient(rgba(241, 103, 101, 0.8), rgba(0, 0, 0, 0.8));
+    height: 200vh;
+}
+
+.banner{
+    width: 100%;
+    height: 75vh;
+    background: linear-gradient(rgba(241, 103, 101, 0.8), rgba(0, 0, 0, 0.8)), url(../img/banner.jpg);
+    background-size: cover;
+    color: white;
+    font-size: 100px;
+}
+
+.banner-text{
+    margin: 200px;
+    text-align: center;
+}
+
+
+
+.box{
+    background-color: rgb(189, 63, 61);
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.mycontainer{
+    background-color: #000000 !important;
+    height: 600px;
+    width: 100% !important;
+}
+
+.myrow{
+    padding-top: 80px;
+    height: 600px;
+}
+
+.footer {
+    left: 0;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+  }
+
+
+
+
+@media only screen and (max-width: 960px){
+    .banner{
+        width: 100%;
+        height: 70vh;
+        background: linear-gradient(rgba(241, 103, 101, 0.8), rgba(0, 0, 0, 0.8)), url(../img/banner.jpg);
+        background-size: cover;
+        color: white;
+        font-size: 50px;
+    }
+    .banner-text{
+        margin: 20px;
+        text-align: center;
+    }
+    .mycontainer{
+        background-color: #000000 !important;
+        height: 1000px;
+        width: 100% !important;
+    }
+
+}
