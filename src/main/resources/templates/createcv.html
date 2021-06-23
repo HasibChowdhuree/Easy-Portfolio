@@ -17,28 +17,28 @@
 		                    <div class="form-group mb-3">
 		                        <i class="fa fa-user"></i>
 		                        <label>Name</label>
-		                        <input type="text" class="form-control" placeholder="full name">
+		                        <input type="text" class="form-control">
 		                    </div>
 	                    </div>
 	                    <div class="col-6">
 		                    <div class="form-group mb-3">
 		                    <i class="fa fa-envelope"></i>
 		                        <label>Email</label>
-		                        <input type="email" class="form-control" placeholder="email address">
+		                        <input type="email" class="form-control">
 		                    </div>
 	                    </div>
                     <div class="col-6">
 	                    <div class="form-group mb-3">
 	                    <i class="fa fa-phone"></i>
 	                        <label>Phone</label>
-	                        <input type="text" class="form-control" placeholder="phone number">
+	                        <input type="text" class="form-control">
 	                    </div>
                     </div>
                     <div class="col-6">
 	                    <div class="form-group mb-3">
 		                    <i class="fa fa-address-book"></i>
 		                    <label>Address</label>
-		                    <input type="text" class="form-control" placeholder="home address">
+		                    <input type="text" class="form-control">
 	                    </div>
 	                </div>
 	                <div class="col-6">
@@ -46,7 +46,7 @@
 	                    
 	                    <i class="fa fa-calendar"></i>
 	                    <label>Birthdate</label>
-	                        <input type="date" class="form-control" placeholder="">
+	                        <input type="date" class="form-control">
 	                    </div>
 	                </div>
 	                <div class="col-6">
@@ -59,8 +59,8 @@
 	                <div class="col-14">
 	                    <div class="form-group">
 	                    <i class="fa fa-pencil"></i>
-	                        <label>Tagline</label>
-	                        <input type="text" rows="4" class="form-control" placeholder="enter a short description about yourself"></input>
+	                        <label>Summary</label>
+	                        <textarea type="text" rows="2" class="form-control" ></textarea>
 	                    </div>
 	                </div>
 	                  </div>
@@ -77,7 +77,7 @@
                             <option value="4">Twitter</option>
                             <option value="7">Youtube</option>
                         </select>
-                        <input type="text" class="form-control" placeholder="Profile URL" aria-label="Text input with dropdown button">
+                        <input type="text" class="form-control"  aria-label="Text input with dropdown button">
                     </div>
                     <section id="profilelinks"></section>
                     <br>
@@ -86,27 +86,29 @@
                     <br>
                     <!-- Education-->
                     <h3 style="color: white;">Education</h3><br>
-                    <div class="row">
+                    <div class="row" >
 	                    <div class="form-group mb-3 col-6">
 	                    <i class="fa fa-university"></i>
 	                    <label>Institue Name</label>
-	                        <input type="text" class="form-control" placeholder="name of the institute">
+	                        <input type="text" class="form-control" >
 	                    </div>
 	                    <div class="form-group mb-3 col-6">
 	                    <i class="fa fa-certificate"></i>
 	                    <label>Name of Degree</label>
-	                        <input type="text" class="form-control" placeholder="degree name">
+	                        <input type="text" class="form-control">
 	                    </div>
 	                    <div class="form-group mb-3 col-6">
+	                    <i class="fa fa-calendar"></i>
 	                    <label>Starting Year</label>
-	                        <input type="text" class="form-control" placeholder="starting Year">
-	                        
+	                        <input type="text" class="form-control" >
 	                    </div>
 	                    <div class="form-group mb-3 col-6">
+	                    <i class="fa fa-calendar"></i>
 	                    <label>Ending Year</label>
-	                    	<input type="text" class="form-control" placeholder="graduation year / present">
+	                    	<input type="text" class="form-control">
 	                    </div>
 	                    <div class="form-group mb-3 col-6">
+	                    <i class="fa fa-graduation-cap"></i>
 	                    <label>CGPA/GPA</label>
 	                        <select class="form-select" id="inputGroupSelect02">
 	                            <option selected>Select Grading System</option>
@@ -115,12 +117,14 @@
 	                        </select>
 	                    </div>
 	                    <div class="form-group mb-3 col-6">
+	                    <i class="fa fa-graduation-cap"></i>
 	                     <label>Grade</label>
-	                        <input type="text" class="form-control" placeholder="Grade">
+	                        <input type="text" class="form-control" >
 	                    </div>
 	                    <div class="form-group">
+	                    <i class="fa fa-pencil"></i>
 	                    <label>Additional Info</label>
-	                        <input type="text" class="form-control" placeholder="addiational information"></input>
+	                        <textarea type="text" row="2" class="form-control" ></textarea>
 	                    </div>
                     </div>
                     <br><br>
@@ -132,68 +136,40 @@
 
                     <!-- Experience-->
                     <h3 style="color: white;">Experience</h3><br>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Name of the Company</span>
-                        <input type="text" class="form-control">
+                    <div class="row">
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-university"></i>
+	                        <span class="form-group-text" id="basic-addon1">Name of the Company</span>
+	                        <input type="text" class="form-control">
+	                    </div>
+	                    
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-user"></i>
+	                        <span class="form-group-text" id="basic-addon1">Current Position</span>
+	                        <input type="text" class="form-control">
+	                    </div>
+	                    
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-calendar"></i>
+	                    	<span class="form-group-text" id="basic-addon1">Starting Year</span>
+	                        <input type="text" class="form-control" >
+	                        
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-calendar"></i>
+	                    	<span class="form-group-text" id="basic-addon1">Ending Year / Currently Working</span>
+	                        <input type="text" class="form-control">
+	                        
+	                    </div>
+	                    <div class="form-group">
+	                    	<i class="fa fa-pencil"></i>
+	                        <span class="form-group-text">Description</span>
+	                        <textarea type="text" rows="2" class="form-control"></textarea>
+	                    </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Current Position</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Previous Positions</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Starting Year">
-                        <input type="text" class="form-control" placeholder="Leaving Year / Present">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Description</span>
-                        <textarea rows="2" class="form-control" aria-label="With textarea"></textarea>
-                    </div>
-                    <br><br>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Name of the Company</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Current Position</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Previous Positions</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Starting Year">
-                        <input type="text" class="form-control" placeholder="Leaving Year / Present">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Description</span>
-                        <textarea rows="2" class="form-control" aria-label="With textarea"></textarea>
-                    </div>
-                    <br><br>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Name of the Company</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Current Position</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Previous Positions</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Starting Year">
-                        <input type="text" class="form-control" placeholder="Leaving Year / Present">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Description</span>
-                        <textarea rows="2" class="form-control" aria-label="With textarea"></textarea>
-                    </div>
+                    <section id="educations"></section>
+                    <br>
+                    <button class="btn btn-danger" onclick="addEducation(); return false;"><i class="fa fa-plus"></i> Experience</button>
                     <br><br>
                     <br>
                     <br>
@@ -203,9 +179,17 @@
 
                     <!-- Skills -->
                     <h3 style="color: white;">Skills</h3><br>
-                    <div class="input-group mb-3" id="skillsclass">
-                        <input type="text" class="form-control" placeholder="Catagory">
-                        <input type="text" class="form-control" placeholder="Skills">
+                    <div class="row"> 
+	                    <div class="form-group mb-3 col-6" id="skillsclass">
+	                    <i class="fa fa-star"></i>
+	                    	<label>Category</label>
+	                        <input type="text" class="form-control">
+	                    </div>
+	                    <div class="form-group mb-3 col-6" id="skillsclass">
+	                    <i class="fa fa-paint-brush"></i>
+	                    	<label>Skill</label>
+	                        <input type="text" class="form-control">
+	                    </div>
                     </div>
                     <section id="skills"></section>
                     <button class="btn btn-danger" onclick="addSkills(); return false;"><i class="fa fa-plus"></i></button>
@@ -218,88 +202,27 @@
 
                     <!-- Projects -->
                     <h3 style="color: white;">Projects</h3><br>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Project Name</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Tools Used</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Project Link</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Project Description</span>
-                        <textarea rows="2" class="form-control" aria-label="With textarea"></textarea>
-                    </div>
-                    <br><br>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Project Name</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Tools Used</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Project Link</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Project Description</span>
-                        <textarea rows="2" class="form-control" aria-label="With textarea"></textarea>
-                    </div>
-                    <br><br>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Project Name</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Tools Used</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Project Link</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Project Description</span>
-                        <textarea rows="2" class="form-control" aria-label="With textarea"></textarea>
-                    </div>
-                    <br><br>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Project Name</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Tools Used</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Project Link</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Project Description</span>
-                        <textarea rows="2" class="form-control" aria-label="With textarea"></textarea>
-                    </div>
-                    <br><br><div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Project Name</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Tools Used</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Project Link</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Project Description</span>
-                        <textarea rows="2" class="form-control" aria-label="With textarea"></textarea>
+                    <div class="row">
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-database"></i>
+	                        <span class="form-group-text" id="basic-addon1">Project Name</span>
+	                        <input type="text" class="form-control">
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-paint-brush"></i>
+	                        <span class="form-group-text" id="basic-addon1">Tools Used</span>
+	                        <input type="text" class="form-control">
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-link"></i>
+	                        <span class="form-group-text" id="basic-addon1">Project Link</span>
+	                        <input type="text" class="form-control">
+	                    </div>
+	                    <div class="form-group">
+	                    	<i class="fa fa-pencil"></i>
+	                        <span class="form-group-text">Project Description</span>
+	                        <textarea type="text" rows="2" class="form-control" aria-label="With textarea"></textarea>
+	                    </div>
                     </div>
                     <br><br>
                     <br>
@@ -310,77 +233,37 @@
 
                     <!-- Projects -->
                     <h3 style="color: white;">Achievements</h3><br>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Achievement</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Description</span>
-                        <textarea rows="2" class="form-control" aria-label="With textarea"></textarea>
-                    </div>
-                    <br><br>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Achievement</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Description</span>
-                        <textarea rows="2" class="form-control" aria-label="With textarea"></textarea>
+                    <div class="row">
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-trophy"></i>
+	                        <span class="form-group-text" id="basic-addon1">Achievement</span>
+	                        <input type="text" class="form-control">
+	                    </div>
+	                    <div class="form-group">
+	                    	<i class="fa fa-pencil"></i>
+	                        <span class="form-group-text">Description</span>
+	                        <textarea type="text" rows="2" class="form-control" aria-label="With textarea"></textarea>
+	                    </div>
                     </div>
                     <br><br>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Achievement</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Description</span>
-                        <textarea rows="2" class="form-control" aria-label="With textarea"></textarea>
-                    </div>
-                    <br><br>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Achievement</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Description</span>
-                        <textarea rows="2" class="form-control" aria-label="With textarea"></textarea>
-                    </div>
-                    <br><br>
-                    <br>
+                    
                     <br>
 
 
 
                     <!-- References -->
                     <h3 style="color: white;">References</h3><br>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Name</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Description</span>
-                        <textarea rows="2" class="form-control" aria-label="With textarea"></textarea>
-                    </div>
-                    <br><br>
-
-
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Name</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Description</span>
-                        <textarea rows="2" class="form-control" aria-label="With textarea"></textarea>
-                    </div>
-                    <br><br>
-
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Name</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Description</span>
-                        <textarea rows="2" class="form-control" aria-label="With textarea"></textarea>
+                    <div class="row">
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-group"></i>
+	                        <span class="form-group-text" id="basic-addon1">Name</span>
+	                        <input type="text" class="form-control">
+	                    </div>
+	                    <div class="form-group">
+	                    	<i class="fa fa-pencil"></i>
+	                        <span class="form-group-text">Description</span>
+	                        <textarea type="text" rows="2" class="form-control" aria-label="With textarea"></textarea>
+	                    </div>
                     </div>
                     <br><br><br><br>
                     

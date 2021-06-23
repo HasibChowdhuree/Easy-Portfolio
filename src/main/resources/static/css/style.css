@@ -48,17 +48,39 @@ input[type="text"]::placeholder,input[type="email"]::placeholder,input[type="dat
   color: white;
 }
 input[type="date"]::-webkit-calendar-picker-indicator {
-    color: #ffffff;
+    color: white;
     opacity: 1;
     display: block;
     width: 20px;
     height: 20px;
     border-width: thin;
+    filter: invert(1);
 }
-select option{
-	background: #3e4149;
+
+input[type="file"]::-webkit-file-upload-button{
+	background-color:#3e4149;
 	color:white;
 }
+textarea[type="text"],textarea[type="text"]:focus, textarea[type="text"]::placeholder {
+	background-color:#3e4149;
+	color:white;
+}
+select{
+	background-color: #3e4149;
+	color:white;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+#inputGroupSelect02{
+	background-color:#3e4149;
+	color: white;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+#inputGroupFile01{
+	background-color:#3e4149;
+}
+
 .register-login-banner{
     background: linear-gradient(rgba(241, 103, 101, 0.8), rgba(0, 0, 0, 0.8)), url(../img/banner.jpg);
     height: 100vh;

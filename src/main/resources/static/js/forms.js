@@ -28,23 +28,40 @@
 	function addEducation(){
 		var doc = document.getElementById("educations");
 		// for div tags
+		let disrow = document.createElement("div");
+		disrow.setAttribute("class","row");
 		let dis=[];
-		for(let i=0;i<5;i++){
+		for(let i=0;i<=6;i++){
 			dis[i] = document.createElement("div");
-			dis[i].setAttribute("class","input-group mb-3");
+			dis[i].setAttribute("class","form-group mb-3 col-6");
 		}
 		//for input tags
-		let inputs=[]; let inputnames = [" ","Degree Name","Subject / Group","Starting Year","Graduation Year / Present", "Grade"];
-		for(let i=0;i<=5;i++){
+		let inputs=[];
+		let icons=[];
+		let labels=[];
+		for(let i=0;i<=6;i++){
 			inputs[i]=document.createElement("input");
 			inputs[i].setAttribute("type","text");
 			inputs[i].setAttribute("class","form-control");
-			inputs[i].setAttribute("placeholder",inputnames[i]);
+			icons[i] = document.createElement("i");
+			labels[i] = document.createElement("label");
 		}
+		icons[0].setAttribute("class","fa fa-university");
+		icons[1].setAttribute("class","fa fa-certificate");
+		icons[2].setAttribute("class","fa fa-calendar");
+		icons[3].setAttribute("class","fa fa-calendar");
+		icons[4].setAttribute("class","fa fa-graduation-cap");
+		icons[5].setAttribute("class","fa fa-graduation-cap");
+		icons[6].setAttribute("class","fa fa-pencil");
 		
-		var span = document.createElement("span");
-		span.setAttribute("class","input-group-text"); span.setAttribute("id","basic-addon1");
-		span.appendChild(document.createTextNode("Name of the Institution"));
+		
+		labels[0].appendChild(document.createTextNode("Institution Name"));
+		labels[1].appendChild(document.createTextNode("Name of Degree"));
+		labels[2].appendChild(document.createTextNode("Starting Year"));
+		labels[3].appendChild(document.createTextNode("Ending Year"));
+		labels[4].appendChild(document.createTextNode("CGPA/GPA"));
+		labels[5].appendChild(document.createTextNode("Grade"));
+		labels[6].appendChild(document.createTextNode("Additional Info"));
 		
 		var select = document.createElement("select");
 		select.setAttribute("class","form-select");
@@ -56,27 +73,33 @@
 			options[i].appendChild(document.createTextNode(opnames[i]));
 			select.appendChild(options[i]);
 		}
-		dis[0].appendChild(span); dis[0].appendChild(inputs[0]);
-		dis[1].appendChild(inputs[1]); dis[1].appendChild(inputs[2]);
-		dis[2].appendChild(inputs[3]); dis[2].appendChild(inputs[4]);
-		dis[3].appendChild(select); dis[3].appendChild(inputs[5]);
+		
+		dis[0].appendChild(icons[0]);dis[0].appendChild(labels[0]); dis[0].appendChild(inputs[0]);
+		dis[1].appendChild(icons[1]);dis[1].appendChild(labels[1]); dis[1].appendChild(inputs[1]);
+		dis[2].appendChild(icons[2]);dis[2].appendChild(labels[2]); dis[2].appendChild(inputs[2]);
+		dis[3].appendChild(icons[3]);dis[3].appendChild(labels[3]); dis[3].appendChild(inputs[3]);
+		dis[4].appendChild(icons[4]);dis[4].appendChild(labels[4]); dis[4].appendChild(select);
+		dis[5].appendChild(icons[5]);dis[5].appendChild(labels[5]); dis[5].appendChild(inputs[4]);
+		dis[6].appendChild(icons[6]);dis[6].appendChild(labels[6]);
 		//di.appendChild(span); di.appendChild(input);
 		//di2.appendChild(input2); di2.appendChild(input3);
-		let span2 = document.createElement("span"); 
-		span2.setAttribute("class","input-group-text");
-		span2.appendChild(document.createTextNode("Additional Information"));
+
 		let textarea = document.createElement("textarea");
 		textarea.setAttribute("rows","2");
+		textarea.setAttribute("type","text");
 		textarea.setAttribute("class","form-control");
 		textarea.setAttribute("aria-label","With textarea");
-		dis[4].setAttribute("class","input-group");
-		dis[4].appendChild(span2); dis[4].appendChild(textarea);
-		
-		doc.appendChild(dis[0]);
-		doc.appendChild(dis[1]);
-		doc.appendChild(dis[2]);
-		doc.appendChild(dis[3]);
-		doc.appendChild(dis[4]);
+		dis[6].setAttribute("class","form-group");
+		dis[6].appendChild(textarea);
+
+		disrow.appendChild(dis[0]);
+		disrow.appendChild(dis[1]);
+		disrow.appendChild(dis[2]);
+		disrow.appendChild(dis[3]);
+		disrow.appendChild(dis[4]);
+		disrow.appendChild(dis[5]);
+		disrow.appendChild(dis[6]);
+		doc.appendChild(disrow);
 		doc.appendChild(document.createElement("br"));
 		//doc.appendChild(di);
 		//doc.appendChild(di2);
