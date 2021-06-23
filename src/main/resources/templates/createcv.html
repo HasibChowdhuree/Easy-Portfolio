@@ -10,35 +10,60 @@
                 <h1 style="color: black; text-align: center;">Fill out the form to generate your CV</h1><br>
                 <form class="signupform rounded"><br>
                     <!-- Personal Information-->
-                    <h3 style="color: white;">Personal Information</h3><br>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Name</span>
-                        <input type="text" class="form-control">
+                    <h3 style="color: white;">Personal Information</h3>
+                    <br>
+                    <div class="row">
+	                    <div class="col-6">
+		                    <div class="form-group mb-3">
+		                        <i class="fa fa-user"></i>
+		                        <label>Name</label>
+		                        <input type="text" class="form-control" placeholder="full name">
+		                    </div>
+	                    </div>
+	                    <div class="col-6">
+		                    <div class="form-group mb-3">
+		                    <i class="fa fa-envelope"></i>
+		                        <label>Email</label>
+		                        <input type="email" class="form-control" placeholder="email address">
+		                    </div>
+	                    </div>
+                    <div class="col-6">
+	                    <div class="form-group mb-3">
+	                    <i class="fa fa-phone"></i>
+	                        <label>Phone</label>
+	                        <input type="text" class="form-control" placeholder="phone number">
+	                    </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Email</span>
-                        <input type="email" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Phone</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Address</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Birthday</span>
-                        <input type="date" class="form-control" placeholder="">
-                    </div>
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="inputGroupFile01">Picture</label>
-                        <input type="file" class="form-control" id="inputGroupFile01">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Summary</span>
-                        <textarea rows="4" class="form-control" aria-label="With textarea"></textarea>
-                    </div>
+                    <div class="col-6">
+	                    <div class="form-group mb-3">
+		                    <i class="fa fa-address-book"></i>
+		                    <label>Address</label>
+		                    <input type="text" class="form-control" placeholder="home address">
+	                    </div>
+	                </div>
+	                <div class="col-6">
+	                    <div class="form-group mb-3">
+	                    
+	                    <i class="fa fa-calendar"></i>
+	                    <label>Birthdate</label>
+	                        <input type="date" class="form-control" placeholder="">
+	                    </div>
+	                </div>
+	                <div class="col-6">
+	                    <div class="form-group mb-3">
+	                    <i class="fa fa-camera"></i>
+	                        <label>Picture</label>
+	                        <input type="file" class="form-control" id="inputGroupFile01">
+	                    </div>
+	                </div>
+	                <div class="col-14">
+	                    <div class="form-group">
+	                    <i class="fa fa-pencil"></i>
+	                        <label>Tagline</label>
+	                        <input type="text" rows="4" class="form-control" placeholder="enter a short description about yourself"></input>
+	                    </div>
+	                </div>
+	                  </div>
                     <br><br><br>
                     <br>
                     <!-- Profile Links-->
@@ -56,39 +81,52 @@
                     </div>
                     <section id="profilelinks"></section>
                     <br>
-                    <button class="btn btn-danger" onclick="addProfile(); return false;"><i class="fa fa-plus"></i></button>
+                    <button class="btn btn-danger" onclick="addProfile(); return false;"><i class="fa fa-plus"></i>&nbsp Profile Link</button>
                     <br><br><br>
                     <br>
                     <!-- Education-->
                     <h3 style="color: white;">Education</h3><br>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Name of the Institution</span>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Degree Name">
-                        <input type="text" class="form-control" placeholder="Subject / Group">
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Starting Year">
-                        <input type="text" class="form-control" placeholder="Graduation Year / Present">
-                    </div>
-                    <div class="input-group mb-3">
-                        <select class="form-select" id="inputGroupSelect02">
-                            <option selected>Select Grading System</option>
-                            <option value="1">GPA</option>
-                            <option value="2">CGPA</option>
-                        </select>
-                        <input type="text" class="form-control" placeholder="Grade">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Additional Information</span>
-                        <textarea rows="2" class="form-control" aria-label="With textarea"></textarea>
+                    <div class="row">
+	                    <div class="form-group mb-3 col-6">
+	                    <i class="fa fa-university"></i>
+	                    <label>Institue Name</label>
+	                        <input type="text" class="form-control" placeholder="name of the institute">
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                    <i class="fa fa-certificate"></i>
+	                    <label>Name of Degree</label>
+	                        <input type="text" class="form-control" placeholder="degree name">
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                    <label>Starting Year</label>
+	                        <input type="text" class="form-control" placeholder="starting Year">
+	                        
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                    <label>Ending Year</label>
+	                    	<input type="text" class="form-control" placeholder="graduation year / present">
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                    <label>CGPA/GPA</label>
+	                        <select class="form-select" id="inputGroupSelect02">
+	                            <option selected>Select Grading System</option>
+	                            <option value="1">GPA</option>
+	                            <option value="2">CGPA</option>
+	                        </select>
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                     <label>Grade</label>
+	                        <input type="text" class="form-control" placeholder="Grade">
+	                    </div>
+	                    <div class="form-group">
+	                    <label>Additional Info</label>
+	                        <input type="text" class="form-control" placeholder="addiational information"></input>
+	                    </div>
                     </div>
                     <br><br>
                     <section id="educations"></section>
                     <br>
-                    <button class="btn btn-danger" onclick="addEducation(); return false;"><i class="fa fa-plus"></i></button>
+                    <button class="btn btn-danger" onclick="addEducation(); return false;"><i class="fa fa-plus"></i> Education</button>
                     <br><br><br>
                     <br>
 

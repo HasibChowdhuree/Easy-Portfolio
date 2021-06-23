@@ -1,5 +1,6 @@
 body{
-    background: linear-gradient(rgba(241, 103, 101, 0.8), rgba(0, 0, 0, 0.8));
+    /* background: linear-gradient(rgba(241, 103, 101, 0.8), rgba(0, 0, 0, 0.8)); */
+    background: linear-gradient(#3fb0ac, #143e43);    
     background-attachment: fixed;
     background-size: cover;
 }
