@@ -31,20 +31,20 @@ a{
 .btn {
 	font-family: "Poppins-Regular";
 }
-input[type="text"], input[type="email"],input[type="date"],input[type="file"] {
+input[type="text"], input[type="email"], input[type="username"], input[type="password"],input[type="date"],input[type="file"] {
   background-color: #3e4149;
   color: white;
 
 }
-input[type="text"],input[type="email"],input[type="date"],input[type="file"], select, textarea{
+input[type="text"],input[type="email"], input[type="username"], input[type="password"],input[type="date"],input[type="file"], select, textarea{
     color: #ffffff;
 }
 
-input[type="text"]:focus,input[type="email"]:focus,input[type="date"]:focus,input[type="file"]:focus {
+input[type="text"]:focus, input[type="password"]:focus, input[type="username"]:focus,input[type="email"]:focus,input[type="date"]:focus,input[type="file"]:focus {
   background-color: #3e4149;
   color: white;
 }
-input[type="text"]::placeholder,input[type="email"]::placeholder,input[type="date"]::placeholder,input[type="file"]::placeholder {
+input[type="text"]::placeholder, input[type="username"]::placeholder, input[type="password"]::placeholder,input[type="email"]::placeholder,input[type="date"]::placeholder,input[type="file"]::placeholder {
   color: white;
 }
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -68,7 +68,6 @@ textarea[type="text"],textarea[type="text"]:focus, textarea[type="text"]::placeh
 select{
 	background-color: #3e4149;
 	color:white;
-	-webkit-appearance: none;
 	-moz-appearance: none;
 }
 #inputGroupSelect02{

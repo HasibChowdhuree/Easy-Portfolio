@@ -45,7 +45,7 @@
 	                    <div class="form-group mb-3">
 	                    
 	                    <i class="fa fa-calendar"></i>
-	                    <label>Birthdate</label>
+	                    <label>Date of Birth</label>
 	                        <input type="date" class="form-control">
 	                    </div>
 	                </div>
@@ -77,11 +77,11 @@
                             <option value="4">Twitter</option>
                             <option value="7">Youtube</option>
                         </select>
-                        <input type="text" class="form-control"  aria-label="Text input with dropdown button">
+                        <input type="text" class="form-control"  aria-label="Text input with dropdown button" placeholder="Profile URL">
                     </div>
                     <section id="profilelinks"></section>
                     <br>
-                    <button class="btn btn-danger" onclick="addProfile(); return false;"><i class="fa fa-plus"></i>&nbsp Profile Link</button>
+                    <button class="btn btn-danger" onclick="addProfile(); return false;"><i class="fa fa-plus"></i> Add another Profile Link</button>
                     <br><br><br>
                     <br>
                     <!-- Education-->
@@ -89,7 +89,7 @@
                     <div class="row" >
 	                    <div class="form-group mb-3 col-6">
 	                    <i class="fa fa-university"></i>
-	                    <label>Institue Name</label>
+	                    <label>Name of the Institution</label>
 	                        <input type="text" class="form-control" >
 	                    </div>
 	                    <div class="form-group mb-3 col-6">
@@ -104,7 +104,7 @@
 	                    </div>
 	                    <div class="form-group mb-3 col-6">
 	                    <i class="fa fa-calendar"></i>
-	                    <label>Ending Year</label>
+	                    <label>Ending Year / Currently Studying</label>
 	                    	<input type="text" class="form-control">
 	                    </div>
 	                    <div class="form-group mb-3 col-6">
@@ -123,14 +123,14 @@
 	                    </div>
 	                    <div class="form-group">
 	                    <i class="fa fa-pencil"></i>
-	                    <label>Additional Info</label>
+	                    <label>Additional Information</label>
 	                        <textarea type="text" row="2" class="form-control" ></textarea>
 	                    </div>
                     </div>
                     <br><br>
                     <section id="educations"></section>
                     <br>
-                    <button class="btn btn-danger" onclick="addEducation(); return false;"><i class="fa fa-plus"></i> Education</button>
+                    <button class="btn btn-danger" onclick="addEducation(); return false;"><i class="fa fa-plus"></i> Add another Educational Institution</button>
                     <br><br><br>
                     <br>
 
@@ -167,9 +167,10 @@
 	                        <textarea type="text" rows="2" class="form-control"></textarea>
 	                    </div>
                     </div>
-                    <section id="educations"></section>
+					<br><br>
+                    <section id="experience"></section>
                     <br>
-                    <button class="btn btn-danger" onclick="addEducation(); return false;"><i class="fa fa-plus"></i> Experience</button>
+                    <button class="btn btn-danger" onclick="addExperience(); return false;"><i class="fa fa-plus"></i> Add another Experience</button>
                     <br><br>
                     <br>
                     <br>
@@ -192,7 +193,8 @@
 	                    </div>
                     </div>
                     <section id="skills"></section>
-                    <button class="btn btn-danger" onclick="addSkills(); return false;"><i class="fa fa-plus"></i></button>
+					<br>
+                    <button class="btn btn-danger" onclick="addSkills(); return false;"><i class="fa fa-plus"></i> Add another catagory of Skills</button>
                     <br><br>
                     <br>
                     <br>
@@ -205,7 +207,7 @@
                     <div class="row">
 	                    <div class="form-group mb-3 col-6">
 	                    	<i class="fa fa-database"></i>
-	                        <span class="form-group-text" id="basic-addon1">Project Name</span>
+	                        <span class="form-group-text" id="basic-addon1">Name of the Project</span>
 	                        <input type="text" class="form-control">
 	                    </div>
 	                    <div class="form-group mb-3 col-6">
@@ -224,14 +226,17 @@
 	                        <textarea type="text" rows="2" class="form-control" aria-label="With textarea"></textarea>
 	                    </div>
                     </div>
-                    <br><br>
+					<br><br>
+					<section id="project"></section>
                     <br>
-                    <br>
+                    <button class="btn btn-danger" onclick="addProject(); return false;"><i class="fa fa-plus"></i> Add another Project</button>
+                    
+                    <br><br><br><br>
 
 
 
 
-                    <!-- Projects -->
+                    <!-- Achievements -->
                     <h3 style="color: white;">Achievements</h3><br>
                     <div class="row">
 	                    <div class="form-group mb-3 col-6">
@@ -245,8 +250,14 @@
 	                        <textarea type="text" rows="2" class="form-control" aria-label="With textarea"></textarea>
 	                    </div>
                     </div>
-                    <br><br>
+					<br><br>
                     
+					
+					<section id="achievement"></section>
+                    <br>
+                    <button class="btn btn-danger" onclick="addAchievement(); return false;"><i class="fa fa-plus"></i> Add another Achievement</button>
+                    
+                    <br><br>
                     <br>
 
 
@@ -265,7 +276,13 @@
 	                        <textarea type="text" rows="2" class="form-control" aria-label="With textarea"></textarea>
 	                    </div>
                     </div>
-                    <br><br><br><br>
+                    <br><br>
+					
+					<section id="reference"></section>
+                    <br>
+                    <button class="btn btn-danger" onclick="addReference(); return false;"><i class="fa fa-plus"></i> Add another Reference</button>
+                    
+					<br><br>
                     
 
 
