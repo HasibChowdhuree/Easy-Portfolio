@@ -4,15 +4,13 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Experience {
-	private String title,description;
-	private int year;
-	
-
-	public Experience(String title, String description, int year) {
+	private String title,description,startYear, endYear;
+	public Experience(String title, String description, String startYear, String endYear) {
 		super();
 		this.title = title;
 		this.description = description;
-		this.year = year;
+		this.startYear = startYear;
+		this.endYear = endYear;
 	}
 
 	public Experience() {
@@ -35,13 +33,23 @@ public class Experience {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getYear() {
-		return year;
+
+	public String getStartYear() {
+		return startYear;
 	}
 
-	public void setYear(int year) {
-		this.year = year;
+	public void setStartYear(String startYear) {
+		this.startYear = startYear;
 	}
+
+	public String getEndYear() {
+		return endYear;
+	}
+
+	public void setEndYear(String endYear) {
+		this.endYear = endYear;
+	}
+	
 	
 }
 

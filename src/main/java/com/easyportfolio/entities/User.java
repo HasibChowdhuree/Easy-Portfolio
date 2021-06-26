@@ -50,6 +50,18 @@ public class User {
 	private DetailInfo details;
 	@ElementCollection
     @CollectionTable(
+        name = "education",
+        joinColumns = @JoinColumn(name = "id")
+    )
+	private List<Education> educations;
+	@ElementCollection
+    @CollectionTable(
+        name = "achievement",
+        joinColumns = @JoinColumn(name = "id")
+    )
+	private List<Achievement> achievements;
+	@ElementCollection
+    @CollectionTable(
         name = "skill",
         joinColumns = @JoinColumn(name = "id")
     )
@@ -60,6 +72,12 @@ public class User {
         joinColumns = @JoinColumn(name = "id")
     )
 	private List<Project> projects;
+	@ElementCollection
+    @CollectionTable(
+        name = "reference",
+        joinColumns = @JoinColumn(name = "id")
+    )
+	private List<Reference> reference;
 	@ElementCollection
     @CollectionTable(
         name = "experience",

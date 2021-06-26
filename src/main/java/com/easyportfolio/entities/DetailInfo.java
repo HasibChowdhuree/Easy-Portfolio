@@ -1,38 +1,36 @@
 package com.easyportfolio.entities;
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class DetailInfo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int detailId;
-	private String firstName,lastName, phoneNumber;
+	private String fullName, phoneNumber;
 	private double cgpa;
-	private String tagline;
+	private String summary;
+	private String address;
 	private String image;
-	private String schoolName, collegeName, universityName;
-	private double sscGrade, hscGrade;
-	private String graduationYear;
-	public DetailInfo(String firstName, String lastName, String phoneNumber, double cgpa, String tagline,
-			String image,String schoolName, String collegeName, String universityName, double sscGrade, double hscGrade,
-			String graduationYear) {
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+	private Date birthDay;
+	public DetailInfo(String fullName, String phoneNumber, double cgpa, String summary,
+			String image,Date birthDay,String address) {
 		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.fullName = fullName;
 		this.phoneNumber = phoneNumber;
 		this.cgpa = cgpa;
-		this.tagline = tagline;
+		this.summary = summary;
 		this.image = image;
-		this.schoolName = schoolName;
-		this.collegeName = collegeName;
-		this.universityName = universityName;
-		this.sscGrade = sscGrade;
-		this.hscGrade = hscGrade;
-		this.graduationYear = graduationYear;
+		this.birthDay = birthDay;
+		this.address= address;
 	}
 	public DetailInfo() {
 		super();
@@ -42,18 +40,6 @@ public class DetailInfo {
 	}
 	public void setDetailId(int detailId) {
 		this.detailId = detailId;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 	
 	public String getImage() {
@@ -74,48 +60,35 @@ public class DetailInfo {
 	public void setCgpa(double cgpa) {
 		this.cgpa = cgpa;
 	}
-	public String getTagline() {
-		return tagline;
+	public String getsummary() {
+		return summary;
 	}
-	public void setTagline(String tagline) {
-		this.tagline = tagline;
+	public void setsummary(String summary) {
+		this.summary = summary;
 	}
-	public String getSchoolName() {
-		return schoolName;
+	public Date getBirthDay() {
+		return birthDay;
 	}
-	public void setSchoolName(String schoolName) {
-		this.schoolName = schoolName;
+	public void setBirthDay(Date birthDay) {
+		this.birthDay = birthDay;
 	}
-	public String getCollegeName() {
-		return collegeName;
+	public String getSummary() {
+		return summary;
 	}
-	public void setCollegeName(String collegeName) {
-		this.collegeName = collegeName;
+	public void setSummary(String summary) {
+		this.summary = summary;
 	}
-	public String getUniversityName() {
-		return universityName;
+	public String getAddress() {
+		return address;
 	}
-	public void setUniversityName(String universityName) {
-		this.universityName = universityName;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public double getSscGrade() {
-		return sscGrade;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
-	public void setSscGrade(double sscGrade) {
-		this.sscGrade = sscGrade;
-	}
-	public double getHscGrade() {
-		return hscGrade;
-	}
-	public void setHscGrade(double hscGrade) {
-		this.hscGrade = hscGrade;
-	}
-	public String getGraduationYear() {
-		return graduationYear;
-	}
-	public void setGraduationYear(String graduationYear) {
-		this.graduationYear = graduationYear;
-	}
+	
+
 
 }
 
