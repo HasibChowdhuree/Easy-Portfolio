@@ -6,19 +6,19 @@
   <body>
     <section class="register-login-banner d-flex justify-content-center align-items-center">
       <div class="col-md-4">
-        <form class="signupform rounded"><br>
+        <form class="signupform rounded" th:action="@{/processsignup}" method="post"><br>
           <h3 style="color: white; text-align: center;">Don't have an account yet? <br> Sign up right here!</h3><br><br>
           <div class="mb-3">
-            <input type="email" class="form-control" id="" placeholder="Email" aria-describedby="emailHelp">
+            <input type="email" name="email" class="form-control" id="" placeholder="Email" aria-describedby="emailHelp">
           </div>
           <div class="mb-3">
-            <input type="username" class="form-control" id="" placeholder="Userame" aria-describedby="emailHelp">
+            <input type="username" name="username" class="form-control" id="" placeholder="Userame" aria-describedby="emailHelp">
           </div>
           <div class="mb-3">
-            <input type="password" placeholder="Password" class="form-control" id="">
+            <input type="password" name="password" placeholder="Password" class="form-control" id="">
           </div>
           <div class="mb-3">
-            <input type="password" placeholder="Confirm Password" class="form-control" id="1">
+            <input type="password" name="confirmpassword" placeholder="Confirm Password" class="form-control" id="1">
           </div>
           <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">

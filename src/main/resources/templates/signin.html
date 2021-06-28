@@ -6,13 +6,13 @@
     <body>
         <section class="register-login-banner d-flex justify-content-center align-items-center">
             <div class="col-md-4">
-                <form class="signupform rounded"><br>
+                <form class="signupform rounded" th:action="@{/signin}" method="post"><br>
                     <h3 style="color: white; text-align: center;">Sign in to your account!</h3><br><br>
                     <div class="mb-3">
-                        <input type="email" class="form-control" id="" placeholder="Email / Username" aria-describedby="emailHelp">
+                        <input type="email" name="username" class="form-control" id="" placeholder="Email / Username" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
-                        <input type="password" placeholder="Password" class="form-control" id="">
+                        <input type="password" name="password" placeholder="Password" class="form-control" id="">
                     </div>
                     <br>
                     <div class="text-center">
