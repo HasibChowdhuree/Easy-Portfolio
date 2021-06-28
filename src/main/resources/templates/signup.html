@@ -8,6 +8,10 @@
       <div class="col-md-4">
         <form class="signupform rounded" th:action="@{/processsignup}" method="post"><br>
           <h3 style="color: white; text-align: center;">Don't have an account yet? <br> Sign up right here!</h3><br><br>
+          <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+			<p class="text-center" th:text="${session.message.content}"> <p>
+			<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div>
           <div class="mb-3">
             <input type="email" name="email" class="form-control" id="" placeholder="Email" aria-describedby="emailHelp">
           </div>

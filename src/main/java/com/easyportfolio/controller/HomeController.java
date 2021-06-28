@@ -100,7 +100,7 @@ public class HomeController {
 			e.printStackTrace();
 			model.addAttribute("user",user);
 			session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
-			return "createaccount";
+			return "signup";
 		}
 	}
 	@GetMapping("/home")

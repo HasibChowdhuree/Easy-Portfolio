@@ -8,6 +8,9 @@
             <div class="col-md-4">
                 <form class="signupform rounded" th:action="@{/signin}" method="post"><br>
                     <h3 style="color: white; text-align: center;">Sign in to your account!</h3><br><br>
+                    <div th:if="${param.error}" class="alert alert-danger">Invalid email & password</div>
+    				<div th:if="${param.logout}" class="alert alert-primary">You've logged out</div>
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
                     <div class="mb-3">
                         <input type="email" name="username" class="form-control" id="" placeholder="Email / Username" aria-describedby="emailHelp">
                     </div>

@@ -8,7 +8,6 @@
 		<h1 th:utext="${user.email}"></h1>
 		<span th:if="${user.details!=null}">
 			<h1 th:utext="${user.details.fullName}"></h1>
-			<h1 th:utext="${user.details.cgpa}"></h1>
 			<h1 th:utext="${user.educations[0].institute}"></h1>
 			<h1 th:utext="${user.educations[0].grade}"></h1>
 			<button class="btn btn-primary"><a style="text-decoration: none;color:white" th:href="@{'/genpdf/' + ${user.email} + '.pdf'}">Generate pdf</button>
