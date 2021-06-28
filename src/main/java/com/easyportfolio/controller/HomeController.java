@@ -56,9 +56,18 @@ public class HomeController {
 	@Autowired
 	private DetailRepository detailRepository;
 	@GetMapping("/")
-	private String home(Model model) {
+	private String home(Model model, Principal principal) {
 		model.addAttribute("title","Home Page");
-		return "index";
+		try {
+			String email = principal.getName();
+			User user = userRepository.getUserByUserName(email);
+			model.addAttribute(user);
+			return "index";
+		}
+		catch(Exception exception) {
+			return "index";
+		}
+		
 	}
 	@GetMapping("/signup")
 	private String signup(Model model) {
