@@ -7,11 +7,10 @@
 	<section>
 		<h1 th:utext="${user.email}"></h1>
 		<span th:if="${user.details!=null}">
-		
 			<h1 th:utext="${user.details.full_name}"></h1>
 			<h1 th:if="${!user.educations.isEmpty()}" th:utext="${user.educations[0].institute}"></h1>
 			<h1 th:if="${!user.experience.isEmpty()}" th:utext="${user.experience[0].companyName}"></h1>
-			<button class="btn btn-primary"><a style="text-decoration: none;color:white" th:href="@{'/genpdf/' + ${user.email} + '.pdf'}">Generate pdf</button>
+			<button class="btn btn-primary"><a style="text-decoration: none;color:white" th:href="@{'/genpdf/' + ${user.username} + '.pdf'}">Generate pdf</button>
 		</span>
 	</section>
 </body>

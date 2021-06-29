@@ -49,7 +49,10 @@ public class UserController {
 		}
 	}
 	@GetMapping("/inputform")
-	private String inputInformation() {
+	private String inputInformation(Principal principal, Model model) {
+		String email = principal.getName();
+		User user = userRepository.getUserByUserName(email);
+		model.addAttribute(user);
 		return "inputform";
 	}
 	@RequestMapping(path="/processinputform", method= RequestMethod.POST)
