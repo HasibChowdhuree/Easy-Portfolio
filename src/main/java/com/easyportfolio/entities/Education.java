@@ -5,13 +5,13 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Education {
 	private String institute, nameOfDegree, startingYear, endingYear, gradeType, additionalInfo;
-	private double grade;
+	private String grade;
 	public Education() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Education(String institute, String nameOfDegree, String startingYear, String endingYear, String gradeType,
-			String additionalInfo, double grade) {
+			String additionalInfo, String grade) {
 		super();
 		this.institute = institute;
 		this.nameOfDegree = nameOfDegree;
@@ -57,10 +57,10 @@ public class Education {
 	public void setAdditionalInfo(String additionalInfo) {
 		this.additionalInfo = additionalInfo;
 	}
-	public double getGrade() {
+	public String getGrade() {
 		return grade;
 	}
-	public void setGrade(double grade) {
+	public void setGrade(String grade) {
 		this.grade = grade;
 	}
 	

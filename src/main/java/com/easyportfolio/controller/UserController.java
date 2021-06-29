@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.easyportfolio.dao.DetailRepository;
 import com.easyportfolio.dao.UserRepository;
 import com.easyportfolio.entities.DetailInfo;
+import com.easyportfolio.entities.Education;
 import com.easyportfolio.entities.Skill;
 import com.easyportfolio.entities.User;
 
@@ -36,7 +37,6 @@ public class UserController {
 	//		System.out.println(userId);
 			DetailInfo details = detailRepository.getById(userId);
 	//		System.out.println(details.getFirstName());
-	
 			model.addAttribute("user",user);
 			return "user_dashboard";
 		}
@@ -53,10 +53,19 @@ public class UserController {
 		return "inputform";
 	}
 	@RequestMapping(path="/processinputform", method= RequestMethod.POST)
-	private String ProcessInputForm(final DetailInfo details,Model model, Principal principal) {
+	private String ProcessInputForm(final DetailInfo details,final User tempuser,Model model, Principal principal) {
 		String email = principal.getName();
+		System.out.println(email);
 		User user = userRepository.getUserByUserName(email);
-		user.setDetails(details);
+		if(details!=null)
+			user.setDetails(details);
+		user.setEducations(tempuser.getEducations());
+		user.setExperience(tempuser.getExperience());
+		user.setProfile_links(tempuser.getProfile_links());
+		user.setSkills(tempuser.getSkills());
+		user.setProjects(tempuser.getProjects());
+		user.setAchievements(tempuser.getAchievements());
+		user.setReference(tempuser.getReference());
 		userRepository.save(user);
 		model.addAttribute(user);
 		return "user_dashboard";

@@ -62,6 +62,12 @@ public class User {
 	private List<Achievement> achievements;
 	@ElementCollection
     @CollectionTable(
+        name = "profilelinks",
+        joinColumns = @JoinColumn(name = "id")
+    )
+	private List<ProfileLinks> profile_links;
+	@ElementCollection
+    @CollectionTable(
         name = "skill",
         joinColumns = @JoinColumn(name = "id")
     )
@@ -133,6 +139,37 @@ public class User {
 	public int getDetailId() {
 		return details.getDetailId();
 	}
+	public List<Education> getEducations() {
+		return educations;
+	}
+	public void setEducations(List<Education> educations) {
+		this.educations = educations;
+	}
+	public List<Achievement> getAchievements() {
+		return achievements;
+	}
+	public void setAchievements(List<Achievement> achievements) {
+		this.achievements = achievements;
+	}
+	public List<Reference> getReference() {
+		return reference;
+	}
+	public void setReference(List<Reference> reference) {
+		this.reference = reference;
+	}
+	public List<Award> getAwards() {
+		return awards;
+	}
+	public void setAwards(List<Award> awards) {
+		this.awards = awards;
+	}
+	public List<ProfileLinks> getProfile_links() {
+		return profile_links;
+	}
+	public void setProfile_links(List<ProfileLinks> profile_links) {
+		this.profile_links = profile_links;
+	}
+	
 }
 
 

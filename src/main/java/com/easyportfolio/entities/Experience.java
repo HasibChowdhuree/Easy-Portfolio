@@ -4,13 +4,15 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Experience {
-	private String title,description,startYear, endYear;
-	public Experience(String title, String description, String startYear, String endYear) {
+	private String companyName, position,startYear, endYear,description;
+
+	public Experience(String companyName, String position, String startYear, String endYear, String description) {
 		super();
-		this.title = title;
-		this.description = description;
+		this.companyName = companyName;
+		this.position = position;
 		this.startYear = startYear;
 		this.endYear = endYear;
+		this.description = description;
 	}
 
 	public Experience() {
@@ -18,20 +20,20 @@ public class Experience {
 		// TODO Auto-generated constructor stub
 	}
 
-	public String getTitle() {
-		return title;
+	public String getCompanyName() {
+		return companyName;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getPosition() {
+		return position;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
 	public String getStartYear() {
@@ -49,7 +51,14 @@ public class Experience {
 	public void setEndYear(String endYear) {
 		this.endYear = endYear;
 	}
-	
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	
 }
 

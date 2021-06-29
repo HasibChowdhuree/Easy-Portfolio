@@ -67,7 +67,6 @@ public class HomeController {
 		catch(Exception exception) {
 			return "index";
 		}
-		
 	}
 	@GetMapping("/signup")
 	private String signup(Model model) {
