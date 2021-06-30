@@ -70,7 +70,6 @@
 	    <version>5.5.13</version>
 	</dependency>
 	
-    
     <!-- https://mvnrepository.com/artifact/com.itextpdf.tool/xmlworker -->
 	<dependency>
 	    <groupId>com.itextpdf.tool</groupId>
@@ -84,6 +83,7 @@
 	    <artifactId>velocity</artifactId>
 	    <version>1.7</version>
 	</dependency>
+
 	</dependencies>
 
 	<build>

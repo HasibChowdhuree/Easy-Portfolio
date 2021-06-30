@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<html lang="en">
 <head>
 	<title></title>
 </head>
 <body>
 	<section>
 	<h1>hello</h1>
-		<h1>Email: ${user.email}</h1>
+<!--		<h1>Email: ${user.email}</h1>
 		<h1>name: ${user.details.full_name}</h1>
 		<h1>phone number: ${user.details.phone_number}</h1>
-		<h1>address ${user.details.address}</h1>
+		<h1>address ${user.details.address}</h1>-->
+		<h1> $user.email </h1>
+		<h1> $user.details.full_name </h1>
+		#foreach( $education in $user.educations )
+		<h1>
+            $education.institute, $education.nameOfDegree, $education.grade
+		</h1>
+      	#end
+      	#foreach( $profile in $user.profile_links )
+		<h1>
+            $profile.website,$profile.link
+		</h1>
+      	#end
 	</section>
 </body>
 </html>

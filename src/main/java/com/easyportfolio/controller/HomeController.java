@@ -1,5 +1,6 @@
 package com.easyportfolio.controller;
 
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
@@ -7,52 +8,52 @@ import java.io.StringWriter;
 import java.security.Principal;
 import java.time.LocalDateTime;
 
-import javax.servlet.http.HttpSession;
 
+import org.thymeleaf.TemplateEngine;
+
+
+import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
-import org.apache.velocity.Template;
+
 //import org.apache.velocity.VelocityContext;
 //import org.apache.velocity.app.VelocityEngine;
 //import org.apache.velocity.runtime.RuntimeConstants;
 //import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
+
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.thymeleaf.context.WebContext;
-import org.thymeleaf.spring5.SpringTemplateEngine;
+
 
 import com.easyportfolio.dao.DetailRepository;
 import com.easyportfolio.dao.UserRepository;
 import com.easyportfolio.entities.DetailInfo;
 import com.easyportfolio.entities.User;
+
+
 import com.itextpdf.text.Document;
+
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 import com.easyportfolio.helper.Message;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.tool.xml.XMLWorkerHelper;
+
 
 
 
@@ -64,6 +65,9 @@ public class HomeController {
 	private UserRepository userRepository;
 	@Autowired
 	private DetailRepository detailRepository;
+	@Autowired
+    TemplateEngine templateEngine;
+	
 	@GetMapping("/")
 	private String home(Model model, Principal principal) {
 		model.addAttribute("title","Home Page");
@@ -143,7 +147,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("/genpdf/{fileName}")
-	HttpEntity<byte[]> createPdf(
+	public HttpEntity<byte[]> createPdf(
             @PathVariable("fileName") String fileName, Principal principal, Model model) throws IOException {
 
 		/* first, get and initialize an engine */
@@ -159,9 +163,6 @@ public class HomeController {
 		VelocityContext context = new VelocityContext();
 		String email = principal.getName();
 		User user = userRepository.getUserByUserName(email);
-		int userId = user.getDetailId();
-		DetailInfo details = detailRepository.getById(userId);
-		user.setDetails(details);
 		model.addAttribute("user", user);
 		context.put("user", user); 
 		context.put("genDateTime", LocalDateTime.now().toString());
@@ -224,4 +225,5 @@ public class HomeController {
 		}
 
 	}
+	
 }
