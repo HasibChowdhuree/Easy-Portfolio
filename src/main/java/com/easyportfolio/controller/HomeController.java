@@ -81,6 +81,13 @@ public class HomeController {
 			return "index";
 		}
 	}
+
+	@RequestMapping("/createcv")
+    public String CreateCV(Model model){
+        model.addAttribute("title", "Create CV - Easy Portfolio");
+        return "createcv";
+    }
+	
 	@GetMapping("/signup")
 	private String signup(Model model) {
 		model.addAttribute("user",new User());
