@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CV</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style>
+            @import url('https://fonts.googleapis.com/css2? family=Poppins:wght@600&display=swap');
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Poppins', sans-serif;
+            }
+            body{
+                background: grey;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+            }
+            a{
+                text-decoration: none;
+                color: #fff;
+            }
+            .container{
+                position: relative;
+                width: 100%;
+                min-width: 794px;
+                min-height: 1123px;
+                background: #fff;
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                box-shadow: 0 35px 55px rgba(0,0,0,0.1);
+            }
+            .container .left_side{
+                position: relative;
+                background: #003147;
+                padding: 40px;
+            }
+            .profileText{
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-bottom: 40px;
+                border-bottom: 1px solid rgba(255,255,255,0.2);
+            }
+            .profileText .imgBox{
+                position: relative;
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                overflow: hidden;
+            }
+            .profileText .imgBox img{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .profileText h2{
+                color: #fff;
+                font-size: 1.5em;
+                margin-top: 20px;
+                text-transform: uppercase;
+                text-align: center;
+                font-weight: 600;
+                line-height: 1.4em;
+            }
+            .contactInfo{
+                padding-top: 40px;
+                padding-bottom: 40px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+            .contactInfo:last-child{
+                border-bottom: 0px solid rgba(87, 87, 87, 0.2);
+                padding-bottom: 10px;
+            }
+            .contactInfo ul{
+                position: relative;
+            }
+            .contactInfo ul li{
+                position: relative;
+                list-style: none;
+                margin: 10px 0;
+            }
+            .contactInfo ul li .icon{
+                display: inline-block;
+                width: 30px;
+                font-size: 18px;
+                color: #03a9f4;
+            }
+            .contactInfo ul li span{
+                color: #fff;
+                font-weight: 300;
+            }
+            .contactInfo.reference li{
+                margin-bottom: 15px;
+            }
+            .contactInfo.reference h4{
+                color: #03a9f4;
+                font-weight: 500;
+            }
+            .contactInfo.reference h5{
+                color: #fff;
+                font-weight: 300;
+            }
+            .container .right_side{
+                position: relative;
+                background: #fff;
+                padding: 40px;
+            }
+            .about{
+                margin-bottom: 25px;
+                border-bottom: 1px solid rgba(87, 87, 87, 0.2);
+            }
+            .about:last-child{
+                margin-bottom: 0;
+                border-bottom: 0px solid rgba(255, 255, 255, 0.2);
+            }
+            .titleLeft{
+                text-align: center;
+                color: #fff;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 10px;
+            }
+            .titleRight{
+                color: #003147;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 10px;
+            }
+            p{
+                color: #333;
+            }
+            .about .box{
+                display: flex;
+                flex-direction: row;
+                margin: 20px 0;
+            }
+            .about .box .intro{
+                min-width: 150px;
+            }
+            .about .box .intro h5{
+                color: #2a7da2;
+                font-weight: 600;
+            }
+            .about .box .intro h4{
+                color: #2a7da2;
+                font-weight: 700;
+            }
+            .about .box .text h4{
+                color: #333;
+                font-size: 16px;
+            }
+            .about .box .text h5{
+                color: #333;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="left_side">
+                <div class="profileText">
+                    <div class="imgBox">
+                        <img src="img.jpg">
+                    </div>
+                    <h2>Your Name</h2>
+                </div>
+                
+                <div class="contactInfo">
+                    <ul>
+                        <li>
+                            <span class="icon"><i class="fa fa-phone-square" aria-hidden="true"></i></span>
+                            <span class="text">Your Phone Number</span>
+                        </li>
+                        <li>
+                            <span class="icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                            <span class="text">Your Email ID</span>
+                        </li>
+                        <li>
+                            <span class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                            <span class="text">Your Address</span>
+                        </li>
+                        <li>
+                            <span class="icon"><i class="fa fa-facebook-square" aria-hidden="true"></i></span>
+                            <span class="text"><a href="">Your Facebook ID</a></span>
+                        </li>
+                        <li>
+                            <span class="icon"><i class="fa fa-linkedin-square" aria-hidden="true"></i></span>
+                            <span class="text"><a href="">Your LinkedIn ID</a></span>
+                        </li>
+                        <li>
+                            <span class="icon"><i class="fa fa-github-square" aria-hidden="true"></i></span>
+                            <span class="text"><a href="">Your Github ID</a></span>
+                        </li>
+                        <li>
+                            <span class="icon"><i class="fa fa-twitter-square" aria-hidden="true"></i></span>
+                            <span class="text"><a href="">Your Twitter ID</a></span>
+                        </li>
+                        <li>
+                            <span class="icon"><i class="fa fa-youtube-square" aria-hidden="true"></i></span>
+                            <span class="text"><a href="">Your YouTube ID</a></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="contactInfo reference">
+                    <h3 class="titleLeft">References</h3>
+                    <ul>
+                        <li>
+                            <h4>Reference Name</h4>
+                            <h5>He is bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</h5>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="right_side">
+                <div class="about">
+                    <h2 class="titleRight">Summary</h2>
+                    <p>I am bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla </p>
+                    <br>
+                </div>
+
+                <div class="about">
+                    <h2 class="titleRight">Experience</h2> 
+                    <div class="box">
+                        <div class="intro">
+                            <h5>From - To</h5>
+                            <h5>Company Name</h5>
+                        </div>
+                        <div class="text">
+                            <h4>Your Position</h4>
+                            <p>I was bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="about">
+                    <h2 class="titleRight">Education</h2> 
+                    <div class="box">
+                        <div class="intro">
+                            <h5>From - To</h5>
+                            <h5>Insitution Name</h5>
+                        </div>
+                        <div class="text">
+                            <h4>Your Degree</h4>
+                            <h5>Your Grade</h5>
+                            <p>It was bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="about">
+                    <h2 class="titleRight">Skills</h2> 
+                    <div class="box">
+                        <div class="intro">
+                            <h4>Catagory</h4>
+                        </div>
+                        <div class="text">
+                            <p>Skills, Skills, Skills, Skills</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="about">
+                    <h2 class="titleRight">Projects</h2> 
+                    <div class="box">
+                        <div class="intro">
+                            <h4>Project Name</h4>
+                        </div>
+                        <div class="text">
+                            <h5>Tools Used</h5>
+                            <p>It was bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</p>
+                            <h5>Project url</h5>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="about">
+                    <h2 class="titleRight">Achievements</h2> 
+                    <div class="box">
+                        <div class="intro">
+                            <h4>Name</h4>
+                        </div>
+                        <div class="text">
+                            <p>It was bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </body>
+</html>
