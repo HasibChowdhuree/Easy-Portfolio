@@ -1,17 +1,299 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.thymeleaf.org" th:replace="baseuser::layout(~{::section})">
-<head>
-	<title></title>
-</head>
-<body>
-	<section>
-		<h1 th:utext="${user.email}"></h1>
-		<span th:if="${user.details!=null}">
-			<h1 th:utext="${user.details.full_name}"></h1>
-			<h1 th:if="${!user.educations.isEmpty()}" th:utext="${user.educations[0].institute}"></h1>
-			<h1 th:if="${!user.experience.isEmpty()}" th:utext="${user.experience[0].companyName}"></h1>
-			<button class="btn btn-primary"><a style="text-decoration: none;color:white" th:href="@{'/genpdf/' + ${user.username} + '.pdf'}">Generate pdf</button>
-		</span>
-	</section>
-</body>
+    <head>
+        <title>Dashboard</title>
+    </head>
+    <body>
+        <section class="d-flex justify-content-center align-items-center">
+            <div class="col-md-8">
+                <br><br>
+                <h1 style="color: black; text-align: center;">Your Information</h1><br>
+                <form class="signupform rounded"><br>
+                    <!-- Personal Information-->
+                    <h3 style="color: white;">Personal Information</h3>
+                    <br>
+                    <div class="row">
+	                    <div class="col-6">
+		                    <div class="form-group mb-3">
+		                        <i class="fa fa-user"></i>
+		                        <label>Name</label>
+		                        <input type="text" class="form-control">
+		                    </div>
+	                    </div>
+	                    <div class="col-6">
+		                    <div class="form-group mb-3">
+		                    <i class="fa fa-envelope"></i>
+		                        <label>Email</label>
+		                        <input type="email" th:value="${user.email}" class="form-control">
+		                    </div>
+	                    </div>
+                    <div class="col-6">
+	                    <div class="form-group mb-3">
+	                    <i class="fa fa-phone"></i>
+	                        <label>Phone</label>
+	                        <input type="text" class="form-control">
+	                    </div>
+                    </div>
+                    <div class="col-6">
+	                    <div class="form-group mb-3">
+		                    <i class="fa fa-address-book"></i>
+		                    <label>Address</label>
+		                    <input type="text" class="form-control">
+	                    </div>
+	                </div>
+	                <div class="col-6">
+	                    <div class="form-group mb-3">
+	                    
+	                    <i class="fa fa-calendar"></i>
+	                    <label>Date of Birth</label>
+	                        <input type="date" class="form-control">
+	                    </div>
+	                </div>
+	                <div class="col-6">
+	                    <div class="form-group mb-3">
+	                    <i class="fa fa-camera"></i>
+	                        <label>Picture</label>
+	                        <input type="file" class="form-control" id="inputGroupFile01">
+	                    </div>
+	                </div>
+	                <div class="col-14">
+	                    <div class="form-group">
+	                    <i class="fa fa-pencil"></i>
+	                        <label>Summary</label>
+	                        <textarea type="text" rows="2" class="form-control" ></textarea>
+	                    </div>
+	                </div>
+	                  </div>
+                    <br><br><br>
+                    <br>
+                    <!-- Profile Links-->
+                    <h3 style="color: white;">Profile Links</h3><br> 
+                    <div class="input-group mb-3">
+                        <select class="form-select" id="inputGroupSelect02">
+                            <option selected>Select Profile</option>
+                            <option value="1">LinkedIn</option>
+                            <option value="2">Github</option>
+                            <option value="3">Facebook</option>
+                            <option value="4">Twitter</option>
+                            <option value="7">Youtube</option>
+                        </select>
+                        <input type="text" class="form-control"  aria-label="Text input with dropdown button" placeholder="Profile URL">
+                    </div>
+                    <section id="profilelinks"></section>
+                    <br>
+                    <button class="btn btn-danger" onclick="addProfile(); return false;"><i class="fa fa-plus"></i> Add another Profile Link</button>
+                    <br><br><br>
+                    <br>
+                    <!-- Education-->
+                    <h3 style="color: white;">Education</h3><br>
+                    <div class="row" >
+	                    <div class="form-group mb-3 col-6">
+	                    <i class="fa fa-university"></i>
+	                    <label>Name of the Institution</label>
+	                        <input type="text" class="form-control" >
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                    <i class="fa fa-certificate"></i>
+	                    <label>Name of Degree</label>
+	                        <input type="text" class="form-control">
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                    <i class="fa fa-calendar"></i>
+	                    <label>Starting Year</label>
+	                        <input type="text" class="form-control" >
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                    <i class="fa fa-calendar"></i>
+	                    <label>Ending Year / Currently Studying</label>
+	                    	<input type="text" class="form-control">
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                    <i class="fa fa-graduation-cap"></i>
+	                    <label>CGPA/GPA</label>
+	                        <select class="form-select" id="inputGroupSelect02">
+	                            <option selected>Select Grading System</option>
+	                            <option value="1">GPA</option>
+	                            <option value="2">CGPA</option>
+	                        </select>
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                    <i class="fa fa-graduation-cap"></i>
+	                     <label>Grade</label>
+	                        <input type="text" class="form-control" >
+	                    </div>
+	                    <div class="form-group">
+	                    <i class="fa fa-pencil"></i>
+	                    <label>Additional Information</label>
+	                        <textarea type="text" row="2" class="form-control" ></textarea>
+	                    </div>
+                    </div>
+                    <br><br>
+                    <section id="educations"></section>
+                    <br>
+                    <button class="btn btn-danger" onclick="addEducation(); return false;"><i class="fa fa-plus"></i> Add another Educational Institution</button>
+                    <br><br><br>
+                    <br>
+
+                    <!-- Experience-->
+                    <h3 style="color: white;">Experience</h3><br>
+                    <div class="row">
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-university"></i>
+	                        <span class="form-group-text" id="basic-addon1">Name of the Company</span>
+	                        <input type="text" class="form-control">
+	                    </div>
+	                    
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-user"></i>
+	                        <span class="form-group-text" id="basic-addon1">Current Position</span>
+	                        <input type="text" class="form-control">
+	                    </div>
+	                    
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-calendar"></i>
+	                    	<span class="form-group-text" id="basic-addon1">Starting Year</span>
+	                        <input type="text" class="form-control" >
+	                        
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-calendar"></i>
+	                    	<span class="form-group-text" id="basic-addon1">Ending Year / Currently Working</span>
+	                        <input type="text" class="form-control">
+	                        
+	                    </div>
+	                    <div class="form-group">
+	                    	<i class="fa fa-pencil"></i>
+	                        <span class="form-group-text">Description</span>
+	                        <textarea type="text" rows="2" class="form-control"></textarea>
+	                    </div>
+                    </div>
+					<br><br>
+                    <section id="experience"></section>
+                    <br>
+                    <button class="btn btn-danger" onclick="addExperience(); return false;"><i class="fa fa-plus"></i> Add another Experience</button>
+                    <br><br>
+                    <br>
+                    <br>
+
+
+
+
+                    <!-- Skills -->
+                    <h3 style="color: white;">Skills</h3><br>
+                    <div class="row"> 
+	                    <div class="form-group mb-3 col-6" id="skillsclass">
+	                    <i class="fa fa-star"></i>
+	                    	<label>Category</label>
+	                        <input type="text" class="form-control">
+	                    </div>
+	                    <div class="form-group mb-3 col-6" id="skillsclass">
+	                    <i class="fa fa-paint-brush"></i>
+	                    	<label>Skill</label>
+	                        <input type="text" class="form-control">
+	                    </div>
+                    </div>
+                    <section id="skills"></section>
+					<br>
+                    <button class="btn btn-danger" onclick="addSkills(); return false;"><i class="fa fa-plus"></i> Add another catagory of Skills</button>
+                    <br><br>
+                    <br>
+                    <br>
+
+
+
+
+                    <!-- Projects -->
+                    <h3 style="color: white;">Projects</h3><br>
+                    <div class="row">
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-database"></i>
+	                        <span class="form-group-text" id="basic-addon1">Name of the Project</span>
+	                        <input type="text" class="form-control">
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-paint-brush"></i>
+	                        <span class="form-group-text" id="basic-addon1">Tools Used</span>
+	                        <input type="text" class="form-control">
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-link"></i>
+	                        <span class="form-group-text" id="basic-addon1">Project Link</span>
+	                        <input type="text" class="form-control">
+	                    </div>
+	                    <div class="form-group">
+	                    	<i class="fa fa-pencil"></i>
+	                        <span class="form-group-text">Project Description</span>
+	                        <textarea type="text" rows="2" class="form-control" aria-label="With textarea"></textarea>
+	                    </div>
+                    </div>
+					<br><br>
+					<section id="project"></section>
+                    <br>
+                    <button class="btn btn-danger" onclick="addProject(); return false;"><i class="fa fa-plus"></i> Add another Project</button>
+                    
+                    <br><br><br><br>
+
+
+
+
+                    <!-- Achievements -->
+                    <h3 style="color: white;">Achievements</h3><br>
+                    <div class="row">
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-trophy"></i>
+	                        <span class="form-group-text" id="basic-addon1">Achievement</span>
+	                        <input type="text" class="form-control">
+	                    </div>
+	                    <div class="form-group">
+	                    	<i class="fa fa-pencil"></i>
+	                        <span class="form-group-text">Description</span>
+	                        <textarea type="text" rows="2" class="form-control" aria-label="With textarea"></textarea>
+	                    </div>
+                    </div>
+					<br><br>
+                    
+					
+					<section id="achievement"></section>
+                    <br>
+                    <button class="btn btn-danger" onclick="addAchievement(); return false;"><i class="fa fa-plus"></i> Add another Achievement</button>
+                    
+                    <br><br>
+                    <br>
+
+
+
+                    <!-- References -->
+                    <h3 style="color: white;">References</h3><br>
+                    <div class="row">
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-group"></i>
+	                        <span class="form-group-text" id="basic-addon1">Name</span>
+	                        <input type="text" class="form-control">
+	                    </div>
+	                    <div class="form-group">
+	                    	<i class="fa fa-pencil"></i>
+	                        <span class="form-group-text">Description</span>
+	                        <textarea type="text" rows="2" class="form-control" aria-label="With textarea"></textarea>
+	                    </div>
+                    </div>
+                    <br><br>
+					
+					<section id="reference"></section>
+                    <br>
+                    <button class="btn btn-danger" onclick="addReference(); return false;"><i class="fa fa-plus"></i> Add another Reference</button>
+                    
+					<br><br>
+                    
+
+
+
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-light">Update</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        
+    </body>
 </html>
