@@ -48,6 +48,23 @@ public class UserController {
 			return "user_dashboard";
 		}
 	}
+	@RequestMapping(path="/dashboard", method=RequestMethod.POST)
+	private String editDashboard(final DetailInfo details,final User tempuser,Model model, Principal principal) {
+		String email = principal.getName();
+		User user = userRepository.getUserByUserName(email);
+		if(details!=null)
+			user.setDetails(details);
+		user.setEducations(tempuser.getEducations());
+		user.setExperience(tempuser.getExperience());
+		user.setProfile_links(tempuser.getProfile_links());
+		user.setSkills(tempuser.getSkills());
+		user.setProjects(tempuser.getProjects());
+		user.setAchievements(tempuser.getAchievements());
+		user.setReference(tempuser.getReference());
+		userRepository.save(user);
+		model.addAttribute(user);
+		return "user_dashboard";
+	}
 	@GetMapping("/inputform")
 	private String inputInformation(Principal principal, Model model) {
 		String email = principal.getName();
@@ -73,9 +90,13 @@ public class UserController {
 		model.addAttribute(user);
 		return "user_dashboard";
 	}
-	@GetMapping("/ex")
-	private String exa(Model model) {
-		return "ex";
+	@GetMapping("/cv1")
+	private String cv1(Model model) {
+		return "CV01";
+	}
+	@GetMapping("/cv2")
+	private String cv2(Model model) {
+		return "CV02";
 	}
 	@RequestMapping(path="/ex", method= RequestMethod.POST)
 	private String exa(final User user, Model model) {

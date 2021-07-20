@@ -9,5 +9,4 @@ public class EasyportfolioApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EasyportfolioApplication.class, args);
 	}
-
 }

@@ -2,14 +2,15 @@ package com.easyportfolio.controller;
 
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.security.Principal;
 import java.time.LocalDateTime;
-
-
-import org.thymeleaf.TemplateEngine;
 
 
 import javax.servlet.http.HttpSession;
@@ -21,7 +22,6 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
-
 //import org.apache.velocity.VelocityContext;
 //import org.apache.velocity.app.VelocityEngine;
 //import org.apache.velocity.runtime.RuntimeConstants;
@@ -65,8 +65,8 @@ public class HomeController {
 	private UserRepository userRepository;
 	@Autowired
 	private DetailRepository detailRepository;
-	@Autowired
-    TemplateEngine templateEngine;
+//	@Autowired
+//    TemplateEngine templateEngine;
 	
 	@GetMapping("/")
 	private String home(Model model, Principal principal) {
@@ -165,7 +165,7 @@ public class HomeController {
 		ve.setProperty("classpath.resource.loader.class",
 				ClasspathResourceLoader.class.getName());
 		ve.init();
-		Template t = ve.getTemplate("templates/cv.html");
+		Template t = ve.getTemplate("templates/CV02.html");
 		/* create a context and add data */
 		VelocityContext context = new VelocityContext();
 		String email = principal.getName();
@@ -195,7 +195,6 @@ public class HomeController {
 	
 	public ByteArrayOutputStream generatePdf(String html) {
 
-		String pdfFilePath = "";
 		PdfWriter pdfWriter = null;
 
 		// create a new document
@@ -203,13 +202,13 @@ public class HomeController {
 		try {
 
 			document = new Document();
-			// document header attributes
+//			 document header attributes
 			document.addAuthor("Rafsan");
 			document.addAuthor("Hasib");
 			document.addCreationDate();
 			document.addProducer();
 			document.addTitle("HTML to PDF using itext");
-			document.setPageSize(PageSize.LETTER);
+			document.setPageSize(PageSize.A4);
 
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			PdfWriter.getInstance(document, baos);
@@ -227,6 +226,7 @@ public class HomeController {
 
 			return baos;
 		} catch (Exception e) {
+			System.out.println("null");
 			e.printStackTrace();
 			return null;
 		}
