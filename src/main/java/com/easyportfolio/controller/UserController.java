@@ -1,5 +1,7 @@
 package com.easyportfolio.controller;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.List;
 
@@ -18,6 +20,7 @@ import com.easyportfolio.entities.DetailInfo;
 import com.easyportfolio.entities.Education;
 import com.easyportfolio.entities.Skill;
 import com.easyportfolio.entities.User;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/user")
@@ -36,7 +39,10 @@ public class UserController {
 			int userId = user.getDetailId();
 	//		System.out.println(userId);
 			DetailInfo details = detailRepository.getById(userId);
+			System.out.println(details.getFull_name());
+			byte[] image = details.getImage();
 	//		System.out.println(details.getFirstName());
+			model.addAttribute("image", new String(image, "UTF-8"));
 			model.addAttribute("user",user);
 			return "user_dashboard";
 		}
@@ -49,9 +55,14 @@ public class UserController {
 		}
 	}
 	@RequestMapping(path="/dashboard", method=RequestMethod.POST)
-	private String editDashboard(final DetailInfo details,final User tempuser,Model model, Principal principal) {
+	private String editDashboard(final DetailInfo details,final User tempuser,Model model, Principal principal,@RequestParam("file") MultipartFile file) throws IOException {
 		String email = principal.getName();
 		User user = userRepository.getUserByUserName(email);
+		if(file!=null) {
+			byte[] image = java.util.Base64.getEncoder().encode(file.getBytes());
+			model.addAttribute("image", new String(image, "UTF-8"));
+			details.setImage(image);
+		}
 		if(details!=null)
 			user.setDetails(details);
 		user.setEducations(tempuser.getEducations());
@@ -66,17 +77,25 @@ public class UserController {
 		return "user_dashboard";
 	}
 	@GetMapping("/inputform")
-	private String inputInformation(Principal principal, Model model) {
+	private String inputInformation(Principal principal, Model model) throws UnsupportedEncodingException {
 		String email = principal.getName();
 		User user = userRepository.getUserByUserName(email);
+		int userId = user.getDetailId();
+		DetailInfo details = detailRepository.getById(userId);
+		byte[] image = details.getImage();
+		model.addAttribute("image", new String(image, "UTF-8"));
 		model.addAttribute(user);
 		return "inputform";
 	}
-	@RequestMapping(path="/processinputform", method= RequestMethod.POST)
-	private String ProcessInputForm(final DetailInfo details,final User tempuser,Model model, Principal principal) {
+	@RequestMapping(path="/inputform", method= RequestMethod.POST)
+	private String ProcessInputForm(final DetailInfo details,final User tempuser,Model model, Principal principal, @RequestParam("file") MultipartFile file) throws IOException {
 		String email = principal.getName();
-		System.out.println(email);
 		User user = userRepository.getUserByUserName(email);
+		if(file!=null) {
+			byte[] image = java.util.Base64.getEncoder().encode(file.getBytes());
+			model.addAttribute("image", new String(image, "UTF-8"));
+			details.setImage(image);
+		}
 		if(details!=null)
 			user.setDetails(details);
 		user.setEducations(tempuser.getEducations());
@@ -88,7 +107,7 @@ public class UserController {
 		user.setReference(tempuser.getReference());
 		userRepository.save(user);
 		model.addAttribute(user);
-		return "user_dashboard";
+		return "inputform";
 	}
 	@GetMapping("/cv1")
 	private String cv1(Model model) {

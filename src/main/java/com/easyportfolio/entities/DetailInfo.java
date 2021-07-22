@@ -18,7 +18,8 @@ public class DetailInfo {
 	private double cgpa;
 	private String summary;
 	private String address;
-	private String image;
+	private byte[] image;
+	private String email;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birth_day;
 //	public DetailInfo(String fullName, String phoneNumber, double cgpa, String summary,
@@ -51,10 +52,10 @@ public class DetailInfo {
 		this.detailId = detailId;
 	}
 	
-	public String getImage() {
+	public byte[] getImage() {
 		return image;
 	}
-	public void setImage(String image) {
+	public void setImage(byte[] image) {
 		this.image = image;
 	}
 	
@@ -100,6 +101,15 @@ public class DetailInfo {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 }
 
 

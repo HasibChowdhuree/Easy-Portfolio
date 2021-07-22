@@ -20,6 +20,7 @@ public class Education {
 		this.gradeType = gradeType;
 		this.additionalInfo = additionalInfo;
 		this.grade = grade;
+
 	}
 	public String getInstitute() {
 		return institute;
@@ -63,5 +64,5 @@ public class Education {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-	
+
 }
