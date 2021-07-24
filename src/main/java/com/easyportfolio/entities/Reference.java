@@ -1,11 +1,17 @@
 package com.easyportfolio.entities;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Embeddable
+@Entity
 public class Reference {
 	private String name, description;
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int rId;
 	public Reference() {
 		super();
 		// TODO Auto-generated constructor stub

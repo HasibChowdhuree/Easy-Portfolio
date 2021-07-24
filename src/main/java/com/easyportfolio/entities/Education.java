@@ -1,11 +1,18 @@
 package com.easyportfolio.entities;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Embeddable
+@Entity
 public class Education {
 	private String institute, nameOfDegree, startingYear, endingYear, gradeType, additionalInfo;
 	private String grade;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int eId;
 	public Education() {
 		super();
 		// TODO Auto-generated constructor stub

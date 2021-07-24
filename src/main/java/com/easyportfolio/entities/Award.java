@@ -1,11 +1,17 @@
 package com.easyportfolio.entities;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Embeddable
+@Entity
 public class Award {
 	private String title, description, year, link;
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int aId;
 	public Award() {
 		super();
 		// TODO Auto-generated constructor stub

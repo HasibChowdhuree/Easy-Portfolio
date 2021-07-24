@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -46,55 +47,29 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	@OneToOne(cascade=CascadeType.ALL, fetch =FetchType.LAZY)
+	@OneToOne(cascade=CascadeType.ALL,fetch =FetchType.LAZY)
 	private DetailInfo details;
-	@ElementCollection
-    @CollectionTable(
-        name = "education",
-        joinColumns = @JoinColumn(name = "id")
-    )
+	@OneToMany(cascade = CascadeType.ALL,fetch =FetchType.LAZY)
 	private List<Education> educations;
-	@ElementCollection
-    @CollectionTable(
-        name = "achievement",
-        joinColumns = @JoinColumn(name = "id")
-    )
+	@OneToMany(cascade = CascadeType.ALL,fetch =FetchType.LAZY)
 	private List<Achievement> achievements;
-	@ElementCollection
-    @CollectionTable(
-        name = "profilelinks",
-        joinColumns = @JoinColumn(name = "id")
-    )
+	@OneToMany(cascade = CascadeType.ALL,fetch =FetchType.LAZY)
 	private List<ProfileLinks> profile_links;
-	@ElementCollection
-    @CollectionTable(
-        name = "skill",
-        joinColumns = @JoinColumn(name = "id")
-    )
+//	@ElementCollection
+//    @CollectionTable(
+//        name = "skill",
+//        joinColumns = @JoinColumn(name = "id")
+//    )
+//	private List<Skill> skills;
+	@OneToMany(cascade = CascadeType.ALL,fetch =FetchType.LAZY)
 	private List<Skill> skills;
-	@ElementCollection
-    @CollectionTable(
-        name = "project",
-        joinColumns = @JoinColumn(name = "id")
-    )
+	@OneToMany(cascade = CascadeType.ALL,fetch =FetchType.LAZY)
 	private List<Project> projects;
-	@ElementCollection
-    @CollectionTable(
-        name = "reference",
-        joinColumns = @JoinColumn(name = "id")
-    )
+	@OneToMany(cascade = CascadeType.ALL,fetch =FetchType.LAZY)
 	private List<Reference> reference;
-	@ElementCollection
-    @CollectionTable(
-        name = "experience",
-        joinColumns = @JoinColumn(name = "id")
-    )
+	@OneToMany(cascade = CascadeType.ALL,fetch =FetchType.LAZY)
 	private List<Experience> experience;
-	@ElementCollection
-    @CollectionTable(
-        name = "award",
-        joinColumns = @JoinColumn(name = "id")
-    )
+	@OneToMany(cascade = CascadeType.ALL,fetch =FetchType.LAZY)
 	private List<Award> awards;
 	
 	public List<Experience> getExperience() {

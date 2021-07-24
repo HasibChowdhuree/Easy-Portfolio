@@ -97,7 +97,7 @@
                     <br>
                     <!-- Education-->
                     <h3 style="color: white;">Education</h3><br>
-                    <div class="row" >
+                    <div class="row">
 	                    <div class="form-group mb-3 col-6">
 	                    <i class="fa fa-university"></i>
 	                    <label>Name of the Institution</label>
@@ -199,6 +199,20 @@
                     <!-- Skills -->
                     <h3 style="color: white;">Skills</h3><br>
                     <div class="row"> 
+<!--                    <tr th:each="skill, iterStat : ${user.skills}">
+	                    <div class="form-group mb-3 col-6" id="skillsclass">
+	                    <i class="fa fa-star"></i>
+	                    	<label>Category</label>
+	                        <section th:if="${!user.skills.isEmpty()}"><input type="text" th:value="${skill.category}" name="skill.category" class="form-control"></section>
+                            <section th:if="${user.skills.isEmpty()}"><input type="text" name="skill.category" class="form-control"></section>
+	                    </div>
+	                    <div class="form-group mb-3 col-6" id="skillsclass">
+	                    <i class="fa fa-paint-brush"></i>
+	                    	<label>Skill</label>
+	                        <section th:if="${!user.skills.isEmpty()}"><input type="text" th:value="${skill.skillName}" name="skill.skillName" class="form-control"></section>
+                            <section th:if="${user.skills.isEmpty()}"><input type="text" name="skill.skillName" class="form-control"></section>
+	                    </div>
+	                </tr>-->
 	                    <div class="form-group mb-3 col-6" id="skillsclass">
 	                    <i class="fa fa-star"></i>
 	                    	<label>Category</label>

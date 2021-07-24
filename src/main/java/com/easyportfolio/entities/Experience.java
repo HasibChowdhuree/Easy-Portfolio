@@ -1,11 +1,17 @@
 package com.easyportfolio.entities;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Embeddable
+@Entity
 public class Experience {
 	private String companyName, position,startYear, endYear,description;
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int eId;
 	public Experience(String companyName, String position, String startYear, String endYear, String description) {
 		super();
 		this.companyName = companyName;

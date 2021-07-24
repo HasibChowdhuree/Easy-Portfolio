@@ -1,11 +1,17 @@
 package com.easyportfolio.entities;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Embeddable
+@Entity
 public class ProfileLinks {
 	private String website, link;
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int pId;
 	public ProfileLinks(String website, String link) {
 		super();
 		this.website = website;
