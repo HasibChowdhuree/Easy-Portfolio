@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="baseuser::layout(~{::section})">
+    <head>
+        <title>Dashboard</title>
+    </head>
+    <body>
+        <section class="d-flex justify-content-center align-items-center">
+            <div class="col-md-8">
+                <form class="signupform rounded" th:object="${education}" enctype="multipart/form-data" method="POST" th:action="@{/user/process-add-education}"><br>
+                    <h3 style="color: white; text-align: center;">Add Education</h3><br><br>
+                    <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                        <p class="text-center" th:text="${session.message.content}"> <p>
+                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                    </div>
+                    <div class="row" >
+	                    <div class="form-group mb-3 col-6">
+	                        <i class="fa fa-university"></i>
+	                        <label>Name of the Institution</label>
+	                        <input type="text" id="validationDefault01" name="institute" class="form-control" required>
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                        <i class="fa fa-certificate"></i>
+	                        <label>Name of Degree</label>
+	                        <input type="text" id="validationDefault02"  name="nameOfDegree"  class="form-control" required>
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                        <i class="fa fa-calendar"></i>
+	                        <label>Starting Year</label>
+	                        <input type="text" id="validationDefault03" name="startingYear" class="form-control" required>
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                        <i class="fa fa-calendar"></i>
+	                        <label>Ending Year / Currently Studying</label>
+	                    	<input type="text" id="validationDefault04" name="endingYear" class="form-control" required>
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                        <i class="fa fa-graduation-cap"></i>
+	                        <label>CGPA/GPA</label>
+	                        <section><select class="form-select" name="gradeType" id="inputGroupSelect02"></section>
+	                            <option selected>Select Grading System</option>
+	                            <option value="GPA" >GPA</option>
+	                            <option value="CGPA">CGPA</option>
+	                        </select>
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                        <i class="fa fa-graduation-cap"></i>
+	                        <label>Grade</label>
+	                        <input type="text" name="grade" class="form-control" >
+	                    </div>
+	                    <div class="form-group">
+	                        <i class="fa fa-pencil"></i>
+	                        <label>Additional Information</label>
+	                        <textarea type="text" row="3" name="additionalInfo" class="form-control" ></textarea>
+	                    </div>
+                    </div>
+                    <br><br>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-light">Add Education</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </body>
+</html>

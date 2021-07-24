@@ -5,10 +5,14 @@ import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +24,8 @@ import com.easyportfolio.entities.DetailInfo;
 import com.easyportfolio.entities.Education;
 import com.easyportfolio.entities.Skill;
 import com.easyportfolio.entities.User;
+import com.easyportfolio.helper.Message;
+
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -123,4 +129,34 @@ public class UserController {
 		System.out.println(skill.get(0).getCategory()+skill.get(0).getSkillName());
 		return "user_dashboard";
 	}
+
+	
+    @RequestMapping("/add-education")
+    public String add_contact(Model model, Principal principal){
+        String userName = principal.getName();
+        model.addAttribute("title", "Add Education - Easy Portfolio");
+        model.addAttribute("education", new Education());
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+        return "user_add_education";
+    }
+    @PostMapping("/process-add-education")
+    public String process_new_eduation(@ModelAttribute Education education, Model model,  Principal principal, HttpSession session){
+        model.addAttribute("title", "Add Education - Easy Portfolio");
+        String userName = principal.getName(); 
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+
+        try{
+            user.getEducations().add(education);
+            this.userRepository.save(user);
+			session.setAttribute("message",new Message("Successfully added! ","alert-success"));
+            return "user_add_education";
+        }
+        catch(Exception e) {
+			e.printStackTrace();
+			session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
+			return "user_add_education";
+		}
+    }
 }
