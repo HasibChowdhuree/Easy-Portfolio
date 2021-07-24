@@ -219,4 +219,33 @@ public class UserController {
 			return "user_add_project";
 		}
     }
+
+	@RequestMapping("/add-skill")
+    public String add_skill(Model model, Principal principal){
+        String userName = principal.getName();
+        model.addAttribute("title", "Add Skill - Easy Portfolio");
+        model.addAttribute("skill", new Skill());
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+        return "user_add_skill";
+    }
+    @PostMapping("/process-add-skill")
+    public String process_new_skill(@ModelAttribute Skill skill, Model model,  Principal principal, HttpSession session){
+        model.addAttribute("title", "Add Skill - Easy Portfolio");
+        String userName = principal.getName(); 
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+
+        try{
+            user.getSkills().add(skill);
+            this.userRepository.save(user);
+			session.setAttribute("message",new Message("Successfully added! ","alert-success"));
+            return "user_add_skill";
+        }
+        catch(Exception e) {
+			e.printStackTrace();
+			session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
+			return "user_add_skill";
+		}
+    }
 }
