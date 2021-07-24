@@ -22,6 +22,7 @@ import com.easyportfolio.dao.DetailRepository;
 import com.easyportfolio.dao.UserRepository;
 import com.easyportfolio.entities.DetailInfo;
 import com.easyportfolio.entities.Education;
+import com.easyportfolio.entities.Experience;
 import com.easyportfolio.entities.Skill;
 import com.easyportfolio.entities.User;
 import com.easyportfolio.helper.Message;
@@ -132,7 +133,7 @@ public class UserController {
 
 	
     @RequestMapping("/add-education")
-    public String add_contact(Model model, Principal principal){
+    public String add_education(Model model, Principal principal){
         String userName = principal.getName();
         model.addAttribute("title", "Add Education - Easy Portfolio");
         model.addAttribute("education", new Education());
@@ -157,6 +158,35 @@ public class UserController {
 			e.printStackTrace();
 			session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
 			return "user_add_education";
+		}
+    }
+	
+    @RequestMapping("/add-experience")
+    public String add_experience(Model model, Principal principal){
+        String userName = principal.getName();
+        model.addAttribute("title", "Add Experience - Easy Portfolio");
+        model.addAttribute("experience", new Experience());
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+        return "user_add_experience";
+    }
+    @PostMapping("/process-add-experience")
+    public String process_new_experience(@ModelAttribute Experience experience, Model model,  Principal principal, HttpSession session){
+        model.addAttribute("title", "Add Experience - Easy Portfolio");
+        String userName = principal.getName(); 
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+
+        try{
+            user.getExperience().add(experience);
+            this.userRepository.save(user);
+			session.setAttribute("message",new Message("Successfully added! ","alert-success"));
+            return "user_add_experience";
+        }
+        catch(Exception e) {
+			e.printStackTrace();
+			session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
+			return "user_add_experience";
 		}
     }
 }

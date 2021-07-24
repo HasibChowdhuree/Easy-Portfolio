@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="baseuser::layout(~{::section})">
+    <head>
+        <title>Dashboard</title>
+    </head>
+    <body>
+        <section class="d-flex justify-content-center align-items-center">
+            <div class="col-md-8">
+                <form class="signupform rounded" th:object="${experience}" enctype="multipart/form-data" method="POST" th:action="@{/user/process-add-experience}"><br>
+                    <h3 style="color: white; text-align: center;">Add Experience</h3><br><br>
+                    <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                        <p class="text-center" th:text="${session.message.content}"> <p>
+                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                    </div>
+                    <div class="row">
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-university"></i>
+	                        <span class="form-group-text" id="basic-addon1">Name of the Company</span>
+	                        <input type="text" name="companyName" id="validationDefault01" class="form-control" required>
+	                    </div>
+	                    
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-user"></i>
+	                        <span class="form-group-text" id="basic-addon1">Current Position</span>
+	                        <input type="text" name="position" id="validationDefault02" class="form-control" required>
+	                    </div>
+	                    
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-calendar"></i>
+	                    	<span class="form-group-text" id="basic-addon1">Starting Year</span>
+	                        <input type="text" name="startYear" class="form-control" id="validationDefault03" required>
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-calendar"></i>
+	                    	<span class="form-group-text" id="basic-addon1">Ending Year / Currently Working</span>
+	                        <input type="text" name="endYear" class="form-control" id="validationDefault04" required>
+	                        
+	                    </div>
+	                    <div class="form-group">
+	                    	<i class="fa fa-pencil"></i>
+	                        <span class="form-group-text">Description</span>
+	                        <textarea type="text" name="description" rows="3" class="form-control"></textarea>
+	                    </div>
+                    </div>
+                    <br><br>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-light">Add Experience</button>
+                    </div>
+                    <br><br>
+                </form>
+            </div>
+        </section>
+    </body>
+</html>
