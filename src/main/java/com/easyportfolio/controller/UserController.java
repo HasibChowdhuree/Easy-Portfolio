@@ -23,6 +23,7 @@ import com.easyportfolio.dao.UserRepository;
 import com.easyportfolio.entities.DetailInfo;
 import com.easyportfolio.entities.Education;
 import com.easyportfolio.entities.Experience;
+import com.easyportfolio.entities.Project;
 import com.easyportfolio.entities.Skill;
 import com.easyportfolio.entities.User;
 import com.easyportfolio.helper.Message;
@@ -187,6 +188,35 @@ public class UserController {
 			e.printStackTrace();
 			session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
 			return "user_add_experience";
+		}
+    }
+
+	@RequestMapping("/add-project")
+    public String add_project(Model model, Principal principal){
+        String userName = principal.getName();
+        model.addAttribute("title", "Add Project - Easy Portfolio");
+        model.addAttribute("project", new Project());
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+        return "user_add_project";
+    }
+    @PostMapping("/process-add-project")
+    public String process_new_project(@ModelAttribute Project project, Model model,  Principal principal, HttpSession session){
+        model.addAttribute("title", "Add Project - Easy Portfolio");
+        String userName = principal.getName(); 
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+
+        try{
+            user.getProjects().add(project);
+            this.userRepository.save(user);
+			session.setAttribute("message",new Message("Successfully added! ","alert-success"));
+            return "user_add_project";
+        }
+        catch(Exception e) {
+			e.printStackTrace();
+			session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
+			return "user_add_project";
 		}
     }
 }
