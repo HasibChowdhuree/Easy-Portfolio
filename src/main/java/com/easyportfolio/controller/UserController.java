@@ -24,6 +24,7 @@ import com.easyportfolio.entities.DetailInfo;
 import com.easyportfolio.entities.Education;
 import com.easyportfolio.entities.Experience;
 import com.easyportfolio.entities.Project;
+import com.easyportfolio.entities.Reference;
 import com.easyportfolio.entities.Skill;
 import com.easyportfolio.entities.User;
 import com.easyportfolio.helper.Message;
@@ -246,6 +247,36 @@ public class UserController {
 			e.printStackTrace();
 			session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
 			return "user_add_skill";
+		}
+    }
+
+
+	@RequestMapping("/add-reference")
+    public String add_reference(Model model, Principal principal){
+        String userName = principal.getName();
+        model.addAttribute("title", "Add Reference - Easy Portfolio");
+        model.addAttribute("skill", new Skill());
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+        return "user_add_reference";
+    }
+    @PostMapping("/process-add-reference")
+    public String process_new_reference(@ModelAttribute Reference reference, Model model,  Principal principal, HttpSession session){
+        model.addAttribute("title", "Add Reference - Easy Portfolio");
+        String userName = principal.getName(); 
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+
+        try{
+            user.getReference().add(reference);
+            this.userRepository.save(user);
+			session.setAttribute("message",new Message("Successfully added! ","alert-success"));
+            return "user_add_reference";
+        }
+        catch(Exception e) {
+			e.printStackTrace();
+			session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
+			return "user_add_reference";
 		}
     }
 }
