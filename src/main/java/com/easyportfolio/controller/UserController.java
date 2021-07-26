@@ -24,6 +24,7 @@ import com.easyportfolio.entities.Achievement;
 import com.easyportfolio.entities.DetailInfo;
 import com.easyportfolio.entities.Education;
 import com.easyportfolio.entities.Experience;
+import com.easyportfolio.entities.ProfileLinks;
 import com.easyportfolio.entities.Project;
 import com.easyportfolio.entities.Reference;
 import com.easyportfolio.entities.Skill;
@@ -256,7 +257,7 @@ public class UserController {
     public String add_reference(Model model, Principal principal){
         String userName = principal.getName();
         model.addAttribute("title", "Add Reference - Easy Portfolio");
-        model.addAttribute("skill", new Skill());
+        model.addAttribute("reference", new Reference());
         User user = userRepository.getUserByUserName(userName);
         model.addAttribute("user", user);
         return "user_add_reference";
@@ -286,7 +287,7 @@ public class UserController {
     public String add_achievement(Model model, Principal principal){
         String userName = principal.getName();
         model.addAttribute("title", "Add Achievement - Easy Portfolio");
-        model.addAttribute("skill", new Skill());
+        model.addAttribute("achievement", new Achievement());
         User user = userRepository.getUserByUserName(userName);
         model.addAttribute("user", user);
         return "user_add_achievement";
@@ -308,6 +309,36 @@ public class UserController {
 			e.printStackTrace();
 			session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
 			return "user_add_achievement";
+		}
+    }
+
+
+	@RequestMapping("/add-profile-link")
+    public String add_profile_link(Model model, Principal principal){
+        String userName = principal.getName();
+        model.addAttribute("title", "Add Profile Link - Easy Portfolio");
+        model.addAttribute("profilelink", new ProfileLinks());
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+        return "user_add_profile_link";
+    }
+    @PostMapping("/process-add-profile-link")
+    public String process_new_profile_link(@ModelAttribute ProfileLinks profileLinks, Model model,  Principal principal, HttpSession session){
+        model.addAttribute("title", "Add Profile Link - Easy Portfolio");
+        String userName = principal.getName(); 
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+
+        try{
+            user.getProfile_links().add(profileLinks);
+            this.userRepository.save(user);
+			session.setAttribute("message",new Message("Successfully added! ","alert-success"));
+            return "user_add_profile_link";
+        }
+        catch(Exception e) {
+			e.printStackTrace();
+			session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
+			return "user_add_profile_link";
 		}
     }
 }
