@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.easyportfolio.dao.DetailRepository;
 import com.easyportfolio.dao.UserRepository;
+import com.easyportfolio.entities.Achievement;
 import com.easyportfolio.entities.DetailInfo;
 import com.easyportfolio.entities.Education;
 import com.easyportfolio.entities.Experience;
@@ -277,6 +278,36 @@ public class UserController {
 			e.printStackTrace();
 			session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
 			return "user_add_reference";
+		}
+    }
+
+
+	@RequestMapping("/add-achievement")
+    public String add_achievement(Model model, Principal principal){
+        String userName = principal.getName();
+        model.addAttribute("title", "Add Achievement - Easy Portfolio");
+        model.addAttribute("skill", new Skill());
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+        return "user_add_achievement";
+    }
+    @PostMapping("/process-add-achievement")
+    public String process_new_achievement(@ModelAttribute Achievement achievement, Model model,  Principal principal, HttpSession session){
+        model.addAttribute("title", "Add Achievement - Easy Portfolio");
+        String userName = principal.getName(); 
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+
+        try{
+            user.getAchievements().add(achievement);
+            this.userRepository.save(user);
+			session.setAttribute("message",new Message("Successfully added! ","alert-success"));
+            return "user_add_achievement";
+        }
+        catch(Exception e) {
+			e.printStackTrace();
+			session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
+			return "user_add_achievement";
 		}
     }
 }
