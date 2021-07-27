@@ -2,11 +2,7 @@ package com.easyportfolio.controller;
 
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.security.Principal;
@@ -22,10 +18,6 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
-//import org.apache.velocity.VelocityContext;
-//import org.apache.velocity.app.VelocityEngine;
-//import org.apache.velocity.runtime.RuntimeConstants;
-//import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 
@@ -65,8 +57,6 @@ public class HomeController {
 	private UserRepository userRepository;
 	@Autowired
 	private DetailRepository detailRepository;
-//	@Autowired
-//    TemplateEngine templateEngine;
 	
 	@GetMapping("/")
 	private String home(Model model, Principal principal) {
