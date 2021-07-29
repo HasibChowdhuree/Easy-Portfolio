@@ -28,10 +28,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.multipart.MultipartFile;
 
 import com.easyportfolio.dao.DetailRepository;
 import com.easyportfolio.dao.UserRepository;
@@ -220,6 +220,55 @@ public class HomeController {
 			e.printStackTrace();
 			return null;
 		}
+
+	}
+	@PostMapping("/createcv")
+    public HttpEntity<byte[]>  CreateCVPost(final DetailInfo details,final User tempuser,Model model,
+    		@RequestParam("file") MultipartFile file) throws IOException{
+        model.addAttribute("title", "Create CV - Easy Portfolio");
+        if(file!=null) {
+			byte[] image = java.util.Base64.getEncoder().encode(file.getBytes());
+			model.addAttribute("image", new String(image, "UTF-8"));
+			details.setImage(image);
+		}
+        tempuser.setDetails(details);
+        model.addAttribute("user",tempuser);
+        return createPdfwithoutSignup(tempuser, model);
+    }
+	
+	public HttpEntity<byte[]> createPdfwithoutSignup(User user, Model model) throws IOException {
+
+		/* first, get and initialize an engine */
+		VelocityEngine ve = new VelocityEngine();
+		String fileName = "cv.pdf";
+		/* next, get the Template */
+		ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+		ve.setProperty("classpath.resource.loader.class",
+				ClasspathResourceLoader.class.getName());
+		ve.init();
+		Template t = ve.getTemplate("templates/samplecv.html");
+		/* create a context and add data */
+		VelocityContext context = new VelocityContext();
+		model.addAttribute("user", user);
+		context.put("user", user); 
+		context.put("genDateTime", LocalDateTime.now().toString());
+		/* now render the template into a StringWriter */
+		StringWriter writer = new StringWriter();
+		t.merge(context, writer);
+		/* show the World */
+//		System.out.println(writer.toString());
+		
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+		baos = generatePdf(writer.toString());
+
+		HttpHeaders header = new HttpHeaders();
+	    header.setContentType(MediaType.APPLICATION_PDF);
+	    header.set(HttpHeaders.CONTENT_DISPOSITION,
+	                   "attachment; filename=" + fileName.replace(" ", "_"));
+	    header.setContentLength(baos.toByteArray().length);
+
+	    return new HttpEntity<byte[]>(baos.toByteArray(), header);
 
 	}
 	

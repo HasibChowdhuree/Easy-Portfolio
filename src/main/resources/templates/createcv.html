@@ -8,7 +8,7 @@
             <div class="col-md-8">
                 <br><br>
                 <h1 style="color: black; text-align: center;">Fill out the form to generate your CV</h1><br>
-                <form class="signupform rounded"><br>
+                <form class="signupform rounded" enctype="multipart/form-data" th:action="@{/createcv}" method="post" ><br>
                     <!-- Personal Information-->
                     <h3 style="color: white;">Personal Information</h3>
                     <br>
@@ -17,28 +17,28 @@
 		                    <div class="form-group mb-3">
 		                        <i class="fa fa-user"></i>
 		                        <label>Name</label>
-		                        <input type="text" class="form-control">
+		                        <input type="text" name="full_name" class="form-control">
 		                    </div>
 	                    </div>
 	                    <div class="col-6">
 		                    <div class="form-group mb-3">
 		                    <i class="fa fa-envelope"></i>
 		                        <label>Email</label>
-		                        <input type="email" class="form-control">
+		                        <input type="email" name="email" class="form-control">
 		                    </div>
 	                    </div>
                     <div class="col-6">
 	                    <div class="form-group mb-3">
 	                    <i class="fa fa-phone"></i>
 	                        <label>Phone</label>
-	                        <input type="text" class="form-control">
+	                        <input type="text" name="phone_number" class="form-control">
 	                    </div>
                     </div>
                     <div class="col-6">
 	                    <div class="form-group mb-3">
 		                    <i class="fa fa-address-book"></i>
 		                    <label>Address</label>
-		                    <input type="text" class="form-control">
+		                    <input type="text" name="address" class="form-control">
 	                    </div>
 	                </div>
 	                <div class="col-6">
@@ -46,21 +46,21 @@
 	                    
 	                    <i class="fa fa-calendar"></i>
 	                    <label>Date of Birth</label>
-	                        <input type="date" class="form-control">
+	                        <input type="date" name="birth_day" class="form-control">
 	                    </div>
 	                </div>
 	                <div class="col-6">
 	                    <div class="form-group mb-3">
 	                    <i class="fa fa-camera"></i>
 	                        <label>Picture</label>
-	                        <input type="file" class="form-control" id="inputGroupFile01">
+	                        <input type="file" name="file" enctype="multipart/form-data" class="form-control" id="inputGroupFile01">
 	                    </div>
 	                </div>
 	                <div class="col-14">
 	                    <div class="form-group">
 	                    <i class="fa fa-pencil"></i>
 	                        <label>Summary</label>
-	                        <textarea type="text" rows="2" class="form-control" ></textarea>
+	                        <textarea type="text"name="summary" rows="2" class="form-control" ></textarea>
 	                    </div>
 	                </div>
 	                  </div>
@@ -69,15 +69,15 @@
                     <!-- Profile Links-->
                     <h3 style="color: white;">Profile Links</h3><br> 
                     <div class="input-group mb-3">
-                        <select class="form-select" id="inputGroupSelect02">
+                        <select class="form-select" name="profile_links[0].website" id="inputGroupSelect02">
                             <option selected>Select Profile</option>
-                            <option value="1">LinkedIn</option>
-                            <option value="2">Github</option>
-                            <option value="3">Facebook</option>
-                            <option value="4">Twitter</option>
-                            <option value="7">Youtube</option>
+                            <option value="LinkedIn">LinkedIn</option>
+                            <option value="Github">Github</option>
+                            <option value="Facebook">Facebook</option>
+                            <option value="Twitter">Twitter</option>
+                            <option value="Youtube">Youtube</option>
                         </select>
-                        <input type="text" class="form-control"  aria-label="Text input with dropdown button" placeholder="Profile URL">
+                        <input type="text" class="form-control" name="profile_links[0].link" aria-label="Text input with dropdown button" placeholder="Profile URL">
                     </div>
                     <section id="profilelinks"></section>
                     <br>
@@ -90,41 +90,41 @@
 	                    <div class="form-group mb-3 col-6">
 	                    <i class="fa fa-university"></i>
 	                    <label>Name of the Institution</label>
-	                        <input type="text" class="form-control" >
+	                        <input type="text" name="educations[0].institute"  class="form-control" >
 	                    </div>
 	                    <div class="form-group mb-3 col-6">
 	                    <i class="fa fa-certificate"></i>
 	                    <label>Name of Degree</label>
-	                        <input type="text" class="form-control">
+	                        <input type="text" name="educations[0].nameOfDegree" class="form-control">
 	                    </div>
 	                    <div class="form-group mb-3 col-6">
 	                    <i class="fa fa-calendar"></i>
 	                    <label>Starting Year</label>
-	                        <input type="text" class="form-control" >
+	                        <input type="text" name="educations[0].startingYear" class="form-control" >
 	                    </div>
 	                    <div class="form-group mb-3 col-6">
 	                    <i class="fa fa-calendar"></i>
 	                    <label>Ending Year / Currently Studying</label>
-	                    	<input type="text" class="form-control">
+	                    	<input type="text" name="educations[0].endingYear" class="form-control">
 	                    </div>
 	                    <div class="form-group mb-3 col-6">
 	                    <i class="fa fa-graduation-cap"></i>
 	                    <label>CGPA/GPA</label>
-	                        <select class="form-select" id="inputGroupSelect02">
+	                        <select class="form-select" name="educations[0].gradeType" id="inputGroupSelect02">
 	                            <option selected>Select Grading System</option>
-	                            <option value="1">GPA</option>
-	                            <option value="2">CGPA</option>
+	                            <option value="GPA" >GPA</option>
+	                            <option value="CGPA">CGPA</option>
 	                        </select>
 	                    </div>
 	                    <div class="form-group mb-3 col-6">
 	                    <i class="fa fa-graduation-cap"></i>
 	                     <label>Grade</label>
-	                        <input type="text" class="form-control" >
+	                        <input type="text" name="educations[0].grade" class="form-control" >
 	                    </div>
 	                    <div class="form-group">
 	                    <i class="fa fa-pencil"></i>
 	                    <label>Additional Information</label>
-	                        <textarea type="text" row="2" class="form-control" ></textarea>
+	                        <textarea type="text" name="educations[0].additionalInfo" row="2" class="form-control" ></textarea>
 	                    </div>
                     </div>
                     <br><br>
@@ -140,31 +140,31 @@
 	                    <div class="form-group mb-3 col-6">
 	                    	<i class="fa fa-university"></i>
 	                        <span class="form-group-text" id="basic-addon1">Name of the Company</span>
-	                        <input type="text" class="form-control">
+	                        <input type="text" name="experience[0].companyName" class="form-control">
 	                    </div>
 	                    
 	                    <div class="form-group mb-3 col-6">
 	                    	<i class="fa fa-user"></i>
 	                        <span class="form-group-text" id="basic-addon1">Current Position</span>
-	                        <input type="text" class="form-control">
+	                        <input type="text" name="experience[0].position" class="form-control">
 	                    </div>
 	                    
 	                    <div class="form-group mb-3 col-6">
 	                    	<i class="fa fa-calendar"></i>
 	                    	<span class="form-group-text" id="basic-addon1">Starting Year</span>
-	                        <input type="text" class="form-control" >
+	                        <input type="text" name="experience[0].startYear" class="form-control" >
 	                        
 	                    </div>
 	                    <div class="form-group mb-3 col-6">
 	                    	<i class="fa fa-calendar"></i>
 	                    	<span class="form-group-text" id="basic-addon1">Ending Year / Currently Working</span>
-	                        <input type="text" class="form-control">
+	                        <input type="text" name="experience[0].endYear" class="form-control">
 	                        
 	                    </div>
 	                    <div class="form-group">
 	                    	<i class="fa fa-pencil"></i>
 	                        <span class="form-group-text">Description</span>
-	                        <textarea type="text" rows="2" class="form-control"></textarea>
+	                        <textarea type="text" name="experience[0].description" rows="2" class="form-control"></textarea>
 	                    </div>
                     </div>
 					<br><br>
@@ -184,12 +184,12 @@
 	                    <div class="form-group mb-3 col-6" id="skillsclass">
 	                    <i class="fa fa-star"></i>
 	                    	<label>Category</label>
-	                        <input type="text" class="form-control">
+	                        <input type="text" name="skills[0].category" class="form-control">
 	                    </div>
 	                    <div class="form-group mb-3 col-6" id="skillsclass">
 	                    <i class="fa fa-paint-brush"></i>
 	                    	<label>Skill</label>
-	                        <input type="text" class="form-control">
+	                        <input type="text" name="skills[0].skillName" class="form-control">
 	                    </div>
                     </div>
                     <section id="skills"></section>
@@ -208,22 +208,22 @@
 	                    <div class="form-group mb-3 col-6">
 	                    	<i class="fa fa-database"></i>
 	                        <span class="form-group-text" id="basic-addon1">Name of the Project</span>
-	                        <input type="text" class="form-control">
+	                        <input type="text" name="projects[0].name" class="form-control">
 	                    </div>
 	                    <div class="form-group mb-3 col-6">
 	                    	<i class="fa fa-paint-brush"></i>
 	                        <span class="form-group-text" id="basic-addon1">Tools Used</span>
-	                        <input type="text" class="form-control">
+	                        <input type="text" name="projects[0].toolUsed" class="form-control">
 	                    </div>
 	                    <div class="form-group mb-3 col-6">
 	                    	<i class="fa fa-link"></i>
 	                        <span class="form-group-text" id="basic-addon1">Project Link</span>
-	                        <input type="text" class="form-control">
+	                        <input type="text" name="projects[0].link" class="form-control">
 	                    </div>
 	                    <div class="form-group">
 	                    	<i class="fa fa-pencil"></i>
 	                        <span class="form-group-text">Project Description</span>
-	                        <textarea type="text" rows="2" class="form-control" aria-label="With textarea"></textarea>
+	                        <textarea type="text" name="projects[0].description" rows="2" class="form-control" aria-label="With textarea"></textarea>
 	                    </div>
                     </div>
 					<br><br>
@@ -242,12 +242,12 @@
 	                    <div class="form-group mb-3 col-6">
 	                    	<i class="fa fa-trophy"></i>
 	                        <span class="form-group-text" id="basic-addon1">Achievement</span>
-	                        <input type="text" class="form-control">
+	                        <input type="text" name="achievements[0].name" class="form-control">
 	                    </div>
 	                    <div class="form-group">
 	                    	<i class="fa fa-pencil"></i>
 	                        <span class="form-group-text">Description</span>
-	                        <textarea type="text" rows="2" class="form-control" aria-label="With textarea"></textarea>
+	                        <textarea type="text" name="achievements[0].description" rows="2" class="form-control" aria-label="With textarea"></textarea>
 	                    </div>
                     </div>
 					<br><br>
@@ -268,12 +268,12 @@
 	                    <div class="form-group mb-3 col-6">
 	                    	<i class="fa fa-group"></i>
 	                        <span class="form-group-text" id="basic-addon1">Name</span>
-	                        <input type="text" class="form-control">
+	                        <input type="text" name="reference[0].name" class="form-control">
 	                    </div>
 	                    <div class="form-group">
 	                    	<i class="fa fa-pencil"></i>
 	                        <span class="form-group-text">Description</span>
-	                        <textarea type="text" rows="2" class="form-control" aria-label="With textarea"></textarea>
+	                        <textarea type="text" name="reference[0].description" rows="2" class="form-control" aria-label="With textarea"></textarea>
 	                    </div>
                     </div>
                     <br><br>

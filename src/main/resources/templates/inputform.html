@@ -10,7 +10,7 @@
                 <!-- <section th:if="${user.details!=null}"><img th:src="'data:image/png;base64,' + ${image}" /></section> -->
                 <h1 style="color: black; text-align: center;">Your Information</h1><br>
                 
-                <form class="signupform rounded" th:action="@{/user/inputform}" method="post"><br>
+                <form class="signupform rounded" enctype="multipart/form-data" th:action="@{/user/inputform}" method="post"><br>
                     <!-- Personal Information-->
 
                     <h3 style="color: white;">Personal Information</h3>
