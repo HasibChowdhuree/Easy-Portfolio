@@ -95,6 +95,7 @@ public class UserController {
 		byte[] image = details.getImage();
 		model.addAttribute("image", new String(image, "UTF-8"));
 		model.addAttribute(user);
+		
 		return "inputform";
 	}
 	@RequestMapping(path="/inputform", method= RequestMethod.POST)
@@ -339,13 +340,5 @@ public class UserController {
 			session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
 			return "user_add_profile_link";
 		}
-    }
-    @GetMapping("/sample")
-    public String samplecv(Model model, Principal principal) {
-    	String email = principal.getName();
-		User user = userRepository.getUserByUserName(email);
-		model.addAttribute("user", user);
-		System.out.println(user.getDetails().getFull_name());
-    	return "samplecv";
     }
 }

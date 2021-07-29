@@ -46,14 +46,14 @@
       		$award.title, $award.description, $award.year, $award.link
       	</h4>
       	#end
-      	#foreach( $project in $user.projects )
+      	#foreach( $project in $user.projects)
       	<h4>
-      		project.name, project.description,project.toolUsed, project.link;
+      		$project.name, $project.description, $project.toolUsed, $project.link;
       	</h4>
       	#end
       	#foreach( $skill in $user.skills )
       	<h4>
-      		skill.category,skill.skillName;
+      		$skill.category, $skill.skillName;
       	</h4>
       	#end
 	</section>
