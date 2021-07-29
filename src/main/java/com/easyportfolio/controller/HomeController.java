@@ -155,7 +155,7 @@ public class HomeController {
 		ve.setProperty("classpath.resource.loader.class",
 				ClasspathResourceLoader.class.getName());
 		ve.init();
-		Template t = ve.getTemplate("templates/CV02.html");
+		Template t = ve.getTemplate("templates/samplecv.html");
 		/* create a context and add data */
 		VelocityContext context = new VelocityContext();
 		String email = principal.getName();

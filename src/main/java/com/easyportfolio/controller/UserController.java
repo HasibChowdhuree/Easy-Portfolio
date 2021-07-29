@@ -340,4 +340,12 @@ public class UserController {
 			return "user_add_profile_link";
 		}
     }
+    @GetMapping("/sample")
+    public String samplecv(Model model, Principal principal) {
+    	String email = principal.getName();
+		User user = userRepository.getUserByUserName(email);
+		model.addAttribute("user", user);
+		System.out.println(user.getDetails().getFull_name());
+    	return "samplecv";
+    }
 }

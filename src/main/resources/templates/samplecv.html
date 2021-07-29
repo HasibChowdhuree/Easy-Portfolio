@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="baseuser::layout(~{::section})">>
+<head>
+	<title></title>
+</head>
+<body>
+	<section>
+	<h4>hello</h4>
+		<h4> $user.details.email </h4>
+		<h4> $user.details.full_name </h4>
+		<h4> $user.details.phone_number </h4>
+		<h4> $user.details.cgpa </h4>
+		<h4> $user.details.address </h4>
+		<h4> $user.details.summary </h4>
+		
+		#foreach( $education in $user.educations )
+		<h4>
+            $education.institute, $education.nameOfDegree, 
+            $education.startingYear, $education.endingYear, $education.gradeType, $education.grade, 
+            $education.additionalInfo
+		</h4>
+      	#end
+      	#foreach( $experience in $user.experience )
+      	<h4>
+      		$experience.companyName, $experience.position, $experience.startYear, $experience.endYear,
+      		$experience.description
+      	</h4>
+      	#end
+      	#foreach( $profile in $user.profile_links )
+		<h4>
+            $profile.website,$profile.link
+		</h4>
+      	#end
+      	#foreach( $achievement in $user.achievements )
+      	<h4>
+      		$achievement.name, $achievement.description
+      	</h4>
+      	#end
+      	#foreach( $award in $user.awards )
+      	<h4>
+      		$award.title, $award.description, $award.year, $award.link
+      	</h4>
+      	#end
+      	#foreach( $award in $user.awards )
+      	<h4>
+      		$award.title, $award.description, $award.year, $award.link
+      	</h4>
+      	#end
+      	#foreach( $project in $user.projects )
+      	<h4>
+      		project.name, project.description,project.toolUsed, project.link;
+      	</h4>
+      	#end
+      	#foreach( $skill in $user.skills )
+      	<h4>
+      		skill.category,skill.skillName;
+      	</h4>
+      	#end
+	</section>
+</body>
+</html>
