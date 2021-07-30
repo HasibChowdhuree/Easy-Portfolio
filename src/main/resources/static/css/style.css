@@ -19,6 +19,11 @@ body{
 a{
     text-decoration: none;
 }
+h2{
+    text-transform: uppercase;
+    font-size: 40px;
+    color: rgb(241, 103, 101);
+}
 
 .signupform{
     background-color: #3E4149;
