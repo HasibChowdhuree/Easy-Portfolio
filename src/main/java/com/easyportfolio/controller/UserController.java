@@ -341,4 +341,11 @@ public class UserController {
 			return "user_add_profile_link";
 		}
     }
+    @GetMapping("/samples")
+    public String sample(Model model, Principal principal) {
+    	String userName = principal.getName(); 
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+    	return "sample";
+    }
 }

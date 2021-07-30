@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="baseuser::layout(~{::section})">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<section>
+<h1>List of Educations</h1>
+
+    <section th:each="education : ${user.educations}">
+        <h1 th:text="${education.institute}"></h1>
+        <h1 th:text="${education.nameOfDegree}"></h1>
+        <h1 th:text="${education.grade}"></h1>
+    </section>
+
+</section>
+</body>
+</html>
