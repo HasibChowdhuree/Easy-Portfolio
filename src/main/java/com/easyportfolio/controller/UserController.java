@@ -75,13 +75,6 @@ public class UserController {
 		}
 		if(details!=null)
 			user.setDetails(details);
-		user.setEducations(tempuser.getEducations());
-		user.setExperience(tempuser.getExperience());
-		user.setProfile_links(tempuser.getProfile_links());
-		user.setSkills(tempuser.getSkills());
-		user.setProjects(tempuser.getProjects());
-		user.setAchievements(tempuser.getAchievements());
-		user.setReference(tempuser.getReference());
 		userRepository.save(user);
 		model.addAttribute(user);
 		return "user_dashboard";
