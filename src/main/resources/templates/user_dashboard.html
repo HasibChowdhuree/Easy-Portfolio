@@ -131,6 +131,59 @@
                     	</div>
 					</form>
 				</section>
+				<br>
+				<!--Experience-->
+				<div class="container">
+					<div class="row">
+						<div class="col-6">
+							<h2>Experience</h2>
+						</div>
+						<div class="col-6 text-end">
+							<a th:href="@{/user/add-experience}" class="btn btn-danger btn-lg">
+								<i class="fa fa-plus"></i>&nbsp;Add Experience
+							</a>
+						</div>
+					</div>
+				</div>
+				<section th:each="experience : ${user.experience}">
+					<form class="signupform rounded">
+						<div class="row" >
+	                    	<div class="form-group mb-3 col-12">
+	                        	<div class="text-end">
+									<a href="#" class="btn btn-light"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
+									<a href="#" class="btn btn-light"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
+								</div>
+	                    	</div>
+	                    	<div class="form-group mb-3 col-6">
+								<i class="fa fa-university"></i>
+								<span class="form-group-text" id="basic-addon1">Name of the Company</span>
+								<input type="text" th:value="${experience.companyName}" th:disabled="${true}" style="background: transparent;" id="disabledTextInput" class="form-control">
+							</div>
+							
+							<div class="form-group mb-3 col-6">
+								<i class="fa fa-user"></i>
+								<span class="form-group-text" id="basic-addon1">Current Position</span>
+								<input type="text" th:value="${experience.position}" th:disabled="${true}" style="background: transparent;" id="disabledTextInput" class="form-control">
+							</div>
+							
+							<div class="form-group mb-3 col-6">
+								<i class="fa fa-calendar"></i>
+								<span class="form-group-text" id="basic-addon1">Starting Year</span>
+								<input  type="text" th:value="${experience.startYear}" th:disabled="${true}" style="background: transparent;" id="disabledTextInput" class="form-control">
+							</div>
+							<div class="form-group mb-3 col-6">
+								<i class="fa fa-calendar"></i>
+								<span class="form-group-text" id="basic-addon1">Ending Year / Currently Working</span>
+								<input  type="text" th:value="${experience.endYear}" th:disabled="${true}" style="background: transparent;" id="disabledTextInput" class="form-control">
+							</div>
+							<div class="form-group">
+								<i class="fa fa-pencil"></i>
+								<span class="form-group-text">Description</span>
+								<textarea  type="text" th:text="${experience.description}" th:disabled="${true}" style="background: transparent;" id="disabledTextInput" rows="2" class="form-control"></textarea>
+							</div>
+                    	</div>
+					</form>
+				</section>
 			</div>
         </section>
     </body>
