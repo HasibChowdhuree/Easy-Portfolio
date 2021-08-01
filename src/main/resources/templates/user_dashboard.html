@@ -71,6 +71,36 @@
 					</div>
                 </form>
 				<br>
+				<!--Profile Links-->
+				<div class="container">
+					<div class="row">
+						<div class="col-6">
+							<h2>Profile Links</h2>
+						</div>
+						<div class="col-6 text-end">
+							<a th:href="@{/user/add-profile-link}" class="btn btn-danger btn-lg">
+								<i class="fa fa-plus"></i>&nbsp;Add Profile Links
+							</a>
+						</div>
+					</div>
+				</div>
+				<section th:each="profilelink : ${user.profile_links}">
+					<form class="signupform rounded">
+						<div class="row" >
+	                    	<div class="form-group col-9">
+	                        	<label th:text="${profilelink.website}"></label>
+	                        	<input type="text" th:value="${profilelink.link}" th:disabled="${true}" id="disabledTextInput" class="form-control" style="background: transparent;">
+	                    	</div>
+	                    	<div class="form-group col-3 mt-4">
+	                        	<div class="text-end">
+									<a href="#" class="btn btn-light"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
+									<a href="#" class="btn btn-light"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
+								</div>
+	                    	</div>
+						</div>
+					</form>
+				</section>
+				<br>
 				<!--Education-->
 				<div class="container">
 					<div class="row">
@@ -87,38 +117,38 @@
 				<section th:each="education : ${user.educations}">
 					<form class="signupform rounded">
 						<div class="row" >
-	                    	<div class="form-group mb-3 col-12">
-	                        	<div class="text-end">
-									<a href="#" class="btn btn-light"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
-									<a href="#" class="btn btn-light"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
-								</div>
-	                    	</div>
 	                    	<div class="form-group mb-3 col-6">
 	                        	<i class="fa fa-university"></i>
 	                        	<label>Name of the Institution</label>
 	                        	<input type="text" th:value="${education.institute}" th:disabled="${true}" id="disabledTextInput" class="form-control" style="background: transparent;">
 	                    	</div>
-							<div class="form-group mb-3 col-6">
+	                    	<div class="form-group mb-3 col-6">
+	                        	<div class="text-end">
+									<a href="#" class="btn btn-light"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
+									<a href="#" class="btn btn-light"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
+								</div>
+	                    	</div>
+							<div class="form-group mb-3 col-4">
 	                        	<i class="fa fa-certificate"></i>
 	                        	<label>Name of Degree</label>
 	                        	<input type="text" th:value="${education.nameOfDegree}" th:disabled="${true}" style="background: transparent;" id="disabledTextInput"  class="form-control">
 	                    	</div>
-	                    	<div class="form-group mb-3 col-3">
+	                    	<div class="form-group mb-3 col-2">
 	                        	<i class="fa fa-graduation-cap"></i>
 	                        	<label>CGPA/GPA</label>
 	                        	<input type="text" th:value="${education.gradeType}" th:disabled="${true}" style="background: transparent;" id="disabledTextInput" class="form-control">
 	                    	</div>
-	                    	<div class="form-group mb-3 col-3">
+	                    	<div class="form-group mb-3 col-2">
 	                        	<i class="fa fa-graduation-cap"></i>
 	                        	<label>Grade</label>
 	                        	<input type="text" th:value="${education.grade}" th:disabled="${true}" style="background: transparent;" id="disabledTextInput" class="form-control" >
 	                    	</div>
-							<div class="form-group mb-3 col-3">
+							<div class="form-group mb-3 col-2">
 	                        	<i class="fa fa-calendar"></i>
 	                        	<label>Starting Year</label>
 	                        	<input type="text" th:value="${education.startingYear}" th:disabled="${true}" style="background: transparent;" id="disabledTextInput" class="form-control">
 	                    	</div>
-	                    	<div class="form-group mb-3 col-3">
+	                    	<div class="form-group mb-3 col-2">
 	                        	<i class="fa fa-calendar"></i>
 	                        	<label>Ending Year</label>
 	                    		<input type="text" th:value="${education.endingYear}" th:disabled="${true}" style="background: transparent;" id="disabledTextInput" class="form-control">
@@ -148,32 +178,31 @@
 				<section th:each="experience : ${user.experience}">
 					<form class="signupform rounded">
 						<div class="row" >
-	                    	<div class="form-group mb-3 col-12">
-	                        	<div class="text-end">
-									<a href="#" class="btn btn-light"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
-									<a href="#" class="btn btn-light"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
-								</div>
-	                    	</div>
 	                    	<div class="form-group mb-3 col-6">
 								<i class="fa fa-university"></i>
 								<span class="form-group-text" id="basic-addon1">Name of the Company</span>
 								<input type="text" th:value="${experience.companyName}" th:disabled="${true}" style="background: transparent;" id="disabledTextInput" class="form-control">
 							</div>
-							
+	                    	<div class="form-group mb-3 col-6">
+	                        	<div class="text-end">
+									<a href="#" class="btn btn-light"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
+									<a href="#" class="btn btn-light"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
+								</div>
+	                    	</div>
 							<div class="form-group mb-3 col-6">
 								<i class="fa fa-user"></i>
 								<span class="form-group-text" id="basic-addon1">Current Position</span>
 								<input type="text" th:value="${experience.position}" th:disabled="${true}" style="background: transparent;" id="disabledTextInput" class="form-control">
 							</div>
 							
-							<div class="form-group mb-3 col-6">
+							<div class="form-group mb-3 col-3">
 								<i class="fa fa-calendar"></i>
 								<span class="form-group-text" id="basic-addon1">Starting Year</span>
 								<input  type="text" th:value="${experience.startYear}" th:disabled="${true}" style="background: transparent;" id="disabledTextInput" class="form-control">
 							</div>
-							<div class="form-group mb-3 col-6">
+							<div class="form-group mb-3 col-3">
 								<i class="fa fa-calendar"></i>
-								<span class="form-group-text" id="basic-addon1">Ending Year / Currently Working</span>
+								<span class="form-group-text" id="basic-addon1">Ending Year</span>
 								<input  type="text" th:value="${experience.endYear}" th:disabled="${true}" style="background: transparent;" id="disabledTextInput" class="form-control">
 							</div>
 							<div class="form-group">
