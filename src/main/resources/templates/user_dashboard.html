@@ -213,6 +213,36 @@
                     	</div>
 					</form>
 				</section>
+				<br>
+				<!--Skills-->
+				<div class="container">
+					<div class="row">
+						<div class="col-6">
+							<h2>Skills</h2>
+						</div>
+						<div class="col-6 text-end">
+							<a th:href="@{/user/add-skill}" class="btn btn-danger btn-lg">
+								<i class="fa fa-plus"></i>&nbsp;Add Skill Catagory
+							</a>
+						</div>
+					</div>
+				</div>
+				<section th:each="skill : ${user.skills}">
+					<form class="signupform rounded">
+						<div class="row" >
+	                    	<div class="form-group col-9">
+	                        	<label th:text="${skill.category}"></label>
+	                        	<input type="text" th:value="${skill.skillName}" th:disabled="${true}" id="disabledTextInput" class="form-control" style="background: transparent;">
+	                    	</div>
+	                    	<div class="form-group col-3 mt-4">
+	                        	<div class="text-end">
+									<a href="#" class="btn btn-light"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
+									<a href="#" class="btn btn-light"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
+								</div>
+	                    	</div>
+						</div>
+					</form>
+				</section>
 			</div>
         </section>
     </body>
