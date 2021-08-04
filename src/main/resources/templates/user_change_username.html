@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="baseuser::layout(~{::section})">
+    <head>
+        <title>Dashboard</title>
+    </head>
+    <body>
+        <section class="register-login-banner d-flex justify-content-center align-items-center">
+            <div class="col-md-4">
+                <form class="signupform rounded" th:action="@{/user/process-change-username}" method="post"><br>
+                    <h3 style="color: white; text-align: center;">Change Username</h3><br><br>
+                    <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                        <p class="text-center" th:text="${session.message.content}"> <p>
+                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" name="username" placeholder="New Username" class="form-control" id="">
+                    </div>
+                    <br>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-light">Change Username</button>
+                        <br>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </body>
+</html>

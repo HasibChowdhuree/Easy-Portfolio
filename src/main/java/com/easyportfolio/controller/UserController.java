@@ -377,4 +377,37 @@ public class UserController {
     }
 
     
+    @GetMapping("/change-username")
+    public String change_username(Model model, Principal principal) {
+        model.addAttribute("title", "Change Username - Easy Portfolio");
+    	String userName = principal.getName(); 
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+    	return "user_change_username";
+    }
+    @PostMapping("/process-change-username")
+    public String process_change_username(Model model, Principal principal, @RequestParam("username") String newusername, HttpSession session ){
+        model.addAttribute("title", "Change Username - Easy Portfolio");
+    	String userName = principal.getName(); 
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+        try{
+			if(userRepository.findByUsername(newusername)!=null) {
+				throw new Exception("Username already exits");
+			}
+            else{
+                user.setUsername(newusername);
+                this.userRepository.save(user);
+                session.setAttribute("message",new Message("Username Changed! ","alert-success"));
+            }
+            return "user_change_username";
+        }
+        catch(Exception e){
+			e.printStackTrace();
+			session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
+            return "user_change_username";
+        }
+    }
+
+    
 }
