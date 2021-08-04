@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +36,9 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
@@ -334,11 +338,43 @@ public class UserController {
 			return "user_add_profile_link";
 		}
     }
-    @GetMapping("/samples")
-    public String sample(Model model, Principal principal) {
+    @GetMapping("/change-password")
+    public String change_password(Model model, Principal principal) {
+        model.addAttribute("title", "Change Password - Easy Portfolio");
     	String userName = principal.getName(); 
         User user = userRepository.getUserByUserName(userName);
         model.addAttribute("user", user);
-    	return "sample";
+    	return "user_change_password";
     }
+    @PostMapping("/process-change-password")
+    public String process_change_password(Model model, Principal principal, @RequestParam("oldPassword") String oldPassword, @RequestParam("password") String password, @RequestParam("confirmPassword") String confirmPassword, HttpSession session ){
+        model.addAttribute("title", "Change Password - Easy Portfolio");
+    	String userName = principal.getName(); 
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+        try{
+            if(password.length()<6) {
+				throw new Exception("Password length must be at least 6");
+			}
+			if(!password.equals(confirmPassword)) {
+				throw new Exception("Passwords did not match");
+			}
+            if(this.bCryptPasswordEncoder.matches(oldPassword, user.getPassword())){
+                user.setPassword(this.bCryptPasswordEncoder.encode(password));
+                this.userRepository.save(user);
+                session.setAttribute("message",new Message("Password Changed! ","alert-success"));
+            }
+            else{
+                throw new Exception("Enter correct Old Password");
+            }
+            return "user_change_password";
+        }
+        catch(Exception e){
+			e.printStackTrace();
+			session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
+            return "user_change_password";
+        }
+    }
+
+    
 }
