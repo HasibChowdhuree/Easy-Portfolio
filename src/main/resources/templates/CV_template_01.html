@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="baseuser::layout(~{::section})">>
+    <head>
+	    <title>CV of $user.details.full_name</title>
+    </head>
+    <body>
+	    <section>
+            <h1 style="margin-bottom: 15px; padding: 0px; text-transform: uppercase;">$user.details.full_name</h1>
+            <div>
+                <table style="width: 100%; font-size: 12px; margin-bottom: 10px;">
+                    <tr>
+                        <td style="width: 50%;">
+                            <h6 style="margin: 0px; padding: 0px; font-size: 12px; font-weight: normal;">$user.details.email</h6>
+                            <h6 style="margin: 0px; padding: 0px; font-size: 12px; font-weight: normal;">$user.details.phone_number</h6>
+                            <h6 style="margin: 0px; padding: 0px; font-size: 12px; font-weight: normal;">$user.details.address</h6>
+                        </td>
+                        <td style="text-align: right;">
+                            #foreach( $profile_link in $user.profile_links )
+                            <h6  style="margin: 0px; padding: 0px; font-size: 12px; font-weight: normal;"><a th:href="@{'https://'+$'profile_link.link'}">$profile_link.link</a></h6>
+      	                    #end
+                        </td>
+                    </tr>
+                </table>
+                <table style="width: 100%; border-bottom: 1px solid; margin-bottom: 10px;">
+                    <tr>
+                        <td style="width: 100%;"></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h3 style="margin: 0px 0px 10px 0px; padding: 0px; font-size: 14px">SUMMARY</h3>
+                <table style="width: 100%; margin-bottom: 10px;">
+                    <tr>
+                        <td style="font-size: 12px; font-weight: normal;">$user.details.summary</td>
+                    </tr>
+                </table>
+                <table style="width: 100%; border-bottom: 1px solid; margin-bottom: 10px;">
+                    <tr>
+                        <td style="width: 100%;"></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h3 style="margin: 0px 0px 10px 0px; padding: 0px; font-size: 14px;">EDUCATION</h3>
+                #foreach( $education in $user.educations )
+                <table style="width: 100%; margin-bottom: 10px;">
+                    <tr>
+                        <td style="font-size: 12px; font-weight: normal;"><b>$education.nameOfDegree</b></td>
+                        <td style="font-size: 12px; font-weight: normal; text-align: right;"><b>$education.startingYear - $education.endingYear</b></td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 12px; font-weight: normal;">$education.institute</td>
+                        <td style="font-size: 12px; font-weight: normal;  text-align: right;"">$education.gradeType : $education.grade</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="font-size: 12px; font-weight: normal;">$education.additionalInfo</td>
+                    </tr>
+                </table>
+                #end
+                <table style="width: 100%; border-bottom: 1px solid; margin-bottom: 10px;">
+                    <tr>
+                        <td style="width: 100%;"></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h3 style="margin: 0px 0px 10px 0px; padding: 0px; font-size: 14px;">EXPERIENCE</h3>
+                #foreach( $experience in $user.experience )
+                <table style="width: 100%; margin-bottom: 10px;">
+                    <tr>
+                        <td style="font-size: 12px; font-weight: normal;"><b>$experience.position</b> at <b>$experience.companyName</b> </td>
+                        <td style="font-size: 12px; font-weight: normal; text-align: right;"><b>$experience.startYear - $experience.endYear</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="font-size: 12px; font-weight: normal;">$experience.description</td>
+                    </tr>
+                </table>
+                #end
+                <table style="width: 100%; border-bottom: 1px solid; margin-bottom: 10px;">
+                    <tr>
+                        <td style="width: 100%;"></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h3 style="margin: 0px 0px 10px 0px; padding: 0px; font-size: 14px;">SKILLS</h3>
+                #foreach( $skill in $user.skills )
+                <table style="width: 100%;">
+                    <tr>
+                        <td style="font-size: 12px; font-weight: normal; width: 20%;">$skill.category</td>
+                        <td style="font-size: 12px; font-weight: normal; width: 80%; text-align: left;">$skill.skillName</td>
+                    </tr>
+                </table>
+                #end
+                <table style="width: 100%; margin-bottom: 10px;">
+                    <tr>
+                        <td style="width: 100%;"></td>
+                    </tr>
+                </table>
+                <table style="width: 100%; border-bottom: 1px solid; margin-bottom: 10px;">
+                    <tr>
+                        <td style="width: 100%;"></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h3 style="margin: 0px 0px 10px 0px; padding: 0px; font-size: 14px;">PROJECTS</h3>
+                #foreach( $project in $user.projects)
+                <table style="width: 100%; margin-bottom: 10px;">
+                    <tr>
+                        <td colspan="2" style="font-size: 12px; font-weight: normal;"><b>$project.name</b></td>
+                        
+                    </tr>
+                    <tr>
+                        <td style="font-size: 12px; font-weight: normal; width: 55%;">Tools Used - $project.toolUsed</td>
+                        <td style="font-size: 12px; font-weight: normal; width: 45%; text-align: right;">Project Link - <a>$project.link</a></td>
+                    </tr>                        
+                    <tr>
+                        <td colspan="2" style="font-size: 12px; font-weight: normal;">$project.description</td>
+                    </tr>
+                </table>
+                #end
+                <table style="width: 100%; border-bottom: 1px solid; margin-bottom: 10px;">
+                    <tr>
+                        <td style="width: 100%;"></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h3 style="margin: 0px 0px 10px 0px; padding: 0px; font-size: 14px;">ACHIEVEMENTS</h3>
+                #foreach( $achievement in $user.achievements )
+                <table style="width: 100%; margin-bottom: 10px;">
+                    <tr>
+                        <td style="font-size: 12px; font-weight: normal; width: 100%;"><b>$achievement.name</b></td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 12px;  width: 100%; font-weight: normal;">$achievement.description</td>
+                    </tr>
+                </table>
+                #end
+                <table style="width: 100%; border-bottom: 1px solid; margin-bottom: 10px;">
+                    <tr>
+                        <td style="width: 100%;"></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h3 style="margin: 0px 0px 10px 0px; padding: 0px; font-size: 14px;">ACHIEVEMENTS</h3>
+                #foreach( $reference in $user.reference )
+                <table style="width: 100%; margin-bottom: 10px;">
+                    <tr>
+                        <td style="font-size: 12px; font-weight: normal; width: 100%;"><b>$reference.name</b></td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 12px;  width: 100%; font-weight: normal;">$reference.description</td>
+                    </tr>
+                </table>
+                #end
+            </div>
+        </section>
+    </body>
+</html>
