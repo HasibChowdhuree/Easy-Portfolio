@@ -3,6 +3,7 @@ package com.easyportfolio.controller;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,12 +14,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.easyportfolio.dao.DetailRepository;
+import com.easyportfolio.dao.ProfileLinkRepository;
 import com.easyportfolio.dao.UserRepository;
 import com.easyportfolio.entities.Achievement;
 import com.easyportfolio.entities.DetailInfo;
@@ -32,6 +35,7 @@ import com.easyportfolio.entities.User;
 import com.easyportfolio.helper.Message;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping("/user")
@@ -43,6 +47,9 @@ public class UserController {
 	private UserRepository userRepository;
 	@Autowired
 	private DetailRepository detailRepository;
+	
+	@Autowired
+	private ProfileLinkRepository profilelinkRepository;
 	@RequestMapping("/dashboard")
 	public String dashboard(Model model, Principal principal) {
 		try {
@@ -190,7 +197,6 @@ public class UserController {
 			return "user_add_experience";
 		}
     }
-
 	@RequestMapping("/add-project")
     public String add_project(Model model, Principal principal){
         String userName = principal.getName();
@@ -408,6 +414,50 @@ public class UserController {
             return "user_change_username";
         }
     }
+    @GetMapping("/edit-profilelink/{pId}")
+    public String editProfileLink(@PathVariable("pId") int pId, Model model, Principal principal) {
+    	String userName = principal.getName();
+        model.addAttribute("title", "Add Profile Link - Easy Portfolio");
+        ProfileLinks profilelink = profilelinkRepository.getById(pId);
+        System.out.println(profilelink.getLink());
+        model.addAttribute("profilelink", profilelink);
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+    	return "user_edit_profile_link";
+    }
+    @PostMapping("/edit-profilelink/{pId}")
+    public String editProfileLinkProcess(@PathVariable("pId") int pId,final ProfileLinks profile, Model model,HttpSession session, Principal principal) {
+    	String userName = principal.getName();
+        model.addAttribute("title", "Add Profile Link - Easy Portfolio");
+        ProfileLinks profilelink = profilelinkRepository.getById(pId);
+        profilelink.setLink(profile.getLink());
+        profilelink.setWebsite(profile.getWebsite());
+        this.profilelinkRepository.save(profilelink);
+        model.addAttribute("profilelink", profilelink);
+        session.setAttribute("message",new Message("Updated! ","alert-success"));
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+    	return "user_edit_profile_link";
+    }
+    @GetMapping("/delete-profilelink/{pId}")
+    public RedirectView deleteProfileLink(@PathVariable("pId") int pId,Model model,HttpSession session, Principal principal) {
+    	ProfileLinks profilelink = profilelinkRepository.getById(pId);
+    	String userName = principal.getName();
+    	User user = userRepository.getUserByUserName(userName);
+    	List<ProfileLinks> profilelinks = user.getProfile_links();
+    	for(int i=0;i<profilelinks.size();i++) {
+    		ProfileLinks pro = profilelinks.get(i);
+    		if(pro.getpId()==profilelink.getpId()) {
+    			profilelinks.set(i, null);
+    			break;
+    		}
+    	}
+    	session.setAttribute("message", new Message("deleted successfully","alert-danger"));
+    	this.profilelinkRepository.delete(profilelink);
+    	model.addAttribute("user", user);
+    	return new RedirectView("/user/dashboard");
+    }
+    
 
     
 }

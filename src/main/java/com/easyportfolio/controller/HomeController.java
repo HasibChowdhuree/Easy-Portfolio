@@ -210,7 +210,7 @@ public class HomeController {
 			xmlWorkerHelper.getDefaultCssResolver(true);
 			xmlWorkerHelper.parseXHtml(pdfWriter, document, new StringReader(
 					html));
-			// close the document
+			// close the documents
 			document.close();
 			System.out.println("PDF generated successfully");
 

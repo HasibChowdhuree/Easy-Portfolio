@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="baseuser::layout(~{::section})">
+    <head>
+        <title>Dashboard</title>
+    </head>
+    <body>
+        <section class="d-flex justify-content-center align-items-center">
+            <div class="col-md-8" style="margin-top: 100px; margin-bottom: 150px;">
+                <form class="signupform rounded" th:object="${profile_links}" enctype="multipart/form-data" method="post" th:action="@{'/user/edit-profilelink/'+${profilelink.pId}}"><br>
+                    <h3 style="color: white; text-align: center;">Add Profile Link</h3><br><br>
+                    <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                        <p class="text-center" th:text="${session.message.content}"> <p>
+                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                    </div>
+                    <div class="input-group mb-3">
+                        <select class="form-select" name="website" id="inputGroupSelect02">
+                            <option th:text="${profilelink.website}"></option>
+                            <option value="LinkedIn">LinkedIn</option>
+                            <option value="Github">Github</option>
+                            <option value="Facebook">Facebook</option>
+                            <option value="Twitter">Twitter</option>
+                            <option value="Youtube">Youtube</option>
+                        </select>
+                        <input type="text" th:value="${profilelink.link}" name="link" class="form-control"  aria-label="Text input with dropdown button" placeholder="Profile URL">
+                    </div>
+                    <br><br>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-light">Update Profile Link</button>
+                    </div>
+                    <br><br>
+                </form>
+            </div>
+        </section>
+    </body>
+</html>

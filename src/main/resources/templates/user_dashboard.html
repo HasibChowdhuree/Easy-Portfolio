@@ -7,6 +7,10 @@
         <section class="d-flex justify-content-center align-items-center">
 			<div class="col-md-8"><br>
 				<h2>Personal Information</h2>
+				<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                        <p class="text-center" th:text="${session.message.content}"> <p>
+                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                 </div>
                 <form class="signupform rounded" enctype="multipart/form-data" th:action="@{/user/dashboard}" method="post">
 					<div class="row">
 	                    <div class="col-6">
@@ -93,8 +97,12 @@
 	                    	</div>
 	                    	<div class="form-group col-3 mt-4">
 	                        	<div class="text-end">
-									<a href="#" class="btn btn-light"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
-									<a href="#" class="btn btn-light"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
+									
+										<a class="btn btn-light" th:href="@{'/user/edit-profilelink/'+${profilelink.pId}}">
+											<i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit
+										</a>
+									
+									<a class="btn btn-light" th:href="@{'/user/delete-profilelink/'+${profilelink.pId}}"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
 								</div>
 	                    	</div>
 						</div>

@@ -44,7 +44,7 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	@OneToOne(cascade=CascadeType.ALL,fetch =FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL, fetch =FetchType.LAZY)
 	private DetailInfo details;
 	@OneToMany(cascade = CascadeType.ALL,fetch =FetchType.LAZY)
 	private List<Education> educations;
