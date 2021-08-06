@@ -271,5 +271,10 @@ public class HomeController {
 	    return new HttpEntity<byte[]>(baos.toByteArray(), header);
 
 	}
-	
+	@GetMapping("/profile/{username}")
+    public String livelink(@PathVariable("username") String username,Model model,HttpSession session) {
+    	User user = userRepository.findByUsername(username);
+    	model.addAttribute("user", user);
+    	return "portfolio";
+    }
 }
