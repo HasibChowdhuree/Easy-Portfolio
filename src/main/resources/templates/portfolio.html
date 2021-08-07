@@ -185,17 +185,28 @@
                                     <ul>
                                         <li>
                                             <div class="item">
-                                                <img th:src="@{/img/education.png}" alt="">
-                                                <div class="text-content">
-                                                    <br>
-                                                    <h4 th:text="${education.nameOfDegree}"></h4>
-                                                    <h4 th:text="${education.institute}"></h4><br>
-                                                    <span th:text="${education.startingYear}"></span> - <span th:text="${education.endingYear}"></span><br>
-                                                    <span th:text="${education.gradeType}"></span> - <span th:text="${education.grade}"></span><br>
-                                                    <p style="font-size:100%;" th:utext="${education.additionalInfo}"></p>
-                                                    
-                                                    
-                                                </div>
+                                                <table>
+                                                    <tr>
+                                                        <td style="width: 25%;">
+                                                            <img th:src="@{/img/education.png}" alt="">
+                                                        </td>
+                                                        <td style="width: 75%;">
+                                                            <div class="text-content">
+                                                                <br>
+                                                                <h4 th:text="${education.nameOfDegree}"></h4>
+                                                                <h4 th:text="${education.institute}"></h4><br>
+                                                                <span th:text="${education.startingYear}"></span> - <span th:text="${education.endingYear}"></span><br>
+                                                                <span th:text="${education.gradeType}"></span> - <span th:text="${education.grade}"></span><br>
+                                                                <p style="font-size:100%;" th:utext="${education.additionalInfo}"></p>
+                                                                
+                                                                
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                
+                                                
                                             </div>
                                         </li>
                                         
@@ -222,15 +233,26 @@
                                     <ul>
                                         <li>
                                             <div class="item">
-                                                <img th:src="@{/img/experience.png}" alt="">
-                                                <div class="text-content">
-                                                    <br>
-                                                    <h4 th:utext="${experience.position}" style="display:inline;"></h4><span>&nbsp; at &nbsp;</span><h4 style="display:inline;" th:utext="${experience.companyName}"></h4><br><br>
-                                                    <span th:utext="${experience.startYear}"></span> - <span th:utext="${experience.endYear}"></span><br>
-                                                    <p style="font-size:100%;" th:utext="${experience.description}"></p>
-                                                    
-                                                    
-                                                </div>
+                                                <table>
+                                                    <tr>
+                                                        <td style="width: 25%;">
+                                                            <img th:src="@{/img/experience.png}" alt="">
+                                                        </td>
+                                                        <td style="width: 75%;">
+                                                            <div class="text-content">
+                                                                <br>
+                                                                <h4 th:utext="${experience.position}" style="display:inline;"></h4><span>&nbsp; at &nbsp;</span><h4 style="display:inline;" th:utext="${experience.companyName}"></h4><br><br>
+                                                                <span th:utext="${experience.startYear}"></span> - <span th:utext="${experience.endYear}"></span><br>
+                                                                <p style="font-size:100%;" th:utext="${experience.description}"></p>
+                                                                
+                                                                
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                
+                                                
                                             </div>
                                         </li>
                                         
@@ -274,15 +296,26 @@
                                     <ul>
                                         <li>
                                             <div class="item">
-                                                <img th:src="@{/img/project.png}" alt="">
-                                                <div class="text-content">
-                                                    <h4 th:utext="${project.name}"></h4><br>
-                                                    <span>Project Link -&nbsp;</span><span th:utext="${project.link}"></span><br>
-                                                    <span>Tools Used -&nbsp; </span><span th:utext="${project.toolUsed}"></span>
-                                                    <p style="font-size:100%;" th:utext="${project.description}"></p>
-                                                    
-                                                    
-                                                </div>
+                                                <table>
+                                                    <tr>
+                                                        <td style="width: 25%;">
+                                                            <img th:src="@{/img/project.png}" alt="">
+                                                        </td>
+                                                        <td style="width: 75%;">
+                                                            <div class="text-content">
+                                                                <h4 th:utext="${project.name}"></h4><br>
+                                                                <span>Project Link -&nbsp;</span><span th:utext="${project.link}"></span><br>
+                                                                <span>Tools Used -&nbsp; </span><span th:utext="${project.toolUsed}"></span>
+                                                                <p style="font-size:100%;" th:utext="${project.description}"></p>
+                                                                
+                                                                
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                
+                                                
                                             </div>
                                         </li>
                                         
@@ -307,13 +340,24 @@
                                     <ul>
                                         <li>
                                             <div class="item">
-                                                <img th:src="@{/img/achievement.png}" alt="">
-                                                <div class="text-content">
-                                                    <h4 th:utext="${achievement.name}"></h4><br>
-                                                    <p style="font-size:100%;" th:utext="${achievement.description}"></p>
-                                                    
-                                                    
-                                                </div>
+                                                <table>
+                                                    <tr>
+                                                        <td style="width: 15%;">
+                                                            <img th:src="@{/img/achievement.png}" alt="">
+                                                        </td>
+                                                        <td style="width: 85%;">
+                                                            <div class="text-content">
+                                                                <h4 th:utext="${achievement.name}"></h4><br>
+                                                                <p style="font-size:100%;" th:utext="${achievement.description}"></p>
+                                                                
+                                                                
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                
+                                                
                                             </div>
                                         </li>
                                         
@@ -338,13 +382,24 @@
                                     <ul>
                                         <li>
                                             <div class="item">
-                                                <img th:src="@{/img/reference.png}" alt="">
-                                                <div class="text-content">
-                                                    <h4 th:utext="${reference.name}"></h4><br>
-                                                    <p style="font-size:100%;" th:utext="${reference.description}"></p>
-                                                    
-                                                    
-                                                </div>
+                                                <table>
+                                                    <tr>
+                                                        <td style="width: 15%;">
+                                                            <img th:src="@{/img/reference.png}" alt="">
+                                                        </td>
+                                                        <td style="width: 85%;">
+                                                            <div class="text-content">
+                                                                <h4 th:utext="${reference.name}"></h4><br>
+                                                                <p style="font-size:100%;" th:utext="${reference.description}"></p>
+                                                                
+                                                                
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                
+                                                
                                             </div>
                                         </li>
                                         

@@ -1337,6 +1337,7 @@ header {
   .Modern-Slider .info {
     text-align: center;
     right: 0px;
+    margin-left: 5px;
     padding: 0px 30px;
   }
 
