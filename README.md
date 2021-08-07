@@ -5,6 +5,6 @@ to generate cv you don't have to signup
 
 <img src="/src/main/resources/static/img/homepage.png">
 <img src="/src/main/resources/static/img/signup.png">
-<img src="/src/main/resources/static/img/cv.png">
+<img src="/src/main/resources/static/img/cv.jpg">
 <img src="/src/main/resources/static/img/livelink.png"># Easy-Portfolio
  
