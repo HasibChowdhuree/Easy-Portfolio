@@ -11,6 +11,14 @@ public class Achievement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int aId;
+	public int getaId() {
+		return aId;
+	}
+
+	public void setaId(int aId) {
+		this.aId = aId;
+	}
+
 	public Achievement() {
 		super();
 		// TODO Auto-generated constructor stub

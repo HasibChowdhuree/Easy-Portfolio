@@ -20,9 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.easyportfolio.dao.DetailRepository;
-import com.easyportfolio.dao.ProfileLinkRepository;
-import com.easyportfolio.dao.UserRepository;
+import com.easyportfolio.dao.*;
 import com.easyportfolio.entities.Achievement;
 import com.easyportfolio.entities.DetailInfo;
 import com.easyportfolio.entities.Education;
@@ -50,6 +48,23 @@ public class UserController {
 	
 	@Autowired
 	private ProfileLinkRepository profilelinkRepository;
+	@Autowired
+	private EducationRepository educationRepository;
+	@Autowired
+	private AchievementRepository achievementRepository;
+	
+	@Autowired
+	private ExperienceRepository experienceRepository;
+	
+	@Autowired
+	private ProjectRepository projectRepository;
+	
+	@Autowired
+	private ReferenceRepository referenceRepository;
+	
+	@Autowired
+	private SkillRepository skillRepository;
+	
 	@RequestMapping("/dashboard")
 	public String dashboard(Model model, Principal principal) {
 		try {
@@ -60,7 +75,6 @@ public class UserController {
 			int userId = user.getDetailId();
 	//		System.out.println(userId);
 			DetailInfo details = detailRepository.getById(userId);
-			System.out.println(details.getFull_name());
 			byte[] image = details.getImage();
 	//		System.out.println(details.getFirstName());
 			model.addAttribute("image", new String(image, "UTF-8"));
@@ -457,7 +471,245 @@ public class UserController {
     	model.addAttribute("user", user);
     	return new RedirectView("/user/dashboard");
     }
+    @GetMapping("/edit-education/{eId}")
+    public String editEducation(@PathVariable("eId") int eId, Model model, Principal principal) {
+    	String userName = principal.getName();
+        model.addAttribute("title", "Add Profile Link - Easy Portfolio");
+        Education education = educationRepository.getById(eId);
+        model.addAttribute("education", education);
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+    	return "user_edit_education";
+    }
+    @PostMapping("/edit-education/{eId}")
+    public String editEducationProcess(@PathVariable("eId") int eId,final Education education, Model model,HttpSession session, Principal principal) {
+    	String userName = principal.getName();
+        model.addAttribute("title", "Add Profile Link - Easy Portfolio");
+        education.seteId(eId);
+        this.educationRepository.save(education);
+        model.addAttribute("education", education);
+        session.setAttribute("message",new Message("Updated! ","alert-success"));
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+    	return "user_edit_education";
+    }
+    @GetMapping("/delete-education/{eId}")
+    public RedirectView deleteEducationLink(@PathVariable("eId") int eId,Model model,HttpSession session, Principal principal) {
+    	Education education = educationRepository.getById(eId);
+    	String userName = principal.getName();
+    	User user = userRepository.getUserByUserName(userName);
+    	List<Education> educations = user.getEducations();
+    	for(int i=0;i<educations.size();i++) {
+    		Education edu = educations.get(i);
+    		if(edu.geteId()==education.geteId()) {
+    			educations.set(i, null);
+    			break;
+    		}
+    	}
+    	session.setAttribute("message", new Message("deleted successfully","alert-danger"));
+    	this.educationRepository.delete(education);
+    	model.addAttribute("user", user);
+    	return new RedirectView("/user/dashboard");
+    }
     
-
-    
+    @GetMapping("/edit-experience/{eId}")
+    public String editExperience(@PathVariable("eId") int eId, Model model, Principal principal) {
+    	String userName = principal.getName();
+        model.addAttribute("title", "Add Profile Link - Easy Portfolio");
+        Experience experience = experienceRepository.getById(eId);
+        model.addAttribute("experience", experience);
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+    	return "user_edit_experience";
+    }
+    @PostMapping("/edit-experience/{eId}")
+    public String editExperienceProcess(@PathVariable("eId") int eId,final Experience experience, Model model,HttpSession session, Principal principal) {
+    	String userName = principal.getName();
+        model.addAttribute("title", "Add Profile Link - Easy Portfolio");
+        experience.seteId(eId);
+        this.experienceRepository.save(experience);
+        model.addAttribute("experience", experience);
+        session.setAttribute("message",new Message("Updated! ","alert-success"));
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+    	return "user_edit_experience";
+    }
+    @GetMapping("/delete-experience/{eId}")
+    public RedirectView deleteExperienceLink(@PathVariable("eId") int eId,Model model,HttpSession session, Principal principal) {
+    	Experience experience = experienceRepository.getById(eId);
+    	String userName = principal.getName();
+    	User user = userRepository.getUserByUserName(userName);
+    	List<Experience> experiences= user.getExperience();
+    	for(int i=0;i<experiences.size();i++) {
+    		Experience exp = experiences.get(i);
+    		if(exp.geteId()==experience.geteId()) {
+    			experiences.set(i, null);
+    			break;
+    		}
+    	}
+    	session.setAttribute("message", new Message("deleted successfully","alert-danger"));
+    	this.experienceRepository.delete(experience);
+    	model.addAttribute("user", user);
+    	return new RedirectView("/user/dashboard");
+    }
+    @GetMapping("/edit-skill/{sId}")
+    public String editSkill(@PathVariable("sId") int sId, Model model, Principal principal) {
+    	String userName = principal.getName();
+        model.addAttribute("title", "Add Profile Link - Easy Portfolio");
+        Skill skill = skillRepository.getById(sId);
+        model.addAttribute("skill", skill);
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+    	return "user_edit_skill";
+    }
+    @PostMapping("/edit-skill/{sId}")
+    public String editSkillProcess(@PathVariable("sId") int sId,final Skill skill, Model model,HttpSession session, Principal principal) {
+    	String userName = principal.getName();
+        model.addAttribute("title", "Add Profile Link - Easy Portfolio");
+        skill.setsId(sId);
+        this.skillRepository.save(skill);
+        model.addAttribute("skill", skill);
+        session.setAttribute("message",new Message("Updated! ","alert-success"));
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+    	return "user_edit_skill";
+    }
+    @GetMapping("/delete-skill/{sId}")
+    public RedirectView deleteSkill(@PathVariable("sId") int sId,Model model,HttpSession session, Principal principal) {
+    	Skill skill = skillRepository.getById(sId);
+    	String userName = principal.getName();
+    	User user = userRepository.getUserByUserName(userName);
+    	List<Skill> skills= user.getSkills();
+    	for(int i=0;i<skills.size();i++) {
+    		Skill sk = skills.get(i);
+    		if(sk.getsId()==skill.getsId()) {
+    			skills.set(i, null);
+    			break;
+    		}
+    	}
+    	session.setAttribute("message", new Message("deleted successfully","alert-danger"));
+    	this.skillRepository.delete(skill);
+    	model.addAttribute("user", user);
+    	return new RedirectView("/user/dashboard");
+    }
+    @GetMapping("/edit-project/{pId}")
+    public String editProject(@PathVariable("pId") int pId, Model model, Principal principal) {
+    	String userName = principal.getName();
+        model.addAttribute("title", "Add Profile Link - Easy Portfolio");
+        Project project = projectRepository.getById(pId);
+        model.addAttribute("project", project);
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+    	return "user_edit_project";
+    }
+    @PostMapping("/edit-project/{pId}")
+    public String editProjectProcess(@PathVariable("pId") int pId,final Project project, Model model,HttpSession session, Principal principal) {
+    	String userName = principal.getName();
+        model.addAttribute("title", "Add Profile Link - Easy Portfolio");
+        project.setpId(pId);
+        this.projectRepository.save(project);
+        model.addAttribute("project", project);
+        session.setAttribute("message",new Message("Updated! ","alert-success"));
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+    	return "user_edit_project";
+    }
+    @GetMapping("/delete-project/{pId}")
+    public RedirectView deleteProject(@PathVariable("pId") int pId,Model model,HttpSession session, Principal principal) {
+    	Project project = projectRepository.getById(pId);
+    	String userName = principal.getName();
+    	User user = userRepository.getUserByUserName(userName);
+    	List<Project> projects = user.getProjects();
+    	for(int i=0;i<projects.size();i++) {
+    		Project pr = projects.get(i);
+    		if(pr.getpId()==project.getpId()) {
+    			projects.set(i, null);
+    			break;
+    		}
+    	}
+    	session.setAttribute("message", new Message("deleted successfully","alert-danger"));
+    	this.projectRepository.delete(project);
+    	model.addAttribute("user", user);
+    	return new RedirectView("/user/dashboard");
+    }
+    @GetMapping("/edit-achievement/{aId}")
+    public String editAchievement(@PathVariable("aId") int aId, Model model, Principal principal) {
+    	String userName = principal.getName();
+        model.addAttribute("title", "Add Profile Link - Easy Portfolio");
+        Achievement achievement = achievementRepository.getById(aId);
+        model.addAttribute("achievement", achievement);
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+    	return "user_edit_achievement";
+    }
+    @PostMapping("/edit-achievement/{aId}")
+    public String editAchievementProcess(@PathVariable("aId") int aId,final Achievement achievement, Model model,HttpSession session, Principal principal) {
+    	String userName = principal.getName();
+        model.addAttribute("title", "Add Profile Link - Easy Portfolio");
+        achievement.setaId(aId);
+        this.achievementRepository.save(achievement);
+        model.addAttribute("achievement", achievement);
+        session.setAttribute("message",new Message("Updated! ","alert-success"));
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+    	return "user_edit_achievement";
+    }
+    @GetMapping("/delete-achievement/{aId}")
+    public RedirectView deleteAchievement(@PathVariable("aId") int aId,Model model,HttpSession session, Principal principal) {
+    	Achievement achievement = achievementRepository.getById(aId);
+    	String userName = principal.getName();
+    	User user = userRepository.getUserByUserName(userName);
+    	List<Achievement> achievements= user.getAchievements();
+    	for(int i=0;i<achievements.size();i++) {
+    		Achievement ac = achievements.get(i);
+    		if(ac.getaId()==achievement.getaId()) {
+    			achievements.set(i, null);
+    			break;
+    		}
+    	}
+    	session.setAttribute("message", new Message("deleted successfully","alert-danger"));
+    	this.achievementRepository.delete(achievement);
+    	model.addAttribute("user", user);
+    	return new RedirectView("/user/dashboard");
+    }
+    @GetMapping("/edit-reference/{rId}")
+    public String editReference(@PathVariable("rId") int rId, Model model, Principal principal) {
+    	String userName = principal.getName();
+        model.addAttribute("title", "Add Profile Link - Easy Portfolio");
+        Reference reference = referenceRepository.getById(rId);
+        model.addAttribute("reference", reference);
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+    	return "user_edit_reference";
+    }
+    @PostMapping("/edit-reference/{rId}")
+    public String editReferenceProcess(@PathVariable("rId") int rId,final Reference reference, Model model,HttpSession session, Principal principal) {
+    	String userName = principal.getName();
+        model.addAttribute("title", "Add Profile Link - Easy Portfolio");
+        reference.setrId(rId);
+        this.referenceRepository.save(reference);
+        model.addAttribute("reference", reference);
+        session.setAttribute("message",new Message("Updated! ","alert-success"));
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+    	return "user_edit_reference";
+    }
+    @GetMapping("/delete-reference/{rId}")
+    public RedirectView deleteReference(@PathVariable("rId") int rId,Model model,HttpSession session, Principal principal) {
+    	Reference reference = referenceRepository.getById(rId);
+    	String userName = principal.getName();
+    	User user = userRepository.getUserByUserName(userName);
+    	List<Reference> references= user.getReference();
+    	for(int i=0;i<references.size();i++) {
+    		Reference rf = references.get(i);
+    		if(rf.getrId()==reference.getrId()) {
+    			references.set(i, null);
+    			break;
+    		}
+    	}
+    	session.setAttribute("message", new Message("deleted successfully","alert-danger"));
+    	this.referenceRepository.delete(reference);
+    	model.addAttribute("user", user);
+    	return new RedirectView("/user/dashboard");
+    }
 }

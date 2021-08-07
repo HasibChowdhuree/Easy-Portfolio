@@ -12,6 +12,12 @@ public class Education {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int eId;
+	public int geteId() {
+		return eId;
+	}
+	public void seteId(int eId) {
+		this.eId = eId;
+	}
 	public Education() {
 		super();
 		// TODO Auto-generated constructor stub

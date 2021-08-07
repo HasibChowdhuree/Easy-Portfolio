@@ -132,8 +132,8 @@
 	                    	</div>
 	                    	<div class="form-group mb-3 col-6">
 	                        	<div class="text-end">
-									<a href="#" class="btn btn-light"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
-									<a href="#" class="btn btn-light"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
+									<a class="btn btn-light" th:href="@{'/user/edit-education/'+${education.eId}}"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
+									<a class="btn btn-light" th:href="@{'/user/delete-education/'+${education.eId}}"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
 								</div>
 	                    	</div>
 							<div class="form-group mb-3 col-4">
@@ -193,8 +193,8 @@
 							</div>
 	                    	<div class="form-group mb-3 col-6">
 	                        	<div class="text-end">
-									<a href="#" class="btn btn-light"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
-									<a href="#" class="btn btn-light"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
+									<a class="btn btn-light" th:href="@{'/user/edit-experience/'+${experience.eId}}"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
+									<a class="btn btn-light" th:href="@{'/user/delete-experience/'+${experience.eId}}"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
 								</div>
 	                    	</div>
 							<div class="form-group mb-3 col-6">
@@ -244,8 +244,8 @@
 	                    	</div>
 	                    	<div class="form-group col-3 mt-4">
 	                        	<div class="text-end">
-									<a href="#" class="btn btn-light"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
-									<a href="#" class="btn btn-light"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
+									<a class="btn btn-light" th:href="@{'/user/edit-skill/'+${skill.sId}}"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
+									<a class="btn btn-light" th:href="@{'/user/delete-skill/'+${skill.sId}}"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
 								</div>
 	                    	</div>
 						</div>
@@ -275,8 +275,8 @@
 							</div>
 	                    	<div class="form-group mb-3 col-6">
 	                        	<div class="text-end">
-									<a href="#" class="btn btn-light"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
-									<a href="#" class="btn btn-light"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
+									<a th:href="@{'/user/edit-project/'+${project.pId}}" class="btn btn-light"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
+									<a th:href="@{'/user/delete-project/'+${project.pId}}" class="btn btn-light"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
 								</div>
 	                    	</div>
 							<div class="form-group mb-3 col-6">
@@ -321,8 +321,8 @@
 							</div>
 	                    	<div class="form-group mb-3 col-6">
 	                        	<div class="text-end">
-									<a href="#" class="btn btn-light"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
-									<a href="#" class="btn btn-light"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
+									<a class="btn btn-light" th:href="@{'/user/edit-achievement/'+${achievement.aId}}"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
+									<a class="btn btn-light" th:href="@{'/user/delete-achievement/'+${achievement.aId}}"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
 								</div>
 	                    	</div>
 							<div class="form-group">
@@ -357,8 +357,8 @@
 							</div>
 	                    	<div class="form-group mb-3 col-6">
 	                        	<div class="text-end">
-									<a href="#" class="btn btn-light"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
-									<a href="#" class="btn btn-light"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
+									<a class="btn btn-light" th:href="@{'/user/edit-reference/'+${reference.rId}}"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
+									<a class="btn btn-light" th:href="@{'/user/delete-reference/'+${reference.rId}}"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
 								</div>
 	                    	</div>
 							<div class="form-group">

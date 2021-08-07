@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="baseuser::layout(~{::section})">
+    <head>
+        <title>Dashboard</title>
+    </head>
+    <body>
+        <section class="d-flex justify-content-center align-items-center">
+            <div class="col-md-8" style="margin-top: 50px; margin-bottom: 50px;">
+                <form class="signupform rounded" th:object="${project}" enctype="multipart/form-data" method="POST" th:action="@{'/user/edit-project/'+${project.pId}}"><br>
+                    <h3 style="color: white; text-align: center;">Add Project</h3><br><br>
+                    <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                        <p class="text-center" th:text="${session.message.content}"> <p>
+                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                    </div>
+                    <div class="row">
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-database"></i>
+	                        <span class="form-group-text" id="basic-addon1">Name of the Project</span>
+	                        <input type="text" th:value="${project.name}" name="name" class="form-control" id="validationDefault01" required>
+	                    </div>
+	                    <div class="form-group mb-3 col-6">
+	                    	<i class="fa fa-link"></i>
+	                        <span class="form-group-text" id="basic-addon1">Project Link</span>
+	                        <input type="text" th:value="${project.link}" name="link" class="form-control" id="validationDefault03" required>
+	                    </div>
+	                    <div class="form-group mb-3 col-12">
+	                    	<i class="fa fa-paint-brush"></i>
+	                        <span class="form-group-text" id="basic-addon1">Tools Used</span>
+	                        <input type="text" th:value="${project.toolUsed}" name="toolUsed" class="form-control" id="validationDefault02" required>
+	                    </div>
+	                    <div class="form-group">
+	                    	<i class="fa fa-pencil"></i>
+	                        <span class="form-group-text">Project Description</span>
+	                        <textarea th:utext="${project.description}" type="text" name="description" rows="4" class="form-control" aria-label="With textarea"></textarea>
+	                    </div>
+                    </div>
+                    <br><br>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-light">Add Project</button>
+                    </div>
+                    <br><br>
+                </form>
+            </div>
+        </section>
+    </body>
+</html>

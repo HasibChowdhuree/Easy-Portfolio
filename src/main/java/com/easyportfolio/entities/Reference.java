@@ -11,6 +11,14 @@ public class Reference {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int rId;
+	public int getrId() {
+		return rId;
+	}
+
+	public void setrId(int rId) {
+		this.rId = rId;
+	}
+
 	public Reference() {
 		super();
 		// TODO Auto-generated constructor stub
