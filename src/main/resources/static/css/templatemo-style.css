@@ -523,7 +523,7 @@ header {
   display: inline-block;
   text-align: center;
   width: 25%;
-  float: left;
+
   margin: 0;
   padding: 0;
 }
@@ -588,7 +588,7 @@ header {
 }
 
 #education .tabgroup ul li img {
-  float: left;
+
   margin-right: 30px;
   max-width: 100%;
   overflow: hidden;
@@ -799,7 +799,7 @@ header {
   display: inline-block;
   text-align: center;
   width: 25%;
-  float: left;
+
   margin: 0;
   padding: 0;
 }
@@ -864,7 +864,7 @@ header {
 }
 
 #experience .tabgroup ul li img {
-  float: left;
+
   margin-right: 30px;
   max-width: 100%;
   overflow: hidden;
@@ -947,7 +947,7 @@ header {
   display: inline-block;
   text-align: center;
   width: 25%;
-  float: left;
+
   margin: 0;
   padding: 0;
 }
@@ -1011,7 +1011,7 @@ header {
 }
 
 #certifications .tabgroup ul li img {
-  float: left;
+
   margin-right: 30px;
   max-width: 100%;
   overflow: hidden;
@@ -1168,7 +1168,7 @@ header {
   display: inline-block;
   text-align: center;
   width: 25%;
-  float: left;
+
   margin: 0;
   padding: 0;
 }
@@ -1232,7 +1232,7 @@ header {
 }
 
 #project .tabgroup ul li img {
-  float: left;
+
   margin-right: 30px;
   max-width: 100%;
   overflow: hidden;
@@ -1337,6 +1337,7 @@ header {
   .Modern-Slider .info {
     text-align: center;
     right: 0px;
+    margin-left: 5px;
     padding: 0px 30px;
   }
 
@@ -1604,7 +1605,7 @@ header {
   display: inline-block;
   text-align: center;
   width: 25%;
-  float: left;
+
   margin: 0;
   padding: 0;
 }
@@ -1669,7 +1670,7 @@ header {
 }
 
 #reference .tabgroup ul li img {
-  float: left;
+
   margin-right: 30px;
   max-width: 100%;
   overflow: hidden;
