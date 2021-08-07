@@ -13,6 +13,8 @@
                  </div>
                 <form class="signupform rounded" enctype="multipart/form-data" th:action="@{/user/dashboard}" method="post">
 					<div class="row">
+						<section th:if="${image!=null}"><img class="dp" th:src="'data:image/png;base64,' + ${image}"/></section>
+	                    <br>
 	                    <div class="col-6">
 		                    <div class="form-group mb-3">
 		                        <i class="fa fa-user"></i>

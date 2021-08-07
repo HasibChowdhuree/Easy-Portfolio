@@ -3,7 +3,14 @@ body{
     background-attachment: fixed;
     background-size: cover;
 }
-
+.dp{
+	display: block;
+	width:150px;
+	border-radius: 50%;
+	height:150px;
+	border: 2px solid #ffffff;
+  	border-radius: 50%;
+}
 .white-text{
     color: rgb(255, 255, 255) !important;
 }

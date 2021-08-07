@@ -76,8 +76,10 @@ public class UserController {
 	//		System.out.println(userId);
 			DetailInfo details = detailRepository.getById(userId);
 			byte[] image = details.getImage();
+			System.out.println(image);
 	//		System.out.println(details.getFirstName());
-			model.addAttribute("image", new String(image, "UTF-8"));
+			if(image.length >0)
+				model.addAttribute("image", new String(image, "UTF-8"));
 			model.addAttribute("user",user);
 			return "user_dashboard";
 		}
