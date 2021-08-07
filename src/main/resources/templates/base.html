@@ -24,11 +24,8 @@
                 <div class="collapse navbar-collapse" id="main_nav">
                     <ul class="navbar-nav ms-auto">
                     	
-                        <li class="nav-item" th:if="${user==null}"><a class="nav-link" th:href="@{/signup}"> Sign up </a></li>
-                        <li class="nav-item" th:if="${user==null}"><a class="nav-link" th:href="@{/signin}"> Sign in </a></li>
-                        <li class="nav-item" th:if="${user!=null}"><a class="nav-link" th:utext="${user.username}"  context="" th:href="@{user/dashboard}">  </a></li>
-                        <li class="nav-item" th:if="${user!=null}"><a class="nav-link" href="/logout"> Logout </a></li>
-                    	<li class="nav-item"><a class="nav-link" href="#"> About </a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/signup}"> Sign up </a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/signin}"> Sign in </a></li>
                     </ul>
                 </div>
             </div>
