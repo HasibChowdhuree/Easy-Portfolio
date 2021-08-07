@@ -57,7 +57,9 @@
 
         <div class="sidebar-navigation hidde-sm hidden-xs">
             <div class="logo">
-                <img style="border-radius: 50%;" th:src="@{/img/profile.jpg}" width="50%">
+            <section th:if="${image!=null}"><img style="border-radius: 50%;" th:src="'data:image/png;base64,' + ${image}" width="50%"/></section>
+            <section th:if="${image==null}"><img style="border-radius: 50%;" src="https://i.imgur.com/5UpOyrb.jpg" width="50%"/></section>
+                <!--<img  th:src="@{/img/profile.jpg}" >-->
                 <a ><br><emhref="" th:utext="${user.details.full_name}"></em></a>
                 
             </div>

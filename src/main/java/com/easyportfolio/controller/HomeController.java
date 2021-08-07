@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.time.LocalDateTime;
 
@@ -272,8 +273,12 @@ public class HomeController {
 
 	}
 	@GetMapping("/profile/{username}")
-    public String livelink(@PathVariable("username") String username,Model model,HttpSession session) {
+    public String livelink(@PathVariable("username") String username,Model model,HttpSession session) throws UnsupportedEncodingException {
     	User user = userRepository.findByUsername(username);
+    	DetailInfo details = user.getDetails();
+		byte[] image = details.getImage();
+    	if(image.length>0)
+			model.addAttribute("image", new String(image, "UTF-8"));
     	model.addAttribute("user", user);
     	return "portfolio";
     }
