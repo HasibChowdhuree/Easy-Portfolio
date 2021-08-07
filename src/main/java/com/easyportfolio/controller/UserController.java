@@ -38,45 +38,43 @@ import org.springframework.web.servlet.view.RedirectView;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+	
+	// saving password in database in crypted form
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-
+    // repository objects to insert, delete data from database 
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
 	private DetailRepository detailRepository;
-	
 	@Autowired
 	private ProfileLinkRepository profilelinkRepository;
 	@Autowired
 	private EducationRepository educationRepository;
 	@Autowired
 	private AchievementRepository achievementRepository;
-	
 	@Autowired
 	private ExperienceRepository experienceRepository;
-	
 	@Autowired
 	private ProjectRepository projectRepository;
-	
 	@Autowired
 	private ReferenceRepository referenceRepository;
-	
 	@Autowired
 	private SkillRepository skillRepository;
 	
+	// GET method dashboard after logging in
 	@RequestMapping("/dashboard")
 	public String dashboard(Model model, Principal principal) {
 		try {
 			model.addAttribute("title","Dashboard");
 			String email = principal.getName();
-	//		System.out.println(email);
+			// getting user from database using email
 			User user = userRepository.getUserByUserName(email);
 			int userId = user.getDetailId();
-	//		System.out.println(userId);
+			// getting user detail from database using userId
 			DetailInfo details = detailRepository.getById(userId);
 			byte[] image = details.getImage();
-	//		System.out.println(details.getFirstName());
+			// checking if image is null or not
 			if(image.length>0)
 				model.addAttribute("image", new String(image, "UTF-8"));
 			model.addAttribute("user",user);
@@ -84,12 +82,14 @@ public class UserController {
 		}
 		catch(Exception e) {
 			model.addAttribute("title","Dashboard");
+			// getting information about logged in user
 			String email = principal.getName();
 			User user = userRepository.getUserByUserName(email);
 			model.addAttribute(user);
 			return "user_dashboard";
 		}
 	}
+	// POST method dashboard to take data from dashboard, to take personal information from form 
 	@RequestMapping(path="/dashboard", method=RequestMethod.POST)
 	private String editDashboard(final DetailInfo details,final User tempuser,Model model, Principal principal,@RequestParam("file") MultipartFile file) throws IOException {
 		String email = principal.getName();
@@ -106,56 +106,9 @@ public class UserController {
 		model.addAttribute(user);
 		return "user_dashboard";
 	}
-	@GetMapping("/inputform")
-	private String inputInformation(Principal principal, Model model) throws UnsupportedEncodingException {
-		String email = principal.getName();
-		User user = userRepository.getUserByUserName(email);
-		int userId = user.getDetailId();
-		DetailInfo details = detailRepository.getById(userId);
-		byte[] image = details.getImage();
-		model.addAttribute("image", new String(image, "UTF-8"));
-		model.addAttribute(user);
-		
-		return "inputform";
-	}
-	@RequestMapping(path="/inputform", method= RequestMethod.POST)
-	private String ProcessInputForm(final DetailInfo details,final User tempuser,Model model, Principal principal, @RequestParam("file") MultipartFile file) throws IOException {
-		String email = principal.getName();
-		User user = userRepository.getUserByUserName(email);
-		if(file!=null) {
-			byte[] image = java.util.Base64.getEncoder().encode(file.getBytes());
-			model.addAttribute("image", new String(image, "UTF-8"));
-			details.setImage(image);
-		}
-		if(details!=null)
-			user.setDetails(details);
-		user.setEducations(tempuser.getEducations());
-		user.setExperience(tempuser.getExperience());
-		user.setProfile_links(tempuser.getProfile_links());
-		user.setSkills(tempuser.getSkills());
-		user.setProjects(tempuser.getProjects());
-		user.setAchievements(tempuser.getAchievements());
-		user.setReference(tempuser.getReference());
-		userRepository.save(user);
-		model.addAttribute(user);
-		return "inputform";
-	}
-	@GetMapping("/cv1")
-	private String cv1(Model model) {
-		return "CV01";
-	}
-	@GetMapping("/cv2")
-	private String cv2(Model model) {
-		return "CV02";
-	}
-	@RequestMapping(path="/ex", method= RequestMethod.POST)
-	private String exa(final User user, Model model) {
-		List<Skill> skill= user.getSkills();
-		System.out.println(skill.get(0).getCategory()+skill.get(0).getSkillName());
-		return "user_dashboard";
-	}
 
-	
+
+	// GET method for add education form
     @RequestMapping("/add-education")
     public String add_education(Model model, Principal principal){
         String userName = principal.getName();
@@ -165,6 +118,7 @@ public class UserController {
         model.addAttribute("user", user);
         return "user_add_education";
     }
+    // POST method for add education form
     @PostMapping("/process-add-education")
     public String process_new_eduation(@ModelAttribute Education education, Model model,  Principal principal, HttpSession session){
         model.addAttribute("title", "Add Education - Easy Portfolio");
@@ -184,7 +138,7 @@ public class UserController {
 			return "user_add_education";
 		}
     }
-	
+    // GET method for add experience form
     @RequestMapping("/add-experience")
     public String add_experience(Model model, Principal principal){
         String userName = principal.getName();
@@ -194,6 +148,7 @@ public class UserController {
         model.addAttribute("user", user);
         return "user_add_experience";
     }
+    // POST method for add education form
     @PostMapping("/process-add-experience")
     public String process_new_experience(@ModelAttribute Experience experience, Model model,  Principal principal, HttpSession session){
         model.addAttribute("title", "Add Experience - Easy Portfolio");
@@ -213,6 +168,7 @@ public class UserController {
 			return "user_add_experience";
 		}
     }
+    // GET method for add project form
 	@RequestMapping("/add-project")
     public String add_project(Model model, Principal principal){
         String userName = principal.getName();
@@ -222,6 +178,7 @@ public class UserController {
         model.addAttribute("user", user);
         return "user_add_project";
     }
+	// POST method for add project form
     @PostMapping("/process-add-project")
     public String process_new_project(@ModelAttribute Project project, Model model,  Principal principal, HttpSession session){
         model.addAttribute("title", "Add Project - Easy Portfolio");
@@ -241,7 +198,7 @@ public class UserController {
 			return "user_add_project";
 		}
     }
-
+    // GET method for add skill form
 	@RequestMapping("/add-skill")
     public String add_skill(Model model, Principal principal){
         String userName = principal.getName();
@@ -251,6 +208,7 @@ public class UserController {
         model.addAttribute("user", user);
         return "user_add_skill";
     }
+	// POST method for add skill form
     @PostMapping("/process-add-skill")
     public String process_new_skill(@ModelAttribute Skill skill, Model model,  Principal principal, HttpSession session){
         model.addAttribute("title", "Add Skill - Easy Portfolio");
@@ -271,7 +229,7 @@ public class UserController {
 		}
     }
 
-
+    // GET method for add referece form
 	@RequestMapping("/add-reference")
     public String add_reference(Model model, Principal principal){
         String userName = principal.getName();
@@ -281,6 +239,7 @@ public class UserController {
         model.addAttribute("user", user);
         return "user_add_reference";
     }
+	// POST method for add reference form
     @PostMapping("/process-add-reference")
     public String process_new_reference(@ModelAttribute Reference reference, Model model,  Principal principal, HttpSession session){
         model.addAttribute("title", "Add Reference - Easy Portfolio");
@@ -301,7 +260,7 @@ public class UserController {
 		}
     }
 
-
+    // 	GET method for add achievement form
 	@RequestMapping("/add-achievement")
     public String add_achievement(Model model, Principal principal){
         String userName = principal.getName();
@@ -311,6 +270,7 @@ public class UserController {
         model.addAttribute("user", user);
         return "user_add_achievement";
     }
+	// 	POST method for add achievement form
     @PostMapping("/process-add-achievement")
     public String process_new_achievement(@ModelAttribute Achievement achievement, Model model,  Principal principal, HttpSession session){
         model.addAttribute("title", "Add Achievement - Easy Portfolio");
@@ -331,7 +291,7 @@ public class UserController {
 		}
     }
 
-
+    // 	GET method for add profilelink form
 	@RequestMapping("/add-profile-link")
     public String add_profile_link(Model model, Principal principal){
         String userName = principal.getName();
@@ -341,6 +301,7 @@ public class UserController {
         model.addAttribute("user", user);
         return "user_add_profile_link";
     }
+	 // POST method for add profilelink form
     @PostMapping("/process-add-profile-link")
     public String process_new_profile_link(@ModelAttribute ProfileLinks profileLinks, Model model,  Principal principal, HttpSession session){
         model.addAttribute("title", "Add Profile Link - Easy Portfolio");
@@ -360,6 +321,7 @@ public class UserController {
 			return "user_add_profile_link";
 		}
     }
+    // GET method for change password method 
     @GetMapping("/change-password")
     public String change_password(Model model, Principal principal) {
         model.addAttribute("title", "Change Password - Easy Portfolio");
@@ -368,6 +330,7 @@ public class UserController {
         model.addAttribute("user", user);
     	return "user_change_password";
     }
+    // POST method for change password
     @PostMapping("/process-change-password")
     public String process_change_password(Model model, Principal principal, @RequestParam("oldPassword") String oldPassword, @RequestParam("password") String password, @RequestParam("confirmPassword") String confirmPassword, HttpSession session ){
         model.addAttribute("title", "Change Password - Easy Portfolio");
@@ -398,7 +361,7 @@ public class UserController {
         }
     }
 
-    
+    // 	GET method for change username
     @GetMapping("/change-username")
     public String change_username(Model model, Principal principal) {
         model.addAttribute("title", "Change Username - Easy Portfolio");
@@ -407,6 +370,7 @@ public class UserController {
         model.addAttribute("user", user);
     	return "user_change_username";
     }
+    // 	POST method for change username
     @PostMapping("/process-change-username")
     public String process_change_username(Model model, Principal principal, @RequestParam("username") String newusername, HttpSession session ){
         model.addAttribute("title", "Change Username - Easy Portfolio");
@@ -430,6 +394,7 @@ public class UserController {
             return "user_change_username";
         }
     }
+    // GET method for edit porfile link option
     @GetMapping("/edit-profilelink/{pId}")
     public String editProfileLink(@PathVariable("pId") int pId, Model model, Principal principal) {
     	String userName = principal.getName();
@@ -441,6 +406,7 @@ public class UserController {
         model.addAttribute("user", user);
     	return "user_edit_profile_link";
     }
+    // POST method for edit profile link option
     @PostMapping("/edit-profilelink/{pId}")
     public String editProfileLinkProcess(@PathVariable("pId") int pId,final ProfileLinks profile, Model model,HttpSession session, Principal principal) {
     	String userName = principal.getName();
@@ -455,15 +421,18 @@ public class UserController {
         model.addAttribute("user", user);
     	return "user_edit_profile_link";
     }
+    // GET method for deleting profile link
     @GetMapping("/delete-profilelink/{pId}")
     public RedirectView deleteProfileLink(@PathVariable("pId") int pId,Model model,HttpSession session, Principal principal) {
     	ProfileLinks profilelink = profilelinkRepository.getById(pId);
     	String userName = principal.getName();
     	User user = userRepository.getUserByUserName(userName);
     	List<ProfileLinks> profilelinks = user.getProfile_links();
+    	// to unlink object with user
     	for(int i=0;i<profilelinks.size();i++) {
     		ProfileLinks pro = profilelinks.get(i);
     		if(pro.getpId()==profilelink.getpId()) {
+    			// unlinking object
     			profilelinks.set(i, null);
     			break;
     		}
@@ -473,6 +442,7 @@ public class UserController {
     	model.addAttribute("user", user);
     	return new RedirectView("/user/dashboard");
     }
+    // GET method for edit education link option
     @GetMapping("/edit-education/{eId}")
     public String editEducation(@PathVariable("eId") int eId, Model model, Principal principal) {
     	String userName = principal.getName();
@@ -483,6 +453,7 @@ public class UserController {
         model.addAttribute("user", user);
     	return "user_edit_education";
     }
+    // POST method for edit education link option
     @PostMapping("/edit-education/{eId}")
     public String editEducationProcess(@PathVariable("eId") int eId,final Education education, Model model,HttpSession session, Principal principal) {
     	String userName = principal.getName();
@@ -495,15 +466,18 @@ public class UserController {
         model.addAttribute("user", user);
     	return "user_edit_education";
     }
+    // GET method for deleting education link
     @GetMapping("/delete-education/{eId}")
     public RedirectView deleteEducationLink(@PathVariable("eId") int eId,Model model,HttpSession session, Principal principal) {
     	Education education = educationRepository.getById(eId);
     	String userName = principal.getName();
     	User user = userRepository.getUserByUserName(userName);
     	List<Education> educations = user.getEducations();
+    	// to unlink object with user
     	for(int i=0;i<educations.size();i++) {
     		Education edu = educations.get(i);
     		if(edu.geteId()==education.geteId()) {
+    			//unlinking object
     			educations.set(i, null);
     			break;
     		}
@@ -513,7 +487,7 @@ public class UserController {
     	model.addAttribute("user", user);
     	return new RedirectView("/user/dashboard");
     }
-    
+    // GET method for edit experience 
     @GetMapping("/edit-experience/{eId}")
     public String editExperience(@PathVariable("eId") int eId, Model model, Principal principal) {
     	String userName = principal.getName();
@@ -524,6 +498,7 @@ public class UserController {
         model.addAttribute("user", user);
     	return "user_edit_experience";
     }
+    // post method for edit experience 
     @PostMapping("/edit-experience/{eId}")
     public String editExperienceProcess(@PathVariable("eId") int eId,final Experience experience, Model model,HttpSession session, Principal principal) {
     	String userName = principal.getName();
@@ -536,15 +511,18 @@ public class UserController {
         model.addAttribute("user", user);
     	return "user_edit_experience";
     }
+    // 	GET method for deleting experience 
     @GetMapping("/delete-experience/{eId}")
     public RedirectView deleteExperienceLink(@PathVariable("eId") int eId,Model model,HttpSession session, Principal principal) {
     	Experience experience = experienceRepository.getById(eId);
     	String userName = principal.getName();
     	User user = userRepository.getUserByUserName(userName);
     	List<Experience> experiences= user.getExperience();
+    	// to unlink object with user
     	for(int i=0;i<experiences.size();i++) {
     		Experience exp = experiences.get(i);
     		if(exp.geteId()==experience.geteId()) {
+    			//unlinking object
     			experiences.set(i, null);
     			break;
     		}
@@ -554,6 +532,7 @@ public class UserController {
     	model.addAttribute("user", user);
     	return new RedirectView("/user/dashboard");
     }
+    // 	GET method for edit skill 
     @GetMapping("/edit-skill/{sId}")
     public String editSkill(@PathVariable("sId") int sId, Model model, Principal principal) {
     	String userName = principal.getName();
@@ -564,6 +543,7 @@ public class UserController {
         model.addAttribute("user", user);
     	return "user_edit_skill";
     }
+    // 	POST method for edit skill 
     @PostMapping("/edit-skill/{sId}")
     public String editSkillProcess(@PathVariable("sId") int sId,final Skill skill, Model model,HttpSession session, Principal principal) {
     	String userName = principal.getName();
@@ -576,15 +556,18 @@ public class UserController {
         model.addAttribute("user", user);
     	return "user_edit_skill";
     }
+    // 	GET method for deleting skill 
     @GetMapping("/delete-skill/{sId}")
     public RedirectView deleteSkill(@PathVariable("sId") int sId,Model model,HttpSession session, Principal principal) {
     	Skill skill = skillRepository.getById(sId);
     	String userName = principal.getName();
     	User user = userRepository.getUserByUserName(userName);
     	List<Skill> skills= user.getSkills();
+    	// to unlink object with user
     	for(int i=0;i<skills.size();i++) {
     		Skill sk = skills.get(i);
     		if(sk.getsId()==skill.getsId()) {
+    			//unlinking object
     			skills.set(i, null);
     			break;
     		}
@@ -594,6 +577,7 @@ public class UserController {
     	model.addAttribute("user", user);
     	return new RedirectView("/user/dashboard");
     }
+    // 	GET method for edit project 
     @GetMapping("/edit-project/{pId}")
     public String editProject(@PathVariable("pId") int pId, Model model, Principal principal) {
     	String userName = principal.getName();
@@ -604,6 +588,7 @@ public class UserController {
         model.addAttribute("user", user);
     	return "user_edit_project";
     }
+    // 	POST method for edit project 
     @PostMapping("/edit-project/{pId}")
     public String editProjectProcess(@PathVariable("pId") int pId,final Project project, Model model,HttpSession session, Principal principal) {
     	String userName = principal.getName();
@@ -616,15 +601,18 @@ public class UserController {
         model.addAttribute("user", user);
     	return "user_edit_project";
     }
+    // 	GET method for deleting project 
     @GetMapping("/delete-project/{pId}")
     public RedirectView deleteProject(@PathVariable("pId") int pId,Model model,HttpSession session, Principal principal) {
     	Project project = projectRepository.getById(pId);
     	String userName = principal.getName();
     	User user = userRepository.getUserByUserName(userName);
     	List<Project> projects = user.getProjects();
+    	// to unlink object with user
     	for(int i=0;i<projects.size();i++) {
     		Project pr = projects.get(i);
     		if(pr.getpId()==project.getpId()) {
+    			//unlinking object
     			projects.set(i, null);
     			break;
     		}
@@ -634,6 +622,7 @@ public class UserController {
     	model.addAttribute("user", user);
     	return new RedirectView("/user/dashboard");
     }
+    // 	GET method for edit achievement
     @GetMapping("/edit-achievement/{aId}")
     public String editAchievement(@PathVariable("aId") int aId, Model model, Principal principal) {
     	String userName = principal.getName();
@@ -644,6 +633,7 @@ public class UserController {
         model.addAttribute("user", user);
     	return "user_edit_achievement";
     }
+    // 	POST method for edit achievement
     @PostMapping("/edit-achievement/{aId}")
     public String editAchievementProcess(@PathVariable("aId") int aId,final Achievement achievement, Model model,HttpSession session, Principal principal) {
     	String userName = principal.getName();
@@ -656,15 +646,18 @@ public class UserController {
         model.addAttribute("user", user);
     	return "user_edit_achievement";
     }
+    // 	GET method for deleting achievement
     @GetMapping("/delete-achievement/{aId}")
     public RedirectView deleteAchievement(@PathVariable("aId") int aId,Model model,HttpSession session, Principal principal) {
     	Achievement achievement = achievementRepository.getById(aId);
     	String userName = principal.getName();
     	User user = userRepository.getUserByUserName(userName);
+    	// to unlink object with user
     	List<Achievement> achievements= user.getAchievements();
     	for(int i=0;i<achievements.size();i++) {
     		Achievement ac = achievements.get(i);
     		if(ac.getaId()==achievement.getaId()) {
+    			// unlinking object
     			achievements.set(i, null);
     			break;
     		}
@@ -674,6 +667,7 @@ public class UserController {
     	model.addAttribute("user", user);
     	return new RedirectView("/user/dashboard");
     }
+    // 	GET method for edit reference
     @GetMapping("/edit-reference/{rId}")
     public String editReference(@PathVariable("rId") int rId, Model model, Principal principal) {
     	String userName = principal.getName();
@@ -684,6 +678,7 @@ public class UserController {
         model.addAttribute("user", user);
     	return "user_edit_reference";
     }
+    // 	POST method for edit reference
     @PostMapping("/edit-reference/{rId}")
     public String editReferenceProcess(@PathVariable("rId") int rId,final Reference reference, Model model,HttpSession session, Principal principal) {
     	String userName = principal.getName();
@@ -696,15 +691,18 @@ public class UserController {
         model.addAttribute("user", user);
     	return "user_edit_reference";
     }
+    // 	GET method for deleting reference
     @GetMapping("/delete-reference/{rId}")
     public RedirectView deleteReference(@PathVariable("rId") int rId,Model model,HttpSession session, Principal principal) {
     	Reference reference = referenceRepository.getById(rId);
     	String userName = principal.getName();
     	User user = userRepository.getUserByUserName(userName);
     	List<Reference> references= user.getReference();
+    	// to unlink object with user
     	for(int i=0;i<references.size();i++) {
     		Reference rf = references.get(i);
     		if(rf.getrId()==reference.getrId()) {
+    			//unlinking object 
     			references.set(i, null);
     			break;
     		}

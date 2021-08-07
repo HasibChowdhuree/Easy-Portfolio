@@ -1,5 +1,6 @@
 package com.easyportfolio.helper;
 
+// for error handling message while signin, signup, add, delete property
 public class Message {
 	private String content;
 	private String type;

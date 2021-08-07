@@ -84,6 +84,7 @@ public class HomeController {
 		model.addAttribute("user",new User());
 		return "signup";
 	}
+	// POST method for signup process
 	@RequestMapping(path="/processsignup", method=RequestMethod.POST)
 	private String ProcessSignup(@RequestParam("email") String email,
 			@RequestParam("username") String username,
@@ -93,6 +94,7 @@ public class HomeController {
 		User user = new User();
 		user.setUsername(username);
 		user.setEmail(email);
+		// checking for duplicates , password length and other error
 		try {
 			if(userRepository.findByEmail(email)!=null) {
 				throw new Exception("user email already exists");
@@ -122,11 +124,13 @@ public class HomeController {
 			return "signup";
 		}
 	}
+	// GET method for homepage
 	@GetMapping("/home")
 	public String test(Model model) {
 		model.addAttribute("title","demo home");
 		return "home";
 	}
+	// GET method for sign in 
 	@RequestMapping(path="/signin")
 	public String signin(Model model, Principal principal) {
 		model.addAttribute("title","Sign in");
@@ -143,32 +147,31 @@ public class HomeController {
 			return "signin";
 		}
 	}
-	
+	// generating html from dashboard form for cv.pdf
 	@GetMapping("/genpdf/{fileName}")
 	public HttpEntity<byte[]> createPdf(
             @PathVariable("fileName") String fileName, Principal principal, Model model) throws IOException {
 
-		/* first, get and initialize an engine */
+		//initializing velocity engine
 		VelocityEngine ve = new VelocityEngine();
 
-		/* next, get the Template */
+		//getting the Template
 		ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
 		ve.setProperty("classpath.resource.loader.class",
 				ClasspathResourceLoader.class.getName());
 		ve.init();
 		Template t = ve.getTemplate("templates/CV_template_01.html");
-		/* create a context and add data */
+		// creating context to add data
 		VelocityContext context = new VelocityContext();
 		String email = principal.getName();
 		User user = userRepository.getUserByUserName(email);
 		model.addAttribute("user", user);
 		context.put("user", user); 
 		context.put("genDateTime", LocalDateTime.now().toString());
-		/* now render the template into a StringWriter */
+		//rendering the template into a StringWriter
 		StringWriter writer = new StringWriter();
 		t.merge(context, writer);
-		/* show the World */
-//		System.out.println(writer.toString());
+
 		
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
@@ -183,7 +186,7 @@ public class HomeController {
 	    return new HttpEntity<byte[]>(baos.toByteArray(), header);
 
 	}
-	
+	// turning html to pdf using pdfwriter
 	public ByteArrayOutputStream generatePdf(String html) {
 
 		PdfWriter pdfWriter = null;
@@ -236,29 +239,26 @@ public class HomeController {
         model.addAttribute("user",tempuser);
         return createPdfwithoutSignup(tempuser, model);
     }
-	
+	// for creating pdf file from form without user signup
 	public HttpEntity<byte[]> createPdfwithoutSignup(User user, Model model) throws IOException {
 
-		/* first, get and initialize an engine */
+		// initializing velocity engine
 		VelocityEngine ve = new VelocityEngine();
 		String fileName = "cv.pdf";
-		/* next, get the Template */
+		// getting the Template
 		ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
 		ve.setProperty("classpath.resource.loader.class",
 				ClasspathResourceLoader.class.getName());
 		ve.init();
 		Template t = ve.getTemplate("templates/CV_template_01.html");
-		/* create a context and add data */
+		// creating a context to add data
 		VelocityContext context = new VelocityContext();
 		model.addAttribute("user", user);
 		context.put("user", user); 
 		context.put("genDateTime", LocalDateTime.now().toString());
-		/* now render the template into a StringWriter */
+		// now rendering the template into a StringWriter
 		StringWriter writer = new StringWriter();
 		t.merge(context, writer);
-		/* show the World */
-//		System.out.println(writer.toString());
-		
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		baos = generatePdf(writer.toString());
@@ -272,11 +272,13 @@ public class HomeController {
 	    return new HttpEntity<byte[]>(baos.toByteArray(), header);
 
 	}
+	// for live portfolio link
 	@GetMapping("/profile/{username}")
     public String livelink(@PathVariable("username") String username,Model model,HttpSession session) throws UnsupportedEncodingException {
     	User user = userRepository.findByUsername(username);
     	DetailInfo details = user.getDetails();
 		byte[] image = details.getImage();
+		// checking if image is null 
     	if(image.length>0)
 			model.addAttribute("image", new String(image, "UTF-8"));
     	model.addAttribute("user", user);

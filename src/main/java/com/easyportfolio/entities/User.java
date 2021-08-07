@@ -30,20 +30,9 @@ public class User {
 	private String email;
 	@Column(unique=true)
 	private String username;
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
 	private String password;
 	private String role;
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
+	//user properties 
 	@OneToOne(cascade = CascadeType.ALL, fetch =FetchType.LAZY)
 	private DetailInfo details;
 	@OneToMany(cascade = CascadeType.ALL,fetch =FetchType.LAZY)
@@ -52,12 +41,6 @@ public class User {
 	private List<Achievement> achievements;
 	@OneToMany(cascade = CascadeType.ALL,fetch =FetchType.LAZY)
 	private List<ProfileLinks> profile_links;
-//	@ElementCollection
-//    @CollectionTable(
-//        name = "skill",
-//        joinColumns = @JoinColumn(name = "id")
-//    )
-//	private List<Skill> skills;
 	@OneToMany(cascade = CascadeType.ALL,fetch =FetchType.LAZY)
 	private List<Skill> skills;
 	@OneToMany(cascade = CascadeType.ALL,fetch =FetchType.LAZY)
@@ -66,9 +49,19 @@ public class User {
 	private List<Reference> reference;
 	@OneToMany(cascade = CascadeType.ALL,fetch =FetchType.LAZY)
 	private List<Experience> experience;
-	@OneToMany(cascade = CascadeType.ALL,fetch =FetchType.LAZY)
-	private List<Award> awards;
-	
+	// all getter and setter methods for each entity
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	public List<Experience> getExperience() {
 		return experience;
 	}
@@ -128,12 +121,6 @@ public class User {
 	}
 	public void setReference(List<Reference> reference) {
 		this.reference = reference;
-	}
-	public List<Award> getAwards() {
-		return awards;
-	}
-	public void setAwards(List<Award> awards) {
-		this.awards = awards;
 	}
 	public List<ProfileLinks> getProfile_links() {
 		return profile_links;

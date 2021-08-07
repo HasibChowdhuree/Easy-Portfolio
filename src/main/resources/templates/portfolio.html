@@ -38,7 +38,12 @@
             <div id="main-nav" class="collapse navbar-collapse">
                 <nav>
                     <ul class="nav navbar-nav">
-                        <li><a href="#top"  style="font-size:200%"  data-toggle="collapse" data-target="#main-nav"><img style="border-radius: 50%;" th:src="@{/img/profile.jpg}" width="30%"><br><b th:text="${user.details.full_name}"></b><br></a></li>
+                        <li><a href="#top"  style="font-size:200%"  data-toggle="collapse" data-target="#main-nav">
+                        <section th:if="${image==null}"><img style="border-radius: 50%;" src="https://i.imgur.com/5UpOyrb.jpg" width="30%">
+                        </section>
+                        <section th:if="${image!=null}"><img style="border-radius: 50%;" th:src="'data:image/png;base64,' + ${image}" width="30%">
+                        </section>
+                        <br><b th:text="${user.details.full_name}"></b><br></a></li>
                         <li><a href="#education" data-toggle="collapse" data-target="#main-nav">Education</a></li>
                         
                         
