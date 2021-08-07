@@ -76,9 +76,8 @@ public class UserController {
 	//		System.out.println(userId);
 			DetailInfo details = detailRepository.getById(userId);
 			byte[] image = details.getImage();
-			System.out.println(image);
 	//		System.out.println(details.getFirstName());
-			if(image.length >0)
+			if(image.length>0)
 				model.addAttribute("image", new String(image, "UTF-8"));
 			model.addAttribute("user",user);
 			return "user_dashboard";
@@ -97,7 +96,8 @@ public class UserController {
 		User user = userRepository.getUserByUserName(email);
 		if(file!=null) {
 			byte[] image = java.util.Base64.getEncoder().encode(file.getBytes());
-			model.addAttribute("image", new String(image, "UTF-8"));
+			if(image.length>0)
+				model.addAttribute("image", new String(image, "UTF-8"));
 			details.setImage(image);
 		}
 		if(details!=null)
