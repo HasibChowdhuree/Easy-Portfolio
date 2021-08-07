@@ -1,7 +1,6 @@
 package com.easyportfolio.controller;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.List;
 
